@@ -1,4 +1,4 @@
-# Content plan for HAP's Learning Lab
+# Content plan for HAP's Color Learning Lab
 
 This file helps you organize your learning lab content before customization. Fill in all sections below, then use this as a reference when working with Claude Code to customize your learning lab.
 
@@ -6,10 +6,10 @@ This file helps you organize your learning lab content before customization. Fil
 
 ### Theme
 
-**Your learning lab theme** (e.g., "Modern CSS Layouts", "JavaScript Fundamentals", "Web Accessibility"):
+**Your learning lab theme**:
 
 ```
-[YOUR THEME HERE]
+Web Colors: From Hex Chaos to Color Confidence
 ```
 
 ### Brief description
@@ -17,7 +17,7 @@ This file helps you organize your learning lab content before customization. Fil
 **One sentence describing what students will learn**:
 
 ```
-[BRIEF DESCRIPTION - This will be used in meta tags and social sharing]
+Join HAP's journey from messy hex codes to mastering color systems, accessibility, harmony, and modern CSS color features through hands-on interactive demos and relatable mistakes.
 ```
 
 ### Topics covered
@@ -25,7 +25,7 @@ This file helps you organize your learning lab content before customization. Fil
 **List the main topics** (this appears on the hub page):
 
 ```
-[YOUR TOPICS - e.g., "flexbox, grid, subgrid, container queries, logical properties, and modern layout patterns"]
+Color formats beyond hex, building reusable color systems with CSS variables, color harmony and meaning, accessibility and contrast ratios, modern CSS color features, and AI assistance for color design
 ```
 
 ### Target audience
@@ -33,515 +33,664 @@ This file helps you organize your learning lab content before customization. Fil
 **Who is this learning lab for?**
 
 ```
-[DESCRIBE YOUR TARGET AUDIENCE - e.g., "Web developers who want to learn modern CSS layout techniques"]
+Beginning web development students who currently only use hex codes and need to learn proper color implementation, accessibility standards, and systematic approaches to color in CSS
 ```
 
 ### Learning objectives
 
 **What will students be able to do after completing this learning lab?**
 
-1. [Objective 1]
-2. [Objective 2]
-3. [Objective 3]
-4. [Objective 4]
-5. [Objective 5]
-6. [Objective 6]
+1. Convert between hex, RGB, and HSL formats and know when to use each
+2. Build organized color systems using CSS custom properties instead of scattered hex codes
+3. Create harmonious color combinations using basic color theory principles
+4. Ensure WCAG compliance with proper contrast ratios and testing tools
+5. Implement modern CSS features like gradients, color-mix(), and automatic dark mode
+6. Use AI effectively to generate palettes and check accessibility
 
 ---
 
-## Station 1: [STATION TITLE]
+## Station 1: Beyond Hex - Color Formats on the Web
 
 ### Station title
 
 ```
-[STATION 1 TITLE - e.g., "Understanding Flexbox Fundamentals"]
+Beyond Hex - Color Formats on the Web
 ```
 
 ### Subtitle
 
 ```
-[SUBTITLE - e.g., "Master one-dimensional layouts with flexible box model"]
+Understanding different ways to write colors and why they matter
 ```
 
 ### HAP's introduction
 
-**HAP's apprentice voice introduction** (first-person, enthusiastic):
+```
+I used to think hex codes were the ONLY way to write colors. I'd seen rgb() in other people's code, but I just converted everything back to hex because that's all I knew! Sometimes I'd use 'red' or 'blue' because it was easier than looking up hex codes, but then I'd wonder why 'darkgray' was actually lighter than 'gray'. So confusing! Let me show you what Prof. Teeters taught me about color formats - it changed everything!
+```
+
+### HAP's specific struggles
 
 ```
-[WRITE HAP'S INTRO - e.g., "When Prof. Teeters first showed me flexbox, I couldn't believe how easy it made creating responsive navigation bars! Let me show you what I learned about this powerful layout tool."]
+- Mixed #fff, #FFF, and #ffffff for the same color
+- Didn't understand why rgb() existed when we had hex
+- Confused by 'darkgray' being lighter than 'gray'
+- Copy-pasted hex codes without understanding them
+- Never knew about transparency options
 ```
 
 ### Key insights (3 cards)
 
 **Insight 1:**
-- Title: [e.g., "Browser Support"]
-- Statistic: [e.g., "99.8% global support"]
-- Details: [Supporting information]
+
+- Title: Why hex isn't enough
+- Content: Hex is great for copying from design tools, but terrible for modifications
+- HAP's take: I couldn't make colors lighter/darker with hex - had to guess new codes!
 
 **Insight 2:**
-- Title: [e.g., "Use Cases"]
-- Statistic: [e.g., "80% of navigation patterns"]
-- Details: [Supporting information]
+
+- Title: RGB makes sense for screens
+- Content: It's literally Red, Green, Blue light amounts (0-255)
+- HAP's take: Once Prof. Teeters explained screens emit light, RGB clicked!
 
 **Insight 3:**
-- Title: [e.g., "Learning Curve"]
-- Statistic: [e.g., "2-3 hours to basics"]
-- Details: [Supporting information]
 
-### HAP's confession
-
-**What did HAP initially struggle with?**
-
-```
-[HAP'S CONFESSION - e.g., "At first, I kept mixing up justify-content and align-items. Prof. Teeters taught me to think of the main axis vs cross axis..."]
-```
+- Title: HSL is the game-changer
+- Content: Hue, Saturation, Lightness - adjust colors like a human thinks
+- HAP's take: Make it darker? Just lower the L value! Why didn't anyone tell me sooner?
 
 ### Main content sections
 
-**Section 1 heading:**
-```
-[HEADING]
-```
+**Section 1: HAP's Hex Chaos**
 
-**Section 1 content:**
 ```
-[CONTENT - Include explanation that Prof. Teeters taught HAP]
+My old CSS files were a disaster of hex codes. I had #336699, #3366cc, #369, and #3366CC scattered everywhere - some were the same color, some weren't, and I couldn't tell which was which! Prof. Teeters showed me my first problem: I didn't even know that #RGB was shorthand for #RRGGBB. So #369 actually meant #336699! Mind. Blown. 🤯
 ```
 
-**Code examples needed:**
+**Section 2: The RGB Revelation**
+
 ```
-[LIST CODE EXAMPLES FOR THIS STATION]
+RGB made no sense until Prof. Teeters explained it's based on how screens work - mixing red, green, and blue light. Each value (0-255) is how bright that color channel is. rgb(255, 0, 0) = full red, no green, no blue = pure red! And rgba() adds transparency without affecting child elements like opacity does. Game changer for overlays!
 ```
 
-### Quick reference tips (3 tips)
+**Section 3: HSL Changed Everything**
 
-**Tip 1:**
-- Title: [e.g., "Start with Container"]
-- Content: [HAP's practical advice]
+```
+This is where everything clicked! HSL is how humans think about color. Hue is the color wheel position (0-360°), Saturation is how vivid (0-100%), and Lightness is... well, lightness (0-100%). Want a darker version? Keep H and S, just lower L! Prof. Teeters said "HSL is like having a color remote control" and she was SO right!
+```
 
-**Tip 2:**
-- Title: [e.g., "Mind the Axes"]
-- Content: [HAP's practical advice]
+### Interactive demos
 
-**Tip 3:**
-- Title: [e.g., "Test Responsively"]
-- Content: [HAP's practical advice]
+1. **Color Format Converter**: Input any format, see all conversions instantly
+2. **"Same Color, Different Formats" Demo**: Shows how #369, #336699, rgb(51, 102, 153), and hsl(210, 50%, 40%) are identical
+3. **Transparency Playground**: Compare rgba() vs opacity with interactive sliders
+
+### Code examples
+
+```css
+/* HAP's Old Way (Hex Chaos) */
+.header { background: #336699; }
+.button { background: #369; /* Wait, is this the same? */ }
+.footer { background: #3366CC; /* Or is THIS the same? */ }
+.link { color: darkblue; /* Close enough? */ }
+
+/* What I Learned */
+:root {
+  --brand-blue: hsl(210, 50%, 40%);
+  --brand-blue-dark: hsl(210, 50%, 30%); /* Just changed L! */
+  --brand-blue-light: hsl(210, 50%, 50%); /* So easy! */
+}
+```
 
 ### Resources
 
-- [Resource 1 with URL]
-- [Resource 2 with URL]
-- [Resource 3 with URL]
+- MDN Color Values: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+- Color format converter tool
+- Browser DevTools color picker guide
 
 ---
 
-## Station 2: [STATION TITLE]
+## Station 2: Building Color Systems
 
 ### Station title
 
 ```
-[STATION 2 TITLE]
+Building Color Systems
 ```
 
 ### Subtitle
 
 ```
-[SUBTITLE]
+Creating organized, reusable color palettes
 ```
 
 ### HAP's introduction
 
 ```
-[HAP'S INTRO]
+My old stylesheets were basically hex code soup. I'd have #3366cc in my header, #3367cc in my footer (yes, they're different!), and couldn't remember which was which. Copy-paste was my strategy - find a color I used before, copy it, hope it was the right shade! Then Prof. Teeters introduced me to CSS variables and systematic color naming. Now I change colors in ONE place! Let me show you this sanity-saving system!
+```
+
+### HAP's specific struggles
+
+```
+- Same color written 5 different ways
+- 47 different shades of blue (not joking!)
+- Copy-paste archaeology to find colors
+- No naming system ("blue-3" everywhere)
+- Changed mind about a color = find/replace nightmare
 ```
 
 ### Key insights (3 cards)
 
 **Insight 1:**
-- Title:
-- Statistic:
-- Details:
+
+- Title: Variables save sanity
+- Content: Define once, use everywhere, change in one place
+- HAP's take: I went from 50 hex codes to 8 variables. EIGHT!
 
 **Insight 2:**
-- Title:
-- Statistic:
-- Details:
+
+- Title: Semantic naming
+- Content: --primary-color beats --blue-500 every time
+- HAP's take: When the "blue" became purple, I didn't have to rename everything!
 
 **Insight 3:**
-- Title:
-- Statistic:
-- Details:
 
-### HAP's confession
-
-```
-[HAP'S CONFESSION]
-```
+- Title: The 60-30-10 rule
+- Content: 60% dominant, 30% secondary, 10% accent
+- HAP's take: This formula instantly made my sites look professional!
 
 ### Main content sections
 
-**Section 1 heading:**
-```
-[HEADING]
-```
+**Section 1: The Hex Soup Problem**
 
-**Section 1 content:**
 ```
-[CONTENT]
+Prof. Teeters asked me to count my colors once. I had 73 different color values in one CSS file! Many were almost identical (#3366cc vs #3366cb). Some were the same color written differently (#fff, white, #FFFFFF). I was drowning in hex codes with no system, no organization, just chaos.
 ```
 
-**Code examples needed:**
+**Section 2: CSS Custom Properties Revolution**
+
 ```
-[LIST CODE EXAMPLES]
+Then she showed me CSS custom properties (variables). Instead of #3366cc everywhere, I now had --brand-primary. Want to change it? Update ONE line! But the real magic was creating a system: --gray-100 through --gray-900 for consistent grays. It's like having a design system built into your CSS!
 ```
 
-### Quick reference tips (3 tips)
+**Section 3: Semantic Color Names**
 
-**Tip 1:**
-- Title:
-- Content:
+```
+The final piece was semantic naming. Instead of --blue or --red, Prof. Teeters taught me to use --primary, --secondary, --success, --warning, --error. Why? Because when the client says "make the blue purple," you just change --primary and you're done. No lying variable names!
+```
 
-**Tip 2:**
-- Title:
-- Content:
+### Interactive demos
 
-**Tip 3:**
-- Title:
-- Content:
+1. **Palette Builder Tool**: Start with one color, generate tints and shades
+2. **"HAP's Hex Chaos Refactor"**: Interactive refactoring showing 50 colors becoming 8 variables
+3. **60-30-10 Rule Visualizer**: Adjust percentages and see the visual impact
+
+### Code examples
+
+```css
+/* HAP's Old Way (Hex Soup - 50+ colors!) */
+.header { background: #3366cc; color: white; }
+.nav { background: #3367cc; color: #ffffff; }
+.button { background: #3366CC; color: #FFF; }
+.card { border: 1px solid #3366cd; }
+/* ... and 46 more slight variations ... */
+
+/* What I Learned (8 variables!) */
+:root {
+  --primary: hsl(210, 50%, 50%);
+  --primary-dark: hsl(210, 50%, 40%);
+  --primary-light: hsl(210, 50%, 60%);
+  --text-on-primary: hsl(0, 0%, 100%);
+  --gray-100: hsl(0, 0%, 95%);
+  --gray-500: hsl(0, 0%, 50%);
+  --gray-900: hsl(0, 0%, 10%);
+  --background: var(--gray-100);
+}
+```
 
 ### Resources
 
-- [Resource 1]
-- [Resource 2]
-- [Resource 3]
+- CSS Custom Properties guide
+- Design token best practices
+- Color system generators
 
 ---
 
-## Station 3: [STATION TITLE]
+## Station 3: Color Harmony & Meaning
 
 ### Station title
 
 ```
-[STATION 3 TITLE]
+Color Harmony & Meaning
 ```
 
 ### Subtitle
 
 ```
-[SUBTITLE]
+Making colors that work well together
 ```
 
 ### HAP's introduction
 
 ```
-[HAP'S INTRO]
+Picking colors? I used to just guess! I'd think 'this green looks nice' (#00ff00) and 'this red works' (#ff0000), then wonder why they looked so harsh together. Prof. Teeters called it 'skittles syndrome' - my sites looked like a bag of candy exploded! Then she taught me about the color wheel and basic harmony rules. Suddenly, professional color combinations weren't magic anymore - they were math!
+```
+
+### HAP's specific struggles
+
+```
+- Used pure red (#ff0000) with pure green (#00ff00) 
+- "Skittles syndrome" - every color was max brightness
+- No understanding of color temperature
+- Picked colors randomly with no relationship
+- Didn't know why some colors clashed
 ```
 
 ### Key insights (3 cards)
 
 **Insight 1:**
-- Title:
-- Statistic:
-- Details:
+
+- Title: The color wheel works
+- Content: Relationships on the wheel = harmony in design
+- HAP's take: Complementary colors are just 180° apart in HSL. It's literally math!
 
 **Insight 2:**
-- Title:
-- Statistic:
-- Details:
+
+- Title: Temperature matters
+- Content: Warm colors advance, cool colors recede
+- HAP's take: I was mixing warm and cool randomly - no wonder it looked chaotic!
 
 **Insight 3:**
-- Title:
-- Statistic:
-- Details:
 
-### HAP's confession
-
-```
-[HAP'S CONFESSION]
-```
+- Title: Less is more
+- Content: 2-3 colors maximum for beginners
+- HAP's take: I was using 10+ colors! Restraint made everything better!
 
 ### Main content sections
 
-**Section 1 heading:**
-```
-[HEADING]
-```
+**Section 1: The Skittles Syndrome**
 
-**Section 1 content:**
 ```
-[CONTENT]
+My first website was... colorful. Pure red buttons, electric blue headers, neon green highlights. Prof. Teeters gently said it looked like "a bag of skittles exploded." She was right! I was using colors at maximum saturation with no relationship to each other. Every element screamed for attention!
 ```
 
-**Code examples needed:**
+**Section 2: Color Wheel Relationships**
+
 ```
-[LIST CODE EXAMPLES]
+Prof. Teeters drew a simple color wheel and my mind exploded. Complementary colors (opposites) create energy! Analogous colors (neighbors) feel calm! Triadic colors (triangle) stay balanced! In HSL, it's just math: complementary = add 180° to hue. I could finally create harmonious palettes on purpose, not by accident!
 ```
 
-### Quick reference tips (3 tips)
+**Section 3: Meaning and Psychology**
 
-**Tip 1:**
-- Title:
-- Content:
+```
+Then came the psychology lesson. Red doesn't just mean "stop" - it triggers urgency, passion, energy. Blue creates trust and calm. Green suggests growth and money. Prof. Teeters showed me how banks use blue (trust), restaurants use red/orange (appetite), and eco-brands use green (nature). My random color choices were sending mixed messages!
+```
 
-**Tip 2:**
-- Title:
-- Content:
+### Interactive demos
 
-**Tip 3:**
-- Title:
-- Content:
+1. **Color Wheel Relationships**: Click a color, see its complementary, analogous, and triadic matches
+2. **"Fix HAP's Clashing Colors"**: Interactive game fixing bad color combinations
+3. **Mood Board Generator**: Select a mood, get appropriate color suggestions
+
+### Code examples
+
+```css
+/* HAP's Old Way (Skittles Syndrome) */
+.header { background: #ff0000; }     /* PURE RED! */
+.button { background: #00ff00; }     /* NEON GREEN! */
+.sidebar { background: #0000ff; }    /* ELECTRIC BLUE! */
+.alert { background: #ffff00; }      /* BLAZING YELLOW! */
+/* My eyes! The goggles do nothing! */
+
+/* What I Learned (Harmonious Palette) */
+:root {
+  /* Analogous harmony: blue family */
+  --primary: hsl(210, 70%, 50%);      /* Blue */
+  --secondary: hsl(190, 60%, 45%);    /* Blue-green */
+  --accent: hsl(230, 65%, 55%);       /* Blue-purple */
+  
+  /* Neutrals for balance */
+  --text: hsl(0, 0%, 20%);
+  --background: hsl(0, 0%, 98%);
+}
+```
 
 ### Resources
 
-- [Resource 1]
-- [Resource 2]
-- [Resource 3]
+- Adobe Color wheel tool
+- Color psychology in web design
+- Coolors.co palette generator
 
 ---
 
-## Station 4: [STATION TITLE]
+## Station 4: Accessibility & Contrast
 
 ### Station title
 
 ```
-[STATION 4 TITLE]
+Accessibility & Contrast
 ```
 
 ### Subtitle
 
 ```
-[SUBTITLE]
+Making sure everyone can read your content
 ```
 
 ### HAP's introduction
 
 ```
-[HAP'S INTRO]
+I thought if I could read it, everyone could. I'd use light gray text (#cccccc) on white backgrounds because it looked 'modern.' Then Prof. Teeters had me try reading my own site with sunlight on my screen... invisible! She taught me about the 4.5:1 contrast ratio and showed me that 1 in 12 men have some form of color blindness. Now I test everything! Let me show you how to make colors work for everyone.
+```
+
+### HAP's specific struggles
+
+```
+- Light gray on white looked "modern" but was unreadable
+- Never heard of contrast ratios
+- Didn't know color blindness was so common
+- Used color as the only indicator (red = error, green = success)
+- Never tested with accessibility tools
 ```
 
 ### Key insights (3 cards)
 
 **Insight 1:**
-- Title:
-- Statistic:
-- Details:
+
+- Title: The 4.5:1 rule
+- Content: Minimum contrast ratio for normal text per WCAG
+- HAP's take: My "modern" gray text had 2:1 ratio. No wonder people complained!
 
 **Insight 2:**
-- Title:
-- Statistic:
-- Details:
+
+- Title: Color blindness is common
+- Content: Affects 1 in 12 men, 1 in 200 women
+- HAP's take: 8% of my users couldn't see my red/green indicators!
 
 **Insight 3:**
-- Title:
-- Statistic:
-- Details:
 
-### HAP's confession
-
-```
-[HAP'S CONFESSION]
-```
+- Title: Never rely on color alone
+- Content: Always pair with icons, text, or patterns
+- HAP's take: Now my errors have ✕ icons too, not just red color!
 
 ### Main content sections
 
-**Section 1 heading:**
-```
-[HEADING]
-```
+**Section 1: The Invisible Text Disaster**
 
-**Section 1 content:**
 ```
-[CONTENT]
+My "modern, minimal" design had light gray text (#cccccc) on white. Contrast ratio? 1.6:1! Prof. Teeters showed me the WCAG guidelines: 4.5:1 for normal text, 3:1 for large text. She had me test my site on different screens, in bright light, with reduced vision simulators. It was unreadable! What I thought was elegant was actually inaccessible.
 ```
 
-**Code examples needed:**
+**Section 2: Color Blindness Reality Check**
+
 ```
-[LIST CODE EXAMPLES]
+Then came the color blindness bombshell. Prof. Teeters showed me my site through simulators. My red error messages on green success backgrounds? Completely invisible to red-green colorblind users! That's 8% of men! I was literally excluding millions of people with my color choices.
 ```
 
-### Quick reference tips (3 tips)
+**Section 3: Testing and Fixing**
 
-**Tip 1:**
-- Title:
-- Content:
+```
+Prof. Teeters taught me to use Chrome DevTools' contrast checker, WebAIM's tool, and color blindness simulators. But the best lesson? "Never use color as the only indicator." Now my errors have icons AND color. My links are underlined AND colored. Everyone gets the message, regardless of how they see color!
+```
 
-**Tip 2:**
-- Title:
-- Content:
+### Interactive demos
 
-**Tip 3:**
-- Title:
-- Content:
+1. **Contrast Checker Tool**: Input colors, see WCAG pass/fail instantly
+2. **Color Blindness Simulator**: See your colors through different types of color blindness
+3. **"Color Alone" Bad Examples**: Interactive fixes for color-only indicators
+
+### Code examples
+
+```css
+/* HAP's Old Way (Inaccessible) */
+.text { color: #cccccc; }           /* 1.6:1 on white - FAIL! */
+.error { color: red; }               /* Only color indicator */
+.success { color: green; }           /* Invisible to colorblind */
+.link { color: #7799bb; }            /* 3.2:1 - FAIL! */
+
+/* What I Learned (Accessible) */
+:root {
+  --text: hsl(0, 0%, 20%);          /* 13:1 on white - PASS! */
+  --text-muted: hsl(0, 0%, 35%);    /* 7.5:1 - Still passes! */
+  --error: hsl(0, 65%, 45%);        /* 5.4:1 - PASS! */
+  --success: hsl(120, 40%, 35%);    /* 5.9:1 - PASS! */
+}
+
+.error::before { content: "✕ "; }   /* Icon + color */
+.success::before { content: "✓ "; } /* Never color alone! */
+```
 
 ### Resources
 
-- [Resource 1]
-- [Resource 2]
-- [Resource 3]
+- WebAIM Contrast Checker
+- WCAG color guidelines
+- Color blindness simulators
 
 ---
 
-## Station 5: [STATION TITLE]
+## Station 5: Modern CSS Color Features
 
 ### Station title
 
 ```
-[STATION 5 TITLE]
+Modern CSS Color Features
 ```
 
 ### Subtitle
 
 ```
-[SUBTITLE]
+Cool new things you can do with color in CSS
 ```
 
 ### HAP's introduction
 
 ```
-[HAP'S INTRO]
+When Prof. Teeters showed me gradients, my mind exploded! I thought gradients were image files, but CSS can create them with code! Then she showed me CSS filters, color-mix(), and automatic dark mode with prefers-color-scheme. These aren't future features - they work TODAY! Let me show you the color magic that's available right now in modern browsers!
+```
+
+### HAP's specific struggles
+
+```
+- Thought gradients were only possible with images
+- Didn't know CSS could blend colors
+- Manual dark mode with duplicate styles
+- No idea about CSS filters
+- Missing out on modern features that work today
 ```
 
 ### Key insights (3 cards)
 
 **Insight 1:**
-- Title:
-- Statistic:
-- Details:
+
+- Title: Gradients are just CSS
+- Content: No images needed, infinite variations possible
+- HAP's take: One line of CSS replaced my 20KB gradient image!
 
 **Insight 2:**
-- Title:
-- Statistic:
-- Details:
+
+- Title: color-mix() is magic
+- Content: Blend colors like paint, right in CSS
+- HAP's take: Perfect hover states without guessing hex codes!
 
 **Insight 3:**
-- Title:
-- Statistic:
-- Details:
 
-### HAP's confession
-
-```
-[HAP'S CONFESSION]
-```
+- Title: Automatic dark mode
+- Content: prefers-color-scheme adapts to user preference
+- HAP's take: No JavaScript, no toggle button - it just works!
 
 ### Main content sections
 
-**Section 1 heading:**
-```
-[HEADING]
-```
+**Section 1: Gradient Revolution**
 
-**Section 1 content:**
 ```
-[CONTENT]
+I was downloading gradient images from generators - header-gradient.png, button-gradient.jpg. Prof. Teeters showed me linear-gradient() and my jaw dropped. One line of CSS! No HTTP request! Infinite customization! Then radial-gradient() for spotlights, conic-gradient() for pie charts. File sizes went from 20KB images to 100 bytes of CSS!
 ```
 
-**Code examples needed:**
+**Section 2: Filters and Blend Modes**
+
 ```
-[LIST CODE EXAMPLES]
+CSS filters blew my mind! hue-rotate() changes colors dynamically, brightness() for hover states, contrast() for accessibility adjustments. Prof. Teeters showed me backdrop-filter for glassmorphism effects. No Photoshop needed! And mix-blend-mode makes colors interact like real paint!
 ```
 
-### Quick reference tips (3 tips)
+**Section 3: color-mix() and Dark Mode**
 
-**Tip 1:**
-- Title:
-- Content:
+```
+The game-changer was color-mix(). Instead of guessing hover colors, I use color-mix(in srgb, var(--primary) 80%, white) for perfect lightening! And prefers-color-scheme automatically switches to dark mode based on system settings. No JavaScript, no cookies, just CSS magic that respects user preferences!
+```
 
-**Tip 2:**
-- Title:
-- Content:
+### Interactive demos
 
-**Tip 3:**
-- Title:
-- Content:
+1. **Gradient Builder**: Visual tool creating linear, radial, and conic gradients
+2. **Filter Effects Playground**: Apply and combine CSS filters in real-time
+3. **Dark Mode Toggle Demo**: Automatic theme switching with CSS only
+
+### Code examples
+
+```css
+/* HAP's Old Way (So Much Work!) */
+.header {
+  background-image: url('gradient.png'); /* 20KB image */
+}
+.button:hover {
+  background: #4477aa; /* Guessed a lighter blue */
+}
+/* Dark mode? That's a whole separate stylesheet! */
+
+/* What I Learned (CSS Magic!) */
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+.button:hover {
+  background: color-mix(in srgb, var(--primary) 80%, white);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: hsl(0, 0%, 10%);
+    --text: hsl(0, 0%, 90%);
+    /* Automatic dark mode! */
+  }
+}
+```
 
 ### Resources
 
-- [Resource 1]
-- [Resource 2]
-- [Resource 3]
+- CSS Gradient generators
+- MDN Filter effects guide
+- color-mix() browser support
 
 ---
 
-## Station 6: [STATION TITLE]
+## Station 6: AI Assistance for Color Design
 
 ### Station title
 
 ```
-[STATION 6 TITLE]
+AI Assistance for Color Design
 ```
 
 ### Subtitle
 
 ```
-[SUBTITLE]
+Using AI to speed up your color workflow
 ```
 
 ### HAP's introduction
 
 ```
-[HAP'S INTRO]
+Prof. Teeters said AI is like having a color consultant on speed dial! At first, my prompts were disasters - "make it pretty" got me random rainbows. She taught me to write specific prompts, verify accessibility claims, and use AI for inspiration, not final answers. The day I learned to say "create a color palette for a financial app, serious but approachable, must pass WCAG AA" - everything changed! Let me share what works!
+```
+
+### HAP's specific struggles
+
+```
+- Vague prompts like "nice colors please"
+- Trusted AI accessibility claims without checking
+- Copy-pasted AI palettes without understanding them
+- Didn't know how to iterate on AI suggestions
+- Expected AI to read my mind
 ```
 
 ### Key insights (3 cards)
 
 **Insight 1:**
-- Title:
-- Statistic:
-- Details:
+
+- Title: Specific prompts win
+- Content: Details about mood, use case, and requirements
+- HAP's take: "Professional palette" got meh results. "Law firm, trustworthy, navy-based" got gold!
 
 **Insight 2:**
-- Title:
-- Statistic:
-- Details:
+
+- Title: Always verify claims
+- Content: AI might say colors are accessible when they're not
+- HAP's take: AI said my colors passed WCAG. They didn't. Always double-check!
 
 **Insight 3:**
-- Title:
-- Statistic:
-- Details:
 
-### HAP's confession
-
-```
-[HAP'S CONFESSION]
-```
+- Title: AI for ideas, not answers
+- Content: Use AI as starting point, then refine
+- HAP's take: AI suggests, I decide. It's my assistant, not my designer!
 
 ### Main content sections
 
-**Section 1 heading:**
-```
-[HEADING]
-```
+**Section 1: Learning to Prompt**
 
-**Section 1 content:**
 ```
-[CONTENT]
+My first AI color prompts were embarrassing. "Give me good colors" got me a rainbow. "Make it pop" got neon everything. Prof. Teeters taught me the formula: context + mood + constraints. "E-commerce site for outdoor gear, earthy and trustworthy, need 5 colors including success/error states, must pass WCAG AA" - NOW we're talking!
 ```
 
-**Code examples needed:**
+**Section 2: The Verification Habit**
+
 ```
-[LIST CODE EXAMPLES]
+AI told me my pale yellow text on white was "perfectly accessible." Prof. Teeters had me check - 1.9:1 ratio, massive fail! She taught me AI is great for suggestions but terrible at math. Now I use AI to generate palettes, then manually verify every contrast ratio. Trust, but verify!
 ```
 
-### Quick reference tips (3 tips)
+**Section 3: AI as Assistant, Not Designer**
 
-**Tip 1:**
-- Title:
-- Content:
+```
+The breakthrough was treating AI as my assistant, not my designer. I describe the brand personality, AI suggests palettes. I pick one, AI creates variations. Something feels off? I ask for specific adjustments. It's a conversation, not a one-shot answer. And I always make the final decision - AI doesn't know my users like I do!
+```
 
-**Tip 2:**
-- Title:
-- Content:
+### Interactive demos
 
-**Tip 3:**
-- Title:
-- Content:
+1. **Palette Prompt Tester**: See how different prompts affect AI palette suggestions
+2. **AI Accessibility Fixer**: Input failing colors, get AI-suggested accessible alternatives
+3. **"Human vs AI" Palette Challenge**: Guess which palettes are AI-generated
+
+### Code examples
+
+```css
+/* HAP's Bad AI Prompt Result */
+/* Prompt: "nice website colors" */
+:root {
+  --color1: #ff6b6b;  /* Random red? */
+  --color2: #4ecdc4;  /* Random teal? */
+  --color3: #45b7d1;  /* Another blue? */
+  --color4: #96e6a1;  /* Random green? */
+  /* No system, no purpose, just... colors */
+}
+
+/* Good AI Prompt Result */
+/* Prompt: "SaaS dashboard, professional, blue-based, 
+   need primary/secondary/success/warning/error, 
+   must pass WCAG AA, include hover states" */
+:root {
+  --primary: hsl(211, 100%, 50%);
+  --primary-hover: hsl(211, 100%, 40%);
+  --secondary: hsl(211, 25%, 50%);
+  --success: hsl(134, 61%, 41%);
+  --warning: hsl(45, 100%, 51%);
+  --error: hsl(0, 65%, 51%);
+  /* Systematic, purposeful, accessible! */
+}
+```
 
 ### Resources
 
-- [Resource 1]
-- [Resource 2]
-- [Resource 3]
+- Effective prompts for color palettes
+- AI color tools comparison
+- Verification workflow guide
 
 ---
 
@@ -549,90 +698,69 @@ This file helps you organize your learning lab content before customization. Fil
 
 ### Page-specific help messages
 
-When users visit a station page with `?hybit`, what helpful message should HAP show?
+**Hub page help:**
+```
+Welcome to my color journey! I started with hex chaos and now I actually understand color systems! Try ?hybit=journey to see my complete transformation story!
+```
 
 **Station 1 help:**
 ```
-[HELP MESSAGE FOR STATION 1]
+This is where I learned there's more than hex! Try ?hybit=formats to see my quick conversion cheat sheet!
 ```
 
 **Station 2 help:**
 ```
-[HELP MESSAGE FOR STATION 2]
+CSS variables saved my sanity! Check out ?hybit=variables to see how I went from 73 colors to 8!
 ```
 
 **Station 3 help:**
 ```
-[HELP MESSAGE FOR STATION 3]
+Color harmony isn't magic, it's math! Try ?hybit=wheel to see the relationships I use every day!
 ```
 
 **Station 4 help:**
 ```
-[HELP MESSAGE FOR STATION 4]
+Accessibility matters to millions! Use ?hybit=contrast for my quick reference guide!
 ```
 
 **Station 5 help:**
 ```
-[HELP MESSAGE FOR STATION 5]
+Modern CSS is amazing! Try ?hybit=gradients to see my favorite gradient techniques!
 ```
 
 **Station 6 help:**
 ```
-[HELP MESSAGE FOR STATION 6]
+AI helps, but verify everything! Check ?hybit=prompts for my prompt templates!
 ```
 
 ### Custom insight messages
 
-What custom insights should HAP share when users discover the easter egg?
-
 **Custom insight 1:**
-- Parameter name: [e.g., "colors" or "tips"]
-- Title: [e.g., "🎨 HAP's Color Tips"]
-- Content: [Message from HAP]
+- Parameter: journey
+- Title: 🎨 HAP's Color Evolution
+- Content: Started: 73 different hex codes, no system, copy-paste chaos. Now: 8 CSS variables, semantic naming, accessible contrasts, systematic scales. The journey from #bada55 jokes to professional color systems was wild but SO worth it!
 
 **Custom insight 2:**
-- Parameter name:
-- Title:
-- Content:
+- Parameter: variables
+- Title: 🔄 From Chaos to Order
+- Content: My transformation: 73 hex values → 8 CSS variables. Secret? Start with --primary, --secondary, --text, --background. Generate shades systematically. Use semantic names. Change once, update everywhere. Prof. Teeters called it "the sanity saver"!
 
 **Custom insight 3:**
-- Parameter name:
-- Title:
-- Content:
-
----
-
-## Additional notes
-
-**Special considerations for this learning lab:**
-
-```
-[ANY SPECIAL NOTES, DEPENDENCIES, OR CONSIDERATIONS]
-```
-
-**Images needed:**
-
-```
-[LIST ANY CUSTOM IMAGES YOU'LL NEED TO CREATE OR FIND]
-```
-
-**External resources to link:**
-
-```
-[LIST EXTERNAL RESOURCES STUDENTS SHOULD EXPLORE]
-```
+- Parameter: wheel
+- Title: 🎡 Color Wheel Magic
+- Content: Complementary = hue + 180°. Analogous = hue ± 30°. Triadic = hue + 120° and hue + 240°. Split-complementary = hue + 150° and hue + 210°. It's literally just math with HSL! No more guessing!
 
 ---
 
 ## Checklist before starting customization
 
-- [ ] All 6 station titles are defined
-- [ ] Learning objectives are clear
-- [ ] HAP's voice is consistent across all stations
-- [ ] Code examples are identified
-- [ ] Key insights have real statistics (research if needed)
-- [ ] Resources are collected and URLs verified
-- [ ] Easter egg messages are planned
-- [ ] Target audience is clearly defined
+- [x] All 6 station titles match design document
+- [x] HAP's hex chaos journey is consistent
+- [x] Learning objectives align with student problems
+- [x] Interactive demos specified for each station
+- [x] Code shows "Old Way" vs "What I Learned"
+- [x] Easter eggs reference HAP's specific mistakes
+- [x] Resources are practical and current
+- [x] Voice maintains HAP's enthusiasm and humility
 
-**Once this checklist is complete, you're ready to start customizing with Claude Code!**
+**Ready to build with Claude Code using this plan and the design rules from hap-design.md!**
