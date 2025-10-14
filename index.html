@@ -21,8 +21,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CUSTOMIZE: Update with your learning lab's theme -->
-    <title>HAP's Learning Lab - [YOUR THEME] Hub</title>
+    <title>HAP's Learning Lab - Web Colors Hub</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="16x16"
@@ -37,12 +36,11 @@
     <!-- Performance: speed up first image request -->
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 
-    <!-- CUSTOMIZE: Update meta descriptions with your learning lab's content -->
     <meta name="description"
-        content="HAP's Learning Lab: Join HAP (HyBit A. ProtoBot) as he learns about [YOUR TOPICS]. Six interactive learning stations.">
-    <meta property="og:title" content="HAP's Learning Lab - [YOUR THEME] Hub">
+        content="HAP's Learning Lab: Join HAP (HyBit A. ProtoBot) on his journey from hex chaos to color mastery. Learn color formats, systems, harmony, accessibility, modern CSS, and AI assistance through six interactive stations.">
+    <meta property="og:title" content="HAP's Learning Lab - Web Colors Hub">
     <meta property="og:description"
-        content="Six learning stations where HAP, Prof. Teeters' apprentice, shares practical demos on [YOUR TOPICS].">
+        content="Six learning stations where HAP, Prof. Teeters' apprentice, shares his journey from messy hex codes to professional color systems, accessibility, and modern CSS features.">
     <meta property="og:type" content="website">
     <meta property="og:image"
         content="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1759495998/hap-laptop_xiewar.jpg">
@@ -73,9 +71,8 @@
                         fetchpriority="high">
                 </div>
                 <div>
-                    <!-- CUSTOMIZE: Update with your learning lab's theme -->
                     <h1>HAP's Learning Lab</h1>
-                    <p class="subtitle">[YOUR THEME] Learning Stations</p>
+                    <p class="subtitle">Web Colors Learning Stations</p>
                 </div>
             </div>
             <div class="intro-box">
@@ -85,10 +82,9 @@
                     alt="HAP waving hello" width="120" height="120" class="intro-hap-image" decoding="async">
                 <div class="intro-text">
                     <p><strong>Hello! I'm HyBit A. ProtoBot — but you can call me HAP!</strong> <br>I'm Prof. Teeters'
-                        apprentice, and I've been studying all about images and web performance. Want to explore what
+                        apprentice, and I've been studying all about web colors and CSS. Want to explore what
                         I've discovered so far?</p>
-                    <p class="mt-1">These six learning stations are where I practice what Prof. Teeters teaches me. Each
-                        one started as a puzzle, but now I'm excited to share what I've learned! 🔬</p>
+                    <p class="mt-1">These six learning stations are where I practice what Prof. Teeters teaches me. I started with hex code chaos and learned systematic approaches to color. Each station shares my journey from confusion to confidence! 🎨</p>
                 </div>
             </div>
         </div>
@@ -105,14 +101,14 @@
 
                 <div class="analysis-grid">
                     <div class="analysis-point">
-                        <h3>🔬 What You'll Learn</h3>
-                        <p>This lab explores the intersection of visual AI, web performance, and modern image
-                            optimization. You'll gain hands-on experience with:</p>
+                        <h3>🎨 What You'll Learn</h3>
+                        <p>This lab explores color implementation for the web, from basic formats to professional systems. You'll gain hands-on experience with:</p>
                         <ul>
-                            <li>AI image generation and prompt engineering</li>
-                            <li>Modern image formats and compression techniques</li>
-                            <li>Performance optimization strategies</li>
-
+                            <li>Color formats beyond hex (RGB, HSL) and when to use each</li>
+                            <li>Building organized color systems with CSS custom properties</li>
+                            <li>Color harmony, meaning, and accessibility compliance (WCAG)</li>
+                            <li>Modern CSS features: gradients, dark mode, and color-mix()</li>
+                            <li>Using AI effectively for color palette generation</li>
                         </ul>
                     </div>
 
@@ -145,15 +141,8 @@
                         </div>
                         <div class="hap-note-content mt-1">
                             <h3>🤔 HAP's Advice To Fellow Learners</h3>
-                            <p>Some technical concepts can seem really confusing at first (like Station 3 with art
-                                direction!), but that's totally normal. It might mean we go slower with the material, or
-                                we
-                                might go to other sources for help. Then, almost certainly, we might need to experience
-                                using that new
-                                technique ourselves. </p>
-                            <p class="mt-1">That's
-                                how
-                                learning works — even for robots!</p>
+                            <p>Some technical concepts can seem really confusing at first (like HSL values or WCAG contrast ratios!), but that's totally normal. It might mean we go slower with the material, or we might go to other sources for help. Then, almost certainly, we might need to experience using that new technique ourselves. </p>
+                            <p class="mt-1">That's how learning works — even for robots!</p>
                         </div>
 
 
@@ -164,85 +153,50 @@
         </section>
         <div class="content-container">
 
-            <!-- Hub Introduction -->
-            <section class="content-section">
-                <div class="topic-section read-length">
-                    <h2>Serving Images From The Cloud</h2>
-
-                    <p class="mt-1">Throughout these learning stations, you'll see images delivered through Cloudinary,
-                        a cloud-based
-                        media management service. Instead of storing images on our web server and manually creating
-                        multiple sizes and formats, we upload once to Cloudinary and let it handle the heavy lifting.
-                    </p>
-
-                    <p class="mt-1">Why does this matter for your learning? Cloudinary demonstrates modern best
-                        practices: automatic
-                        format conversion (serving WebP to Chrome, JPEG to older browsers), on-the-fly resizing through
-                        URL parameters, and global CDN delivery that makes images load faster worldwide.
-                    </p>
-
-                    <p class="mt-1">When you see complicated URLs with strings that include formulas like
-                        <code>f_auto,q_auto,w_600</code>,
-                        you're seeing real-world optimization in action. Like a snap of the fingers, we can request
-                        automatic format selection, quality optimization, and responsive sizing, all through how that
-                        URL link is defined. And this isn't just theory; it's how production websites are able to handle
-                        millions of images both flexibly and efficiently.
-                    </p>
-                </div>
-            </section>
-
             <!-- Learning Stations Grid -->
-            <!-- CUSTOMIZE: Update all 6 station cards below with your topics and links -->
             <section class="content-section">
                 <h2 class="section-heading-centered">Learning Stations</h2>
                 <div class="overview-grid">
 
-                    <!-- CUSTOMIZE: Station 1 -->
-                    <!-- Update href to match your station file (station1.html or custom name) -->
                     <a href="stations/station1.html" class="insight-card station-card-link">
-                        <h3><span class="insight-icon">🎨</span> Station 1: [YOUR TOPIC]</h3>
-                        <p><strong>Focus:</strong> [Brief focus statement]</p>
-                        <p class="station-description">[Short description of what students will learn]</p>
+                        <h3><span class="insight-icon">🎨</span> Station 1: Beyond Hex</h3>
+                        <p><strong>Focus:</strong> Color formats on the web</p>
+                        <p class="station-description">Discover RGB, HSL, and why hex codes aren't enough. Learn when to use each format and how to convert between them.</p>
                         <p class="station-cta">→ Visit Station 1</p>
                     </a>
 
-                    <!-- CUSTOMIZE: Station 2 -->
                     <a href="stations/station2.html" class="insight-card station-card-link">
-                        <h3><span class="insight-icon">📱</span> Station 2: [YOUR TOPIC]</h3>
-                        <p><strong>Focus:</strong> [Brief focus statement]</p>
-                        <p class="station-description">[Short description of what students will learn]</p>
+                        <h3><span class="insight-icon">🗂️</span> Station 2: Building Color Systems</h3>
+                        <p><strong>Focus:</strong> Creating organized, reusable palettes</p>
+                        <p class="station-description">Transform hex code chaos into systematic color palettes using CSS custom properties and semantic naming.</p>
                         <p class="station-cta">→ Visit Station 2</p>
                     </a>
 
-                    <!-- CUSTOMIZE: Station 3 -->
                     <a href="stations/station3.html" class="insight-card station-card-link">
-                        <h3><span class="insight-icon">🎬</span> Station 3: [YOUR TOPIC]</h3>
-                        <p><strong>Focus:</strong> [Brief focus statement]</p>
-                        <p class="station-description">[Short description of what students will learn]</p>
+                        <h3><span class="insight-icon">🎡</span> Station 3: Color Harmony & Meaning</h3>
+                        <p><strong>Focus:</strong> Making colors work well together</p>
+                        <p class="station-description">Master the color wheel relationships, avoid "skittles syndrome," and understand color psychology for web design.</p>
                         <p class="station-cta">→ Visit Station 3</p>
                     </a>
 
-                    <!-- CUSTOMIZE: Station 4 -->
                     <a href="stations/station4.html" class="insight-card station-card-link">
-                        <h3><span class="insight-icon">📸</span> Station 4: [YOUR TOPIC]</h3>
-                        <p><strong>Focus:</strong> [Brief focus statement]</p>
-                        <p class="station-description">[Short description of what students will learn]</p>
+                        <h3><span class="insight-icon">♿</span> Station 4: Accessibility & Contrast</h3>
+                        <p><strong>Focus:</strong> Making sure everyone can read your content</p>
+                        <p class="station-description">Learn WCAG contrast requirements, test with color blindness simulators, and ensure your colors work for all users.</p>
                         <p class="station-cta">→ Visit Station 4</p>
                     </a>
 
-                    <!-- CUSTOMIZE: Station 5 -->
                     <a href="stations/station5.html" class="insight-card station-card-link">
-                        <h3><span class="insight-icon">⚡</span> Station 5: [YOUR TOPIC]</h3>
-                        <p><strong>Focus:</strong> [Brief focus statement]</p>
-                        <p class="station-description">[Short description of what students will learn]</p>
+                        <h3><span class="insight-icon">🟠</span> Station 5: Modern CSS Color Features</h3>
+                        <p><strong>Focus:</strong> Cool new things you can do with color in CSS</p>
+                        <p class="station-description">Explore gradients, color-mix(), CSS filters, and automatic dark mode with prefers-color-scheme. No JavaScript required!</p>
                         <p class="station-cta">→ Visit Station 5</p>
                     </a>
 
-                    <!-- CUSTOMIZE: Station 6 -->
                     <a href="stations/station6.html" class="insight-card station-card-link">
-                        <h3><span class="insight-icon">📦</span> Station 6: [YOUR TOPIC]</h3>
-                        <p><strong>Focus:</strong> [Brief focus statement]</p>
-                        <p class="station-description">[Short description of what students will learn]</p>
+                        <h3><span class="insight-icon">🤖</span> Station 6: AI Assistance for Color Design</h3>
+                        <p><strong>Focus:</strong> Using AI to speed up your color workflow</p>
+                        <p class="station-description">Learn to write effective prompts, verify AI accessibility claims, and use AI as your color consultant on demand.</p>
                         <p class="station-cta">→ Visit Station 6</p>
                     </a>
 
