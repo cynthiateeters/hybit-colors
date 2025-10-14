@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    ╔══════════════════════════════════════════════════════════════════════════╗
+    ║                  HAP's Learning Lab Template - Hub Page                  ║
+    ║                                                                          ║
+    ║  CUSTOMIZE THIS FILE to create your own HAP Learning Lab!               ║
+    ║                                                                          ║
+    ║  Key sections to update:                                                ║
+    ║  1. Meta tags (lines 10-31): Update title, description, and og:image    ║
+    ║  2. Header content (lines 58-76): Update learning lab theme             ║
+    ║  3. About section (lines 85-145): Customize learning approach text      ║
+    ║  4. Station cards (lines 180-229): Link to your 6 station files         ║
+    ║                                                                          ║
+    ║  TIP: Search for "CUSTOMIZE" comments throughout this file              ║
+    ║       to find sections that need your attention.                        ║
+    ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CUSTOMIZE: Update with your learning lab's theme -->
+    <title>HAP's Learning Lab - [YOUR THEME] Hub</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="https://res.cloudinary.com/cynthia-teeters/image/upload/f_png,q_auto,w_16,h_16/v1759596416/hap-favicon-h_gosgur.jpg">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="https://res.cloudinary.com/cynthia-teeters/image/upload/f_png,q_auto,w_32,h_32/v1759596416/hap-favicon-h_gosgur.jpg">
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="https://res.cloudinary.com/cynthia-teeters/image/upload/f_png,q_auto,w_180,h_180/v1759596416/hap-favicon-h_gosgur.jpg">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="https://res.cloudinary.com/cynthia-teeters/image/upload/f_png,q_auto,w_192,h_192/v1759596416/hap-favicon-h_gosgur.jpg">
+
+    <!-- Performance: speed up first image request -->
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+
+    <!-- CUSTOMIZE: Update meta descriptions with your learning lab's content -->
+    <meta name="description"
+        content="HAP's Learning Lab: Join HAP (HyBit A. ProtoBot) as he learns about [YOUR TOPICS]. Six interactive learning stations.">
+    <meta property="og:title" content="HAP's Learning Lab - [YOUR THEME] Hub">
+    <meta property="og:description"
+        content="Six learning stations where HAP, Prof. Teeters' apprentice, shares practical demos on [YOUR TOPICS].">
+    <meta property="og:type" content="website">
+    <meta property="og:image"
+        content="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1759495998/hap-laptop_xiewar.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- (Optional) Basic CSP for static hosting; adjust if you add external scripts/styles -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';
+                   img-src 'self' https://res.cloudinary.com data:;
+                   script-src 'self' 'sha256-vvt4KWwuNr51XfE5m+hzeNEGhiOfZzG97ccfqGsPwvE=';
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                   font-src 'self' https://fonts.gstatic.com;
+                   connect-src 'self';
+                   base-uri 'self';
+                   form-action 'self';">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header with HyBit -->
+    <header class="header">
+        <div class="header-content">
+            <div class="hybit-welcome">
+                <div class="hybit-avatar">
+                    <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1759495998/hap-laptop_xiewar.jpg"
+                        alt="HAP (HyBit A. ProtoBot) studying on his laptop" width="200" height="200" decoding="async"
+                        fetchpriority="high">
+                </div>
+                <div>
+                    <!-- CUSTOMIZE: Update with your learning lab's theme -->
+                    <h1>HAP's Learning Lab</h1>
+                    <p class="subtitle">[YOUR THEME] Learning Stations</p>
+                </div>
+            </div>
+            <div class="intro-box">
+                <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_240,c_limit/v1759495998/hap-waving_dgzacg.jpg"
+                    srcset="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_120,c_limit/v1759495998/hap-waving_dgzacg.jpg 1x,
+                            https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_240,c_limit/v1759495998/hap-waving_dgzacg.jpg 2x"
+                    alt="HAP waving hello" width="120" height="120" class="intro-hap-image" decoding="async">
+                <div class="intro-text">
+                    <p><strong>Hello! I'm HyBit A. ProtoBot — but you can call me HAP!</strong> <br>I'm Prof. Teeters'
+                        apprentice, and I've been studying all about images and web performance. Want to explore what
+                        I've discovered so far?</p>
+                    <p class="mt-1">These six learning stations are where I practice what Prof. Teeters teaches me. Each
+                        one started as a puzzle, but now I'm excited to share what I've learned! 🔬</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main id="main-content">
+
+
+        <!-- About This Lab -->
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>About HyBit's Learning Lab</h2>
+
+                <div class="analysis-grid">
+                    <div class="analysis-point">
+                        <h3>🔬 What You'll Learn</h3>
+                        <p>This lab explores the intersection of visual AI, web performance, and modern image
+                            optimization. You'll gain hands-on experience with:</p>
+                        <ul>
+                            <li>AI image generation and prompt engineering</li>
+                            <li>Modern image formats and compression techniques</li>
+                            <li>Performance optimization strategies</li>
+
+                        </ul>
+                    </div>
+
+                    <div class="analysis-point">
+                        <h3>🎓 Learning Approach</h3>
+                        <p>Each station combines theory with practice:</p>
+                        <ul>
+                            <li><strong>Real examples:</strong> Actual file sizes, measured performance data</li>
+                            <li><strong>Visual comparisons:</strong> See the differences yourself</li>
+                            <li><strong>Code snippets:</strong> Copy-paste ready implementations</li>
+                            <li><strong>HyBit's insights:</strong> Practical tips from field experience</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="hap-note-callout">
+                    <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759495999/hap-confused-map_q8q0ej.jpg"
+                        alt="HAP looking confused while studying a map" width="150" height="150" class="hap-note-image"
+                        decoding="async" loading="lazy">
+                    <div>
+                        <div class="interactive-demo mt-1">
+                            <h3>🎨 HAP's Philosophy</h3>
+                            <p>Learning web development doesn't have to be dry! Each learning station uses real-world
+                                scenarios,
+                                visual demonstrations, and hands-on exploration. Whether you're optimizing images for a
+                                portfolio, analyzing AI-generated art, or building a high-performance site, these
+                                stations
+                                give
+                                you practical skills you can apply immediately.</p>
+                        </div>
+                        <div class="hap-note-content mt-1">
+                            <h3>🤔 HAP's Advice To Fellow Learners</h3>
+                            <p>Some technical concepts can seem really confusing at first (like Station 3 with art
+                                direction!), but that's totally normal. It might mean we go slower with the material, or
+                                we
+                                might go to other sources for help. Then, almost certainly, we might need to experience
+                                using that new
+                                technique ourselves. </p>
+                            <p class="mt-1">That's
+                                how
+                                learning works — even for robots!</p>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="content-container">
+
+            <!-- Hub Introduction -->
+            <section class="content-section">
+                <div class="topic-section read-length">
+                    <h2>Serving Images From The Cloud</h2>
+
+                    <p class="mt-1">Throughout these learning stations, you'll see images delivered through Cloudinary,
+                        a cloud-based
+                        media management service. Instead of storing images on our web server and manually creating
+                        multiple sizes and formats, we upload once to Cloudinary and let it handle the heavy lifting.
+                    </p>
+
+                    <p class="mt-1">Why does this matter for your learning? Cloudinary demonstrates modern best
+                        practices: automatic
+                        format conversion (serving WebP to Chrome, JPEG to older browsers), on-the-fly resizing through
+                        URL parameters, and global CDN delivery that makes images load faster worldwide.
+                    </p>
+
+                    <p class="mt-1">When you see complicated URLs with strings that include formulas like
+                        <code>f_auto,q_auto,w_600</code>,
+                        you're seeing real-world optimization in action. Like a snap of the fingers, we can request
+                        automatic format selection, quality optimization, and responsive sizing, all through how that
+                        URL link is defined. And this isn't just theory; it's how production websites are able to handle
+                        millions of images both flexibly and efficiently.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Learning Stations Grid -->
+            <!-- CUSTOMIZE: Update all 6 station cards below with your topics and links -->
+            <section class="content-section">
+                <h2 class="section-heading-centered">Learning Stations</h2>
+                <div class="overview-grid">
+
+                    <!-- CUSTOMIZE: Station 1 -->
+                    <!-- Update href to match your station file (station1.html or custom name) -->
+                    <a href="stations/station1.html" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">🎨</span> Station 1: [YOUR TOPIC]</h3>
+                        <p><strong>Focus:</strong> [Brief focus statement]</p>
+                        <p class="station-description">[Short description of what students will learn]</p>
+                        <p class="station-cta">→ Visit Station 1</p>
+                    </a>
+
+                    <!-- CUSTOMIZE: Station 2 -->
+                    <a href="stations/station2.html" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">📱</span> Station 2: [YOUR TOPIC]</h3>
+                        <p><strong>Focus:</strong> [Brief focus statement]</p>
+                        <p class="station-description">[Short description of what students will learn]</p>
+                        <p class="station-cta">→ Visit Station 2</p>
+                    </a>
+
+                    <!-- CUSTOMIZE: Station 3 -->
+                    <a href="stations/station3.html" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">🎬</span> Station 3: [YOUR TOPIC]</h3>
+                        <p><strong>Focus:</strong> [Brief focus statement]</p>
+                        <p class="station-description">[Short description of what students will learn]</p>
+                        <p class="station-cta">→ Visit Station 3</p>
+                    </a>
+
+                    <!-- CUSTOMIZE: Station 4 -->
+                    <a href="stations/station4.html" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">📸</span> Station 4: [YOUR TOPIC]</h3>
+                        <p><strong>Focus:</strong> [Brief focus statement]</p>
+                        <p class="station-description">[Short description of what students will learn]</p>
+                        <p class="station-cta">→ Visit Station 4</p>
+                    </a>
+
+                    <!-- CUSTOMIZE: Station 5 -->
+                    <a href="stations/station5.html" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">⚡</span> Station 5: [YOUR TOPIC]</h3>
+                        <p><strong>Focus:</strong> [Brief focus statement]</p>
+                        <p class="station-description">[Short description of what students will learn]</p>
+                        <p class="station-cta">→ Visit Station 5</p>
+                    </a>
+
+                    <!-- CUSTOMIZE: Station 6 -->
+                    <a href="stations/station6.html" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">📦</span> Station 6: [YOUR TOPIC]</h3>
+                        <p><strong>Focus:</strong> [Brief focus statement]</p>
+                        <p class="station-description">[Short description of what students will learn]</p>
+                        <p class="station-cta">→ Visit Station 6</p>
+                    </a>
+
+                </div>
+            </section>
+
+
+
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>HAP's Learning Lab</strong> | An AI-Enhanced Educational Experience by Prof. Cynthia Teeters</p>
+        <p class="footer-reminder">
+            Ready to learn together? Pick any learning station that looks interesting — I'll be there to help! 🔬 — HAP
+        </p>
+        <div class="footer-copyright">
+            <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_80,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
+                alt="HAP the apprentice learner with his study book and tools" class="footer-hybit" width="80"
+                height="80" decoding="async" loading="lazy">
+            <div>
+                <p>HAP&trade; Educational Content &copy; 2025 Cynthia Teeters. All rights reserved.</p>
+                <p>HyBit A. ProtoBot&trade; (HAP&trade;) character and the apprentice learning methodology are
+                    proprietary educational innovations.</p>
+                <p>Character concept, teaching methodology, and all written content created by Prof. Cynthia Teeters.
+                    Visual elements created with AI assistance.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Performance Easter Egg -->
+    <script src="js/easter-egg.js"></script>
+
+    <!--
+    HAP™ Educational Content © 2025 Cynthia Teeters. All rights reserved.
+    HyBit A. ProtoBot™ (HAP™) character and the apprentice learning methodology are proprietary educational innovations.
+    Character concept, teaching methodology, and all written content created by Prof. Cynthia Teeters.
+    Visual elements created with AI assistance.
+    -->
+</body>
+
+</html>

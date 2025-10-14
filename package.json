@@ -1,0 +1,27 @@
+{
+  "name": "hap-template",
+  "version": "1.0.0",
+  "description": "HAP Learning Lab template with 6 customizable stations",
+  "scripts": {
+    "lh": "lighthouse --view",
+    "lh:desktop": "npm run lh -- --preset=desktop",
+    "lh:mobile": "npm run lh -- --preset=mobile",
+    "lh:html": "npm run lh -- --output html --output-path reports/lh-report.html",
+    "lh:json": "npm run lh -- --output json --output-path reports/lh-report.json",
+    "lh:csv": "npm run lh -- --output csv --output-path reports/lh-report.csv",
+    "lh:ci": "lhci autorun"
+  },
+  "keywords": [
+    "education",
+    "web-development",
+    "lighthouse",
+    "accessibility",
+    "performance"
+  ],
+  "author": "Prof. Cynthia Teeters",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "lighthouse": "^13.0.0",
+    "@lhci/cli": "^0.15.1"
+  }
+}

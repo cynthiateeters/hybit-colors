@@ -1,0 +1,170 @@
+{
+  // =============================================================================
+  // HAP's Learning Lab Template - Insights Data File (JSONC - JSON with Comments)
+  // =============================================================================
+  // This file contains all educational insights displayed by the HyBit easter egg
+  // when students add ?hybit parameters to URLs.
+  //
+  // CUSTOMIZE THIS FILE for your learning lab by:
+  // 1. Adding your own parameter names to "allowedParams"
+  // 2. Creating messages for each parameter in "messages" object
+  // 3. Updating page-specific help in "pageHelp" section
+  //
+  // SECURITY: All content here is pre-defined and sanitized. The JavaScript
+  // validates parameters against the allowedParams whitelist before displaying
+  // any messages. User input is NEVER directly inserted into HTML.
+  //
+  // COMPLETE DOCUMENTATION: See data/README.md for detailed instructions
+  // =============================================================================
+
+  // CUSTOMIZE: Add your own parameter names here (lowercase, alphanumeric only)
+  "allowedParams": [
+    "detail",       // Lighthouse performance score (keep this one!)
+    "stations",     // Learning lab overview (keep this one!)
+    "example1",     // Replace with your Station 1 insight parameter
+    "example2",     // Replace with your Station 2 insight parameter
+    "example3",     // Replace with your Station 3 insight parameter
+    "example4",     // Replace with your Station 4 insight parameter
+    "example5",     // Replace with your Station 5 insight parameter
+    "example6"      // Replace with your Station 6 insight parameter
+  ],
+
+  // CUSTOMIZE: Create messages for each parameter in allowedParams
+  // Format: { "title": "...", "content": "..." }
+  // You can use HTML tags: <code>, <strong>, <em>, <br>
+  "messages": {
+    // Keep these two default messages:
+    "detail": {
+      "title": "🚀 Lighthouse Score: 99%!",
+      "content": "This site is optimized for instant loading with modern web performance techniques."
+    },
+    "stations": {
+      "title": "🔬 Learning Stations",
+      "content": "Explore 6 interactive stations covering [YOUR TOPICS]. HAP guides you through hands-on examples and practical demonstrations."
+    },
+
+    // CUSTOMIZE: Replace these examples with your own insights
+    "example1": {
+      "title": "🎨 [Your Station 1 Insight Title]",
+      "content": "Replace this with educational content about your Station 1 topic. Use <code>code tags</code> for technical terms and <strong>bold</strong> for emphasis."
+    },
+    "example2": {
+      "title": "📱 [Your Station 2 Insight Title]",
+      "content": "Replace this with educational content about your Station 2 topic. Keep it concise and in HAP's friendly apprentice voice!"
+    },
+    "example3": {
+      "title": "🎬 [Your Station 3 Insight Title]",
+      "content": "Replace this with educational content about your Station 3 topic. Share what HAP learned from Prof. Teeters!"
+    },
+    "example4": {
+      "title": "📸 [Your Station 4 Insight Title]",
+      "content": "Replace this with educational content about your Station 4 topic. Include practical tips students can use."
+    },
+    "example5": {
+      "title": "⚡ [Your Station 5 Insight Title]",
+      "content": "Replace this with educational content about your Station 5 topic. Make complex concepts approachable!"
+    },
+    "example6": {
+      "title": "📦 [Your Station 6 Insight Title]",
+      "content": "Replace this with educational content about your Station 6 topic. Use HAP's enthusiastic learning perspective."
+    }
+  },
+
+  // CUSTOMIZE: Update page-specific help for each station file
+  // This appears when users visit a page with bare ?hybit parameter (no value)
+  // Format: { "title": "...", "intro": "...", "suggestions": [...] }
+  "pageHelp": {
+    // Hub page - keep this one
+    "index.html": {
+      "title": "🔬 HAP's insights available!",
+      "intro": "Hey! I have some cool insights to share on this page. Try these:",
+      "suggestions": [
+        {
+          "param": "stations",
+          "label": "Overview of learning stations"
+        },
+        {
+          "param": "detail",
+          "label": "Performance metrics"
+        }
+      ]
+    },
+
+    // CUSTOMIZE: Update for each of your station files
+    // If you renamed from station1.html to custom names, update the keys below
+    "station1.html": {
+      "title": "🔬 HAP here!",
+      "intro": "I learned so much about [YOUR TOPIC] on this page! Try:",
+      "suggestions": [
+        {
+          "param": "example1",
+          "label": "[Brief description of your insight]"
+        }
+      ]
+    },
+    "station2.html": {
+      "title": "🔬 HAP here!",
+      "intro": "Prof. Teeters taught me about [YOUR TOPIC]! Check out:",
+      "suggestions": [
+        {
+          "param": "example2",
+          "label": "[Brief description of your insight]"
+        }
+      ]
+    },
+    "station3.html": {
+      "title": "🔬 HAP here!",
+      "intro": "This was the station that confused me at first! Learn more:",
+      "suggestions": [
+        {
+          "param": "example3",
+          "label": "[Brief description of your insight]"
+        }
+      ]
+    },
+    "station4.html": {
+      "title": "🔬 HAP here!",
+      "intro": "[YOUR TOPIC] is amazing! Explore:",
+      "suggestions": [
+        {
+          "param": "example4",
+          "label": "[Brief description of your insight]"
+        }
+      ]
+    },
+    "station5.html": {
+      "title": "🔬 HAP here!",
+      "intro": "[YOUR TOPIC] techniques can transform your sites! Try:",
+      "suggestions": [
+        {
+          "param": "example5",
+          "label": "[Brief description of your insight]"
+        }
+      ]
+    },
+    "station6.html": {
+      "title": "🔬 HAP here!",
+      "intro": "[YOUR TOPIC] is game-changing! Check out:",
+      "suggestions": [
+        {
+          "param": "example6",
+          "label": "[Brief description of your insight]"
+        }
+      ]
+    }
+  },
+
+  // DEFAULT MESSAGES: Keep these unchanged - they provide fallback behavior
+  "defaults": {
+    // Shown when parameter value doesn't match whitelist
+    "unknown": {
+      "title": "🎯 You discovered HAP's insights!",
+      "content": "Nice find! Try different parameters to learn more about the topics Prof. Teeters taught me."
+    },
+    // Shown when page has no specific help defined
+    "emptyFallback": {
+      "title": "🎯 You discovered HAP's insights!",
+      "content": "Hey there! Try adding a parameter like <code>?hybit=detail</code> to see what I've learned!"
+    }
+  }
+}

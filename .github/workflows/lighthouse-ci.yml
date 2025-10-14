@@ -1,0 +1,208 @@
+# GitHub Actions workflow for Lighthouse CI testing
+# Runs on every push and pull request to ensure performance standards are met
+#
+# Requirements:
+# - package.json must have "lh:ci" script: "lighthouse-ci autorun"
+# - lighthouserc.json must exist in project root with CI configuration
+#
+# This workflow:
+# 1. Checks out the code
+# 2. Installs dependencies
+# 3. Builds the site (if needed)
+# 4. Runs Lighthouse CI against all HTML files
+# 5. Uploads results as artifacts
+# 6. Fails the build if scores fall below thresholds
+
+name: Lighthouse CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - '**.html'
+      - '**.css'
+      - '**.js'
+      - 'stations/**'
+      - 'css/**'
+      - 'js/**'
+      - 'data/**'
+      - 'package.json'
+      - 'lighthouserc.json'
+      - '.github/workflows/lighthouse-ci.yml'
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - '**.html'
+      - '**.css'
+      - '**.js'
+      - 'stations/**'
+      - 'css/**'
+      - 'js/**'
+      - 'data/**'
+      - 'package.json'
+      - 'lighthouserc.json'
+
+# Cancel in-progress runs when a new push is made
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    name: Run Lighthouse CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          if [ -f "package-lock.json" ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Run Lighthouse CI
+        run: npm run lh:ci
+        env:
+          # Increase Node.js memory limit for large sites
+          NODE_OPTIONS: '--max-old-space-size=4096'
+
+      - name: Upload Lighthouse results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-results-${{ github.run_number }}
+          path: |
+            .lighthouseci/
+            lhci-results.json
+          retention-days: 30
+
+      - name: Comment PR with results
+        uses: actions/github-script@v7
+        if: github.event_name == 'pull_request'
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Check if results file exists
+            if (!fs.existsSync('.lighthouseci/manifest.json')) {
+              console.log('WARNING: No Lighthouse results found - skipping PR comment');
+              return;
+            }
+
+            let manifest;
+            try {
+              manifest = JSON.parse(fs.readFileSync('.lighthouseci/manifest.json', 'utf8'));
+            } catch (err) {
+              console.log('ERROR: Failed to parse manifest.json:', err.message);
+              return;
+            }
+
+            if (!manifest || manifest.length === 0) {
+              console.log('WARNING: Empty manifest - skipping PR comment');
+              return;
+            }
+
+            // Get the first result file
+            const resultPath = manifest[0].jsonPath;
+            if (!resultPath || !fs.existsSync(resultPath)) {
+              console.log('ERROR: Result file not found:', resultPath);
+              return;
+            }
+
+            let result;
+            try {
+              result = JSON.parse(fs.readFileSync(resultPath, 'utf8'));
+            } catch (err) {
+              console.log('ERROR: Failed to parse result file:', err.message);
+              return;
+            }
+
+            const scores = {
+              performance: Math.round(result.categories.performance.score * 100),
+              accessibility: Math.round(result.categories.accessibility.score * 100),
+              'best-practices': Math.round(result.categories['best-practices'].score * 100),
+              seo: Math.round(result.categories.seo.score * 100)
+            };
+
+            const scoreEmoji = (score) => {
+              if (score >= 90) return '🟢';
+              if (score >= 50) return '🟠';
+              return '🔴';
+            };
+
+            const comment = `## Lighthouse CI Results
+
+            | Category | Score |
+            |----------|-------|
+            | ${scoreEmoji(scores.performance)} Performance | ${scores.performance} |
+            | ${scoreEmoji(scores.accessibility)} Accessibility | ${scores.accessibility} |
+            | ${scoreEmoji(scores['best-practices'])} Best Practices | ${scores['best-practices']} |
+            | ${scoreEmoji(scores.seo)} SEO | ${scores.seo} |
+
+            **Legend**: 🟢 90-100 | 🟠 50-89 | 🔴 0-49
+
+            [View detailed results](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+      - name: Check score thresholds
+        run: |
+          manifest=".lighthouseci/manifest.json"
+          if [ ! -f "$manifest" ]; then
+            echo "ERROR: Lighthouse manifest not found"
+            exit 1
+          fi
+
+          path=$(jq -r '.[0].jsonPath' "$manifest")
+          if [ -z "$path" ] || [ ! -f "$path" ]; then
+            echo "ERROR: JSON results path invalid or missing: $path"
+            exit 1
+          fi
+
+          echo "Checking Lighthouse scores against thresholds..."
+
+          # Threshold (90 = passing score)
+          min=90
+          failed=0
+
+          for metric in performance accessibility best-practices seo; do
+            val=$(jq -r ".categories[\"$metric\"].score * 100 | floor" "$path")
+            echo "  $metric: $val"
+            if [ "$val" -lt "$min" ]; then
+              echo "  ❌ ERROR: $metric score $val is below threshold $min"
+              failed=1
+            else
+              echo "  ✅ PASS: $metric score $val meets threshold"
+            fi
+          done
+
+          if [ "$failed" -eq 1 ]; then
+            echo ""
+            echo "ERROR: One or more Lighthouse scores failed to meet the minimum threshold of $min"
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ All Lighthouse scores meet thresholds. Great work!"

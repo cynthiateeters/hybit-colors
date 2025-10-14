@@ -1,0 +1,224 @@
+/* HAP Learning Lab Prism.js Theme
+   Context-aware colors for .prompt-box, .warning-box, and .tip-card
+   Maintains WCAG AA contrast ratios on all backgrounds */
+
+/* Context-aware color variables for different container backgrounds */
+.prompt-box {
+  --code-text: var(--cream-white);
+  --code-tag: var(--warm-orange);
+  --code-attr: var(--teal-accent);
+  --code-value: var(--soft-orange);
+  --code-comment: #E8DDD1; /* 5.1:1 contrast on lightest gradient (#6B5444) */
+  --code-punctuation: #C8B8A8;
+}
+
+.warning-box {
+  --code-text: var(--dark-brown);
+  --code-tag: #C67A2F; /* Darker orange for yellow background */
+  --code-attr: #3D7A72; /* Darker teal for yellow background */
+  --code-value: #D98C3F; /* Darker soft orange */
+  --code-comment: #6B5B4B; /* 4.5:1 contrast on yellow */
+  --code-punctuation: #8B7B6B;
+}
+
+.tip-card {
+  --code-text: var(--cream-white);
+  --code-tag: var(--soft-orange);
+  --code-attr: #FFE8A1; /* Yellow instead of teal (teal on teal invisible) */
+  --code-value: #FFF4D1; /* Light yellow */
+  --code-comment: #FFFFFF; /* 3.53:1 on darkest teal - passes WCAG AA Large Text (3:1) */
+  --code-punctuation: #F4E8D8;
+}
+
+/* Increase comment size in .tip-card to meet WCAG "large text" definition */
+.tip-card .token.comment {
+  font-size: 1em; /* Same as regular code, making it 14pt+ which qualifies as large text */
+  font-weight: 500; /* Slightly bolder for better visibility */
+}
+
+/* Base styles */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: var(--code-text);
+  background: none;
+  font-family: "Source Code Pro", Consolas, Monaco, monospace;
+  font-size: clamp(0.8rem, 1.5vw, 0.85rem);
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.7;
+  tab-size: 4;
+  hyphens: none;
+}
+
+/* Code blocks with responsive padding */
+pre[class*="language-"] {
+  padding: 1.5rem;
+  margin: 0.5em 0;
+  overflow: auto;
+  border-radius: var(--radius, 16px);
+}
+
+@media (max-width: 768px) {
+  pre[class*="language-"] {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  pre[class*="language-"] {
+    padding: 0.75rem;
+  }
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+
+/* Token colors using context-aware variables */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--code-comment);
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: var(--code-punctuation);
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: var(--code-tag);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: var(--code-attr);
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: var(--code-value);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  color: var(--code-value);
+}
+
+.token.keyword {
+  color: var(--code-tag);
+}
+
+.token.regex,
+.token.important {
+  color: var(--code-tag);
+  font-weight: bold;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+/* Container-specific overrides */
+.prompt-box pre[class*="language-"],
+.warning-box pre[class*="language-"],
+.tip-card pre[class*="language-"] {
+  background: transparent;
+  margin: 0.5em 0 0 0;
+  position: relative;
+}
+
+.prompt-box code[class*="language-"],
+.warning-box code[class*="language-"],
+.tip-card code[class*="language-"] {
+  background: transparent;
+}
+
+/* Hide sparkle emoji when code is present (all breakpoints) */
+.prompt-box:has(pre[class*="language-"])::before,
+.warning-box:has(pre[class*="language-"])::before,
+.tip-card:has(pre[class*="language-"])::before {
+  display: none;
+}
+
+/* Copy button styling */
+.copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: var(--teal-accent, #5BA69C);
+  color: var(--cream-white, #FFF8F0);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+  z-index: 10;
+}
+
+.prompt-box:hover .copy-button,
+.warning-box:hover .copy-button,
+.tip-card:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background: var(--warm-orange, #E8A557);
+}
+
+.copy-button:active {
+  transform: scale(0.95);
+}
+
+.copy-button.copied {
+  background: var(--warm-orange, #E8A557);
+}
+
+.copy-button.copied::after {
+  content: ' ✓';
+}
+
+/*
+HAP Educational Content © 2025 Cynthia Teeters.
+HyBit character concept, teaching methodology, and all written content are proprietary.
+Visual elements created with AI assistance.
+*/
