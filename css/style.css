@@ -37,60 +37,60 @@
 
 /* Color Palette - Warm & Scientific */
 :root {
-  --warm-orange: #E8A557;
-  --soft-orange: #F4C584;
-  --peach-background: #F4E8D8;
-  --cream-white: #FFF8F0;
-  --dark-brown: #3D2817;
-  --medium-brown: #6B5444;
-  --light-brown: #9B8474;
-  --hybit-gray: #8B92A0;
-  --teal-accent: #5BA69C;
-  --success-green: #6BBF59;
-  --warning-red: #E85D75;
+  --warm-orange: hsl(32, 76%, 63%);
+  --soft-orange: hsl(35, 83%, 74%);
+  --peach-background: hsl(32, 41%, 90%);
+  --cream-white: hsl(32, 100%, 97%);
+  --dark-brown: hsl(28, 45%, 16%);
+  --medium-brown: hsl(22, 22%, 34%);
+  --light-brown: hsl(24, 18%, 53%);
+  --hybit-gray: hsl(220, 12%, 57%);
+  --teal-accent: hsl(168, 28%, 54%);
+  --success-green: hsl(102, 41%, 56%);
+  --warning-red: hsl(349, 71%, 64%);
 
   /* WCAG AA accessible darker variants for text on cream background */
-  --teal-darker: #3A7A70;
+  --teal-darker: hsl(168, 34%, 35%);
   /* 4.5:1 contrast ratio - for normal text */
-  --orange-darker: #C17D2E;
+  --orange-darker: hsl(32, 61%, 47%);
   /* 3.1:1 contrast ratio - for large bold text on cream */
-  --orange-darkest: #8B5A1F;
+  --orange-darkest: hsl(32, 64%, 33%);
   /* 4.5:1 contrast ratio - for normal text on peach */
-  --success-darker: #16a34a;
+  --success-darker: hsl(142, 76%, 36%);
   /* Darker green for success messages - 4.5:1 for normal text */
-  --success-green-accessible: #4A9D3F;
+  --success-green-accessible: hsl(102, 37%, 43%);
   /* 3.1:1 contrast for large bold text */
-  --error-darker: #dc2626;
+  --error-darker: hsl(0, 73%, 50%);
   /* Darker red for error messages */
 
   /* Light background variants for examples */
-  --success-bg-light: #f0fdf4;
+  --success-bg-light: hsl(138, 76%, 97%);
   /* Light green for success examples */
-  --error-bg-light: #fef2f2;
+  --error-bg-light: hsl(0, 86%, 97%);
   /* Light red for error examples */
-  --teal-bg-light: #d1f2eb;
+  --teal-bg-light: hsl(168, 56%, 89%);
   /* Light teal for info examples */
-  --warning-bg-light: #fff3cd;
+  --warning-bg-light: hsl(48, 100%, 90%);
   /* Light yellow for warnings */
-  --warning-border: #ffc107;
+  --warning-border: hsl(45, 100%, 51%);
   /* Amber for warning borders */
 
   /* Code block theme (dark mode within light theme) */
-  --code-bg-dark: #2d2d2d;
+  --code-bg-dark: hsl(0, 0%, 18%);
   /* Dark background for code blocks */
-  --code-bg-darker: #1e293b;
+  --code-bg-darker: hsl(217, 33%, 17%);
   /* Even darker for special code blocks */
-  --code-text-light: #f8f8f2;
+  --code-text-light: hsl(60, 30%, 96%);
   /* Light text for code blocks */
-  --code-text-lighter: #e2e8f0;
+  --code-text-lighter: hsl(210, 40%, 91%);
   /* Even lighter text for special blocks */
 
   /* UI neutrals */
-  --ui-border-light: #ddd;
+  --ui-border-light: hsl(0, 0%, 87%);
   /* Light borders, slider tracks */
-  --text-muted: #666;
+  --text-muted: hsl(0, 0%, 40%);
   /* Muted text (WARNING: Check WCAG!) */
-  --teal-hover: #2d6b61;
+  --teal-hover: hsl(168, 39%, 30%);
   /* Darker teal for hover states */
 
   --shadow-sm: 0 4px 6px rgba(61, 40, 23, 0.06);
@@ -110,7 +110,7 @@
 
 body {
   font-family: 'Nunito', system-ui, sans-serif;
-  background: linear-gradient(135deg, var(--peach-background) 0%, #F9F2E7 100%);
+  background: linear-gradient(135deg, var(--peach-background) 0%, hsl(36, 50%, 94%) 100%);
   color: var(--dark-brown);
   line-height: 1.7;
   min-height: 100vh;
@@ -182,7 +182,7 @@ body {
 .hybit-avatar {
   width: 120px;
   height: 120px;
-  background: linear-gradient(135deg, var(--hybit-gray) 0%, #A1A8B5 100%);
+  background: linear-gradient(135deg, var(--hybit-gray) 0%, hsl(220, 14%, 66%) 100%);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
@@ -751,7 +751,7 @@ h4 {
 }
 
 .prompt-box {
-  background: linear-gradient(135deg, #4A3F36 0%, #6B5444 100%);
+  background: linear-gradient(135deg, hsl(22, 15%, 26%) 0%, hsl(22, 22%, 34%) 100%);
   color: var(--cream-white);
   border-radius: var(--radius);
   padding: 1.5rem;
@@ -798,7 +798,7 @@ h4 {
 }
 
 .tip-card {
-  background: linear-gradient(135deg, var(--teal-accent) 0%, #4A9589 100%);
+  background: linear-gradient(135deg, var(--teal-accent) 0%, hsl(168, 32%, 44%) 100%);
   color: var(--cream-white);
   border-radius: var(--radius);
   padding: 1.5rem;
@@ -939,9 +939,9 @@ h4 {
 }
 
 .warning-box {
-  background: linear-gradient(135deg, #FFF3CD 0%, #FFE8A1 100%);
-  border: 2px solid #F4C584;
-  border-left: 6px solid #E8A557;
+  background: linear-gradient(135deg, hsl(48, 100%, 90%) 0%, hsl(48, 100%, 82%) 100%);
+  border: 2px solid hsl(40, 80%, 73%);
+  border-left: 6px solid hsl(32, 76%, 63%);
   border-radius: var(--radius);
   padding: 1.5rem;
   margin: 2rem 0;
@@ -1178,7 +1178,7 @@ pre {
 }
 
 .copy-btn:hover {
-  background: #2d6b61;
+  background: hsl(168, 39%, 30%);
   /* Darker on hover */
   transform: translateY(-1px);
 }
@@ -1330,7 +1330,7 @@ pre {
 }
 
 .demo-button:hover {
-  background: #4A9589;
+  background: hsl(168, 32%, 44%);
   transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
 }
@@ -1344,21 +1344,21 @@ pre {
   aspect-ratio: 16/9;
   overflow: hidden;
   border-radius: 8px;
-  background: #f0f0f0;
+  background: hsl(0, 0%, 94%);
 }
 
 .aspect-ratio-4-3 {
   aspect-ratio: 4/3;
   overflow: hidden;
   border-radius: 8px;
-  background: #f0f0f0;
+  background: hsl(0, 0%, 94%);
 }
 
 .aspect-ratio-9-16 {
   aspect-ratio: 9/16;
   overflow: hidden;
   border-radius: 8px;
-  background: #f0f0f0;
+  background: hsl(0, 0%, 94%);
 }
 
 /* Responsive Design */
