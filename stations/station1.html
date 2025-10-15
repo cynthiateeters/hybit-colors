@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAP's Learning Lab - Station 1: [STATION_TITLE]</title>
+    <title>HAP's Learning Lab - Station 1: Beyond Hex</title>
     <meta name="description"
-        content="Join HAP as he learns about [BRIEF_DESCRIPTION].">
+        content="Join HAP as he learns about color formats beyond hex - RGB, HSL, and why hex codes aren't enough for professional web development.">
     <meta property="og:image"
         content="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1759495998/hap-laptop_xiewar.jpg">
     <link rel="icon" type="image/png" sizes="16x16"
@@ -34,12 +34,12 @@
                         fetchpriority="high">
                 </div>
                 <div>
-                    <h1>HAP's Learning Lab: [STATION_TITLE]</h1>
-                    <p class="subtitle">[SUBTITLE]</p>
+                    <h1>HAP's Learning Lab: Beyond Hex</h1>
+                    <p class="subtitle">Understanding different ways to write colors and why they matter</p>
                 </div>
             </div>
             <div class="intro-box">
-                <p><strong>Welcome to Station 1!</strong> [HAP's apprentice voice introduction: describe what HAP learned from Prof. Teeters at this station, using first-person perspective] 🟠</p>
+                <p><strong>Welcome to Station 1!</strong> I used to think hex codes were the ONLY way to write colors. I'd seen rgb() in other people's code, but I just converted everything back to hex because that's all I knew! Sometimes I'd use 'red' or 'blue' because it was easier than looking up hex codes, but then I'd wonder why 'darkgray' was actually lighter than 'gray'. So confusing! Let me show you what Prof. Teeters taught me about color formats - it changed everything! 🟠</p>
             </div>
         </div>
     </header>
@@ -52,27 +52,27 @@
     <main id="main-content" class="content-container">
 
         <section class="content-section">
-            <h2 class="section-heading-centered">[SECTION_HEADING]</h2>
+            <h2 class="section-heading-centered">What You'll Learn at This Station</h2>
 
             <div class="intro-box">
-                <p><strong>HAP's Discovery:</strong> [HAP's first-person narrative about learning this concept from Prof. Teeters]</p>
+                <p><strong>HAP's Discovery:</strong> My old CSS files were a disaster of hex codes. I had #336699, #3366cc, #369, and #3366CC scattered everywhere - some were the same color, some weren't, and I couldn't tell which was which! Prof. Teeters showed me my first problem: I didn't even know that #RGB was shorthand for #RRGGBB. So #369 actually meant #336699! Mind. Blown. 🤯</p>
             </div>
 
             <div class="overview-grid mt-2">
                 <div class="insight-card">
-                    <h3><span class="insight-icon">📸</span> [Insight Title 1]</h3>
-                    <p class="stat-large">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
+                    <h3><span class="insight-icon">🎨</span> Why hex isn't enough</h3>
+                    <p class="stat-large">Terrible for modifications</p>
+                    <p>Hex is great for copying from design tools, but I couldn't make colors lighter or darker with hex - had to guess new codes!</p>
                 </div>
                 <div class="insight-card">
-                    <h3><span class="insight-icon">🔬</span> [Insight Title 2]</h3>
-                    <p class="stat-large stat-teal">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
+                    <h3><span class="insight-icon">📺</span> RGB makes sense for screens</h3>
+                    <p class="stat-large stat-teal">Red, Green, Blue (0-255)</p>
+                    <p>It's literally light amounts on your screen! Once Prof. Teeters explained screens emit light, RGB clicked!</p>
                 </div>
                 <div class="insight-card">
-                    <h3><span class="insight-icon">🎯</span> [Insight Title 3]</h3>
-                    <p class="stat-large stat-brown">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
+                    <h3><span class="insight-icon">🎯</span> HSL is the game-changer</h3>
+                    <p class="stat-large stat-brown">Human-friendly adjustments</p>
+                    <p>Hue, Saturation, Lightness - adjust colors like a human thinks. Make it darker? Just lower the L value! Why didn't anyone tell me sooner?</p>
                 </div>
             </div>
 
@@ -82,50 +82,137 @@
                     decoding="async" loading="lazy">
                 <div class="hap-note-content">
                     <h3>HAP's Confession:</h3>
-                    <p>[HAP's apprentice voice: describe initial confusion or learning moment about this topic]</p>
+                    <p>I mixed #fff, #FFF, and #ffffff for the same color. I didn't understand why rgb() existed when we had hex. I was confused by 'darkgray' being lighter than 'gray'. I copy-pasted hex codes without understanding them. And I never knew about transparency options! Prof. Teeters patiently walked me through all of it.</p>
                 </div>
             </div>
         </section>
 
         <section class="content-section">
             <div class="topic-section">
-                <h2>[Main Topic Heading]</h2>
+                <h2>HAP's Hex Chaos</h2>
 
-                <p class="mb-2">[Introduction paragraph explaining what Prof. Teeters taught HAP about this topic]</p>
+                <p class="mb-2">My old CSS files were a disaster of hex codes. I had #336699, #3366cc, #369, and #3366CC scattered everywhere - some were the same color, some weren't, and I couldn't tell which was which! Prof. Teeters showed me my first problem: I didn't even know that #RGB was shorthand for #RRGGBB. So #369 actually meant #336699! Mind. Blown. 🤯</p>
 
                 <div class="analysis-grid">
                     <div class="analysis-point">
-                        <h3>[Analysis Point Title 1]</h3>
-                        <p><strong>[Subheading]</strong> [Content]</p>
+                        <h3>The shorthand confusion</h3>
+                        <p><strong>What I didn't know:</strong> Three-digit hex (#RGB) expands to six digits (#RRGGBB). So #369 = #336699, #fff = #ffffff. I was using both without realizing they were the same color!</p>
                     </div>
                     <div class="analysis-point">
-                        <h3>[Analysis Point Title 2]</h3>
-                        <p><strong>[Subheading]</strong> [Content]</p>
+                        <h3>Case sensitivity chaos</h3>
+                        <p><strong>Another mistake:</strong> I had #3366cc, #3366CC, and #3366Cc in the same file. Hex is case-insensitive, but my inconsistency made searching impossible. Was I using the same blue everywhere? Who knows!</p>
+                    </div>
+                </div>
+
+                <div class="warning-box mt-2">
+                    <h3>🟠 HAP's Old Way vs. What I Learned</h3>
+                    <p><strong class="text-error">❌ WRONG: Hex Chaos</strong></p>
+                    <pre><code class="language-css">.header { background: #336699; }
+.button { background: #369; /* Wait, is this the same? */ }
+.footer { background: #3366CC; /* Or is THIS the same? */ }
+.link { color: darkblue; /* Close enough? */ }</code></pre>
+                    <p><strong class="text-success">✅ RIGHT: What I Learned</strong></p>
+                    <pre><code class="language-css">:root {
+  --brand-primary: hsl(210, 50%, 40%);
+  --brand-primary-dark: hsl(210, 50%, 30%); /* Just changed L! */
+  --brand-primary-light: hsl(210, 50%, 50%); /* So easy! */
+}</code></pre>
+                    <p class="mt-1">Notice how the HSL version makes relationships obvious? Same hue (210°), same saturation (50%), only lightness changes. With hex, I'd be guessing! Also notice the custom property name doesn't have the word blue. That way if I decided to change my theme to green I only have to change the values.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>The RGB Revelation</h2>
+
+                <p class="mb-2">RGB made no sense until Prof. Teeters explained it's based on how screens work - mixing red, green, and blue light. Each value (0-255) is how bright that color channel is. rgb(255, 0, 0) = full red, no green, no blue = pure red! And rgba() adds transparency without affecting child elements like opacity does. Game changer for overlays!</p>
+
+                <div class="analysis-grid">
+                    <div class="analysis-point">
+                        <h3>How screens actually work</h3>
+                        <p><strong>The science:</strong> Your screen has tiny red, green, and blue light emitters. Each value (0-255) controls brightness. 0 = off, 255 = full brightness. Mix all three at 255? White light! All at 0? Black (no light).</p>
+                    </div>
+                    <div class="analysis-point">
+                        <h3>RGBA vs opacity</h3>
+                        <p><strong>The difference:</strong> rgba(255, 0, 0, 0.5) makes ONLY the background transparent. The opacity: 0.5 property makes the ENTIRE element transparent, including text and children. Big difference!</p>
                     </div>
                 </div>
 
                 <div class="prompt-box mt-2">
-                    <div class="prompt-label">[Code Example Label]:</div>
-                    <pre><code class="language-html">[CODE EXAMPLE HERE]</code></pre>
-                    <p class="code-comment mt-1">[Explanation of code example]</p>
+                    <div class="prompt-label">RGB Examples:</div>
+                    <pre><code class="language-css">/* Pure colors */
+.red { background: rgb(255, 0, 0); }    /* Full red, no green/blue */
+.green { background: rgb(0, 255, 0); }  /* Full green, no red/blue */
+.blue { background: rgb(0, 0, 255); }   /* Full blue, no red/green */
+
+/* Gray is equal amounts */
+.gray { background: rgb(128, 128, 128); }  /* Equal = neutral gray */
+
+/* Transparency with RGBA */
+.overlay { background: rgba(0, 0, 0, 0.5); }  /* 50% transparent black */</code></pre>
+                    <p class="code-comment mt-1">RGB is perfect when you need to adjust individual color channels or add transparency!</p>
                 </div>
 
                 <div class="interactive-demo mt-2">
-                    <h3>[Interactive Demo Title]</h3>
+                    <h3>Try This: RGB to Hex Mental Conversion</h3>
+                    <p>Want to convert RGB to hex in your head? Each RGB value (0-255) converts to two hex digits (00-FF):</p>
                     <ul class="mt-1">
-                        <li>[List item 1]</li>
-                        <li>[List item 2]</li>
-                        <li>[List item 3]</li>
+                        <li>rgb(255, 0, 0) → #FF 00 00 → #FF0000 (red)</li>
+                        <li>rgb(51, 102, 153) → #33 66 99 → #336699 (blue)</li>
+                        <li>rgb(0, 128, 0) → #00 80 00 → #008000 (green)</li>
                     </ul>
+                    <p class="mt-1">Prof. Teeters taught me to use a calculator or DevTools color picker instead of doing this manually! 😅</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>HSL Changed Everything</h2>
+
+                <p class="mb-2">This is where everything clicked! HSL is how humans think about color. Hue is the color wheel position (0-360°), Saturation is how vivid (0-100%), and Lightness is... well, lightness (0-100%). Want a darker version? Keep H and S, just lower L! Prof. Teeters said "HSL is like having a color remote control" and she was SO right!</p>
+
+                <div class="analysis-grid">
+                    <div class="analysis-point">
+                        <h3>Hue: The color wheel</h3>
+                        <p><strong>0-360 degrees:</strong> 0° = red, 120° = green, 240° = blue, 360° = back to red. It's literally the color wheel as numbers!</p>
+                    </div>
+                    <div class="analysis-point">
+                        <h3>Saturation: How vivid</h3>
+                        <p><strong>0-100%:</strong> 0% = completely gray (no color), 100% = maximum vividness. Want a muted color? Lower the S value!</p>
+                    </div>
+                    <div class="analysis-point">
+                        <h3>Lightness: Brightness</h3>
+                        <p><strong>0-100%:</strong> 0% = black, 50% = pure color, 100% = white. This is the secret to creating color scales!</p>
+                    </div>
                 </div>
 
-                <div class="warning-box mt-2">
-                    <h3>🟠 [Warning Title]</h3>
-                    <p><strong class="text-success">✅ RIGHT:</strong></p>
-                    <pre><code class="language-html">[Correct example]</code></pre>
-                    <p><strong class="text-error">❌ WRONG:</strong></p>
-                    <pre><code class="language-html">[Incorrect example]</code></pre>
-                    <p class="mt-1">[Explanation of why this matters]</p>
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">HSL Color Scales (The Easy Way!):</div>
+                    <pre><code class="language-css">:root {
+  /* Same hue (210°), same saturation (50%), only lightness varies */
+  --blue-100: hsl(210, 50%, 90%);  /* Very light */
+  --blue-200: hsl(210, 50%, 80%);
+  --blue-300: hsl(210, 50%, 70%);
+  --blue-400: hsl(210, 50%, 60%);
+  --blue-500: hsl(210, 50%, 50%);  /* Base color */
+  --blue-600: hsl(210, 50%, 40%);
+  --blue-700: hsl(210, 50%, 30%);
+  --blue-800: hsl(210, 50%, 20%);
+  --blue-900: hsl(210, 50%, 10%);  /* Very dark */
+}</code></pre>
+                    <p class="code-comment mt-1">See how easy that is? Try creating this scale with hex codes - you'd need a color picker for every value!</p>
+                </div>
+
+                <div class="hap-note-callout mt-2">
+                    <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759331571/HyBit_holding_a_paintbrush_ycfapu.jpg"
+                        alt="HAP holding a paintbrush" width="150" height="150" class="hap-note-image"
+                        decoding="async" loading="lazy">
+                    <div class="hap-note-content">
+                        <h3>HAP's Breakthrough Moment:</h3>
+                        <p>When Prof. Teeters showed me I could create an entire color scale by just changing ONE number (the L in HSL), my jaw dropped. No more guessing hex codes! No more color pickers! Just math! This was the moment I realized color systems weren't magic. They were just systematic thinking!</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -137,24 +224,32 @@
                 <div class="tip-card">
                     <div class="tip-number">1</div>
                     <div>
-                        <h3>[Tip Title 1]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>When to use hex</h3>
+                        <p>Best for: Copying from design tools (Figma, Adobe XD), sharing with other developers, when the color won't change. Worst for: Creating variations, adjusting brightness, explaining your color choices.</p>
                     </div>
                 </div>
 
                 <div class="tip-card">
                     <div class="tip-number">2</div>
                     <div>
-                        <h3>[Tip Title 2]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>When to use RGB</h3>
+                        <p>Best for: Adding transparency with rgba(), working with JavaScript canvas, understanding screen color mixing. Worst for: Creating color scales, explaining color relationships, making adjustments.</p>
                     </div>
                 </div>
 
                 <div class="tip-card">
                     <div class="tip-number">3</div>
                     <div>
-                        <h3>[Tip Title 3]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>When to use HSL</h3>
+                        <p>Best for: Creating color scales, making adjustments, explaining your palette, systematic color systems. Worst for: Um... Prof. Teeters says there isn't a bad use case! I use HSL for almost everything now!</p>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">4</div>
+                    <div>
+                        <h3>Quick conversion tip</h3>
+                        <p>Use your browser DevTools! Click any color in the Styles panel and it toggles between hex, RGB, and HSL. No calculator needed - the browser does the math for you! The VS Code editor has a color picker that does the same thing. Hover over the color and you can click the value at the top to cycle through all the different values.</p>
                     </div>
                 </div>
             </div>
@@ -164,13 +259,13 @@
 
     <nav aria-label="Station pagination" class="page-navigation bottom-nav">
         <a href="../index.html" class="nav-link hub-link">🏠 Hub</a>
-        <a href="station2.html" class="nav-link next-link">Next: Station 2 - [NEXT_STATION_TITLE] →</a>
+        <a href="station2.html" class="nav-link next-link">Next: Station 2 - Building Color Systems →</a>
     </nav>
 
     <footer class="footer">
         <p><strong>HAP's Learning Lab</strong> | An AI-Enhanced Educational Experience by Prof. Cynthia Teeters</p>
         <p class="footer-reminder">
-            [HAP's memorable takeaway about this station] 🟠 — HAP
+            Hex for copying, RGB for understanding screens, HSL for creating systems. That's my color format mantra now! 🟠 — HAP
         </p>
         <div class="footer-copyright">
             <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_80,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
