@@ -80,6 +80,7 @@ hap-template/
 Decide what 6 web development topics you want to teach. Each station should focus on a specific concept with hands-on examples.
 
 **Example topics:**
+
 - Web fonts and typography
 - CSS Grid layouts
 - JavaScript APIs
@@ -103,6 +104,7 @@ Each `station1.html` through `station6.html` file contains placeholders like:
 ### Step 3: Update the hub page
 
 Edit `index.html` to:
+
 - Update the hub introduction with your learning lab's theme
 - Add descriptions for your 6 stations
 - Update navigation links if you rename station files
@@ -140,7 +142,7 @@ The template includes example parameters you should customize for your learning 
 
 | Parameter | Shows | Example Use |
 |-----------|-------|-------------|
-| `detail` | Lighthouse Score: 99% | Any page |
+| `detail` | Lighthouse Score: 98%-100% | Any page |
 | `stations` | Learning stations overview | Hub |
 | `example1` | Your topic 1 insight | Station 1 |
 | `example2` | Your topic 2 insight | Station 2 |
@@ -164,7 +166,7 @@ See `data/README.md` for complete documentation on adding new insights and custo
 
 ### Performance optimized
 
-- ✅ Lighthouse score: 99%
+- ✅ Lighthouse score: 98%-100%
 - ✅ Optimized image delivery via Cloudinary
 - ✅ Lazy loading for images
 - ✅ Deferred script loading
@@ -209,11 +211,13 @@ Parameters used:
 You can keep the numbered naming (`station1.html`) or rename to descriptive names:
 
 **Option A: Keep numbered** (recommended for easier template updates)
+
 ```
 station1.html, station2.html, etc.
 ```
 
 **Option B: Rename to descriptive**
+
 ```bash
 mv stations/station1.html stations/web-fonts.html
 mv stations/station2.html stations/css-grid.html
@@ -221,6 +225,7 @@ mv stations/station2.html stations/css-grid.html
 ```
 
 If you rename, also update:
+
 - Navigation links in each station file
 - URLs in `lighthouserc.json`
 - Links in `index.html`

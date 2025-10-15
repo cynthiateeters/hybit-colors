@@ -16,33 +16,30 @@
   //
   // COMPLETE DOCUMENTATION: See data/README.md for detailed instructions
   // =============================================================================
-
   // CUSTOMIZE: Add your own parameter names here (lowercase, alphanumeric only)
   "allowedParams": [
-    "detail",       // Lighthouse performance score (keep this one!)
-    "stations",     // Learning lab overview (keep this one!)
-    "example1",     // Replace with your Station 1 insight parameter
-    "example2",     // Replace with your Station 2 insight parameter
-    "example3",     // Replace with your Station 3 insight parameter
-    "example4",     // Replace with your Station 4 insight parameter
-    "example5",     // Replace with your Station 5 insight parameter
-    "example6"      // Replace with your Station 6 insight parameter
+    "detail", // Lighthouse performance score (keep this one!)
+    "stations", // Learning lab overview (keep this one!)
+    "example1", // Replace with your Station 1 insight parameter
+    "example2", // Replace with your Station 2 insight parameter
+    "example3", // Replace with your Station 3 insight parameter
+    "example4", // Replace with your Station 4 insight parameter
+    "example5", // Replace with your Station 5 insight parameter
+    "example6" // Replace with your Station 6 insight parameter
   ],
-
   // CUSTOMIZE: Create messages for each parameter in allowedParams
   // Format: { "title": "...", "content": "..." }
   // You can use HTML tags: <code>, <strong>, <em>, <br>
   "messages": {
     // Keep these two default messages:
     "detail": {
-      "title": "🚀 Lighthouse Score: 99%!",
+      "title": "🚀 Lighthouse Score: 98%-100%!",
       "content": "This site is optimized for instant loading with modern web performance techniques."
     },
     "stations": {
       "title": "🔬 Learning Stations",
       "content": "Explore 6 interactive stations covering [YOUR TOPICS]. HAP guides you through hands-on examples and practical demonstrations."
     },
-
     // CUSTOMIZE: Replace these examples with your own insights
     "example1": {
       "title": "🎨 [Your Station 1 Insight Title]",
@@ -69,7 +66,6 @@
       "content": "Replace this with educational content about your Station 6 topic. Use HAP's enthusiastic learning perspective."
     }
   },
-
   // CUSTOMIZE: Update page-specific help for each station file
   // This appears when users visit a page with bare ?hybit parameter (no value)
   // Format: { "title": "...", "intro": "...", "suggestions": [...] }
@@ -89,7 +85,6 @@
         }
       ]
     },
-
     // CUSTOMIZE: Update for each of your station files
     // If you renamed from station1.html to custom names, update the keys below
     "station1.html": {
@@ -153,7 +148,6 @@
       ]
     }
   },
-
   // DEFAULT MESSAGES: Keep these unchanged - they provide fallback behavior
   "defaults": {
     // Shown when parameter value doesn't match whitelist

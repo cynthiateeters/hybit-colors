@@ -195,7 +195,7 @@ If this insight is most relevant to a specific page, add it to `pageHelp`:
 
 **Good titles:**
 
-- ✅ "🚀 Lighthouse Score: 99%!" (specific metric)
+- ✅ "🚀 Lighthouse Score: 98%-100%!" (specific metric)
 - ✅ "📱 Perfect image for every screen" (clear benefit)
 - ✅ "🎯 Deferred scripts = faster page loads!" (shows cause/effect)
 
@@ -241,7 +241,7 @@ CQ containment on parent elements."
 
 | Parameter | Title | Station | Added |
 |-----------|-------|---------|-------|
-| `detail` | Lighthouse Score: 99%! | All | Initial |
+| `detail` | Lighthouse Score: 98%-100%! | All | Initial |
 | `stations` | Learning Stations | Hub | Initial |
 | `srcset` | Perfect image for every screen | 2 | Initial |
 | `picture` | The &lt;picture&gt; element | 3 | Initial |

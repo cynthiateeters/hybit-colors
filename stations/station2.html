@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAP's Learning Lab - Station 2: [STATION_TITLE]</title>
+    <title>HAP's Learning Lab - Station 2: Building Color Systems</title>
     <meta name="description"
-        content="Join HAP as he learns about [BRIEF_DESCRIPTION].">
+        content="Join HAP as he learns how CSS custom properties and semantic naming transformed his 47-color hex chaos into an organized, maintainable color system.">
     <meta property="og:image"
         content="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1759495998/hap-laptop_xiewar.jpg">
     <link rel="icon" type="image/png" sizes="16x16"
@@ -34,12 +34,12 @@
                         fetchpriority="high">
                 </div>
                 <div>
-                    <h1>HAP's Learning Lab: [STATION_TITLE]</h1>
-                    <p class="subtitle">[SUBTITLE]</p>
+                    <h1>HAP's Learning Lab: Building Color Systems</h1>
+                    <p class="subtitle">From hex chaos to organized custom properties</p>
                 </div>
             </div>
             <div class="intro-box">
-                <p><strong>Welcome to Station 2!</strong> [HAP's apprentice voice introduction: describe what HAP learned from Prof. Teeters at this station, using first-person perspective] 🟠</p>
+                <p><strong>Welcome to Station 2!</strong> My old stylesheets had 47 different color values scattered everywhere - many almost identical! When clients said "make the blue darker," I'd panic. WHICH BLUE?! Prof. Teeters showed me CSS custom properties and semantic naming. Now I change colors in ONE place! Let me show you this sanity-saving system! 🟠</p>
             </div>
         </div>
     </header>
@@ -52,27 +52,26 @@
     <main id="main-content" class="content-container">
 
         <section class="content-section">
-            <h2 class="section-heading-centered">[SECTION_HEADING]</h2>
-
-            <div class="intro-box">
-                <p><strong>HAP's Discovery:</strong> [HAP's first-person narrative about learning this concept from Prof. Teeters]</p>
-            </div>
+            <h2 class="section-heading-centered">What You'll Learn at This Station</h2>
 
             <div class="overview-grid mt-2">
                 <div class="insight-card">
-                    <h3><span class="insight-icon">📸</span> [Insight Title 1]</h3>
-                    <p class="stat-large">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
+                    <h3><span class="insight-icon">🎨</span> Custom Properties Save Sanity</h3>
+                    <p class="stat-large">47 → 8</p>
+                    <p><strong>Define once, use everywhere, change in one place</strong></p>
+                    <p>I went from 50 hex codes to 8 custom properties. EIGHT! Every time the client said "make it slightly darker," I'd change ONE line instead of hunting through 500 lines of CSS!</p>
                 </div>
                 <div class="insight-card">
-                    <h3><span class="insight-icon">🔬</span> [Insight Title 2]</h3>
-                    <p class="stat-large stat-teal">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
+                    <h3><span class="insight-icon">📝</span> Semantic Naming Wins</h3>
+                    <p class="stat-large stat-teal">--primary beats --blue-500</p>
+                    <p><strong>Every time</strong></p>
+                    <p>When the "blue" became green, I didn't have to rename everything! Semantic names describe purpose, not appearance. Game changer!</p>
                 </div>
                 <div class="insight-card">
-                    <h3><span class="insight-icon">🎯</span> [Insight Title 3]</h3>
-                    <p class="stat-large stat-brown">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
+                    <h3><span class="insight-icon">🎯</span> The 60-30-10 Rule</h3>
+                    <p class="stat-large stat-brown">60% dominant, 30% secondary, 10% accent</p>
+                    <p><strong>This formula instantly made my sites look professional!</strong></p>
+                    <p>Before this, I'd use equal amounts of colors and wonder why everything looked busy.</p>
                 </div>
             </div>
 
@@ -82,50 +81,378 @@
                     decoding="async" loading="lazy">
                 <div class="hap-note-content">
                     <h3>HAP's Confession:</h3>
-                    <p>[HAP's apprentice voice: describe initial confusion or learning moment about this topic]</p>
+                    <p>I had 47 different color values in one CSS file. I used copy-paste archaeology to find colors I'd used before. Even with custom properties, my naming system was "blue-3" and "blue-3-darker" - super helpful, right? When the client changed their brand color, I spent 4 hours with find-replace. And I once had 47 different shades of blue in a single project. Prof. Teeters said my CSS looked like a hex code crime scene!</p>
                 </div>
             </div>
         </section>
 
         <section class="content-section">
             <div class="topic-section">
-                <h2>[Main Topic Heading]</h2>
+                <h2>CSS Custom Properties to the Rescue</h2>
 
-                <p class="mb-2">[Introduction paragraph explaining what Prof. Teeters taught HAP about this topic]</p>
+                <p class="mb-2">Then Prof. Teeters showed me CSS custom properties. Instead of <code>#3366cc</code> everywhere, I now had <code>--primary</code>. Want to change it? Update ONE line! The syntax is super easy - if you can write CSS, you can use custom properties.</p>
 
                 <div class="analysis-grid">
                     <div class="analysis-point">
-                        <h3>[Analysis Point Title 1]</h3>
-                        <p><strong>[Subheading]</strong> [Content]</p>
+                        <h3>Define in :root</h3>
+                        <p><strong>Makes them available everywhere:</strong></p>
+                        <pre><code class="language-css">:root {
+  --primary: hsl(210, 50%, 50%);
+}</code></pre>
                     </div>
                     <div class="analysis-point">
-                        <h3>[Analysis Point Title 2]</h3>
-                        <p><strong>[Subheading]</strong> [Content]</p>
+                        <h3>Use with var()</h3>
+                        <p><strong>Anywhere you'd use a color:</strong></p>
+                        <pre><code class="language-css">.button {
+  background: var(--primary);
+}</code></pre>
                     </div>
+                </div>
+
+                <p class="mt-2">That's it! But here's the real magic - watch how this transforms my hex soup disaster.</p>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">BEFORE - Hex Soup Disaster (This is literally from my old code):</div>
+                    <pre><code class="language-css">.header { background: #3366cc; color: white; }
+.nav { background: #3367cc; color: #ffffff; }
+.button { background: #3366CC; color: #FFF; }
+.card { border: 1px solid #3366cd; }
+.hero { background: #3366cb; }
+.footer { background: #3366cc; color: white; }
+.link { color: #3366CC; }
+.link:hover { color: #2255bb; }
+.tag { background: #3367cd; }
+.badge { background: #3366cc; }
+/* ... and 37 more variations ... */</code></pre>
+                    <p class="code-comment mt-1">Count the different blues! I found 8 slightly different values. Some were probably the same color with case differences. I couldn't tell you which was correct!</p>
                 </div>
 
                 <div class="prompt-box mt-2">
-                    <div class="prompt-label">[Code Example Label]:</div>
-                    <pre><code class="language-html">[CODE EXAMPLE HERE]</code></pre>
-                    <p class="code-comment mt-1">[Explanation of code example]</p>
-                </div>
+                    <div class="prompt-label">AFTER - Custom Properties (What I Should Have Done):</div>
+                    <pre><code class="language-css">:root {
+  --primary: hsl(210, 50%, 50%);
+  --primary-dark: hsl(210, 50%, 40%);
+  --primary-light: hsl(210, 50%, 60%);
+  --on-primary: hsl(0, 0%, 100%);
+}
 
-                <div class="interactive-demo mt-2">
-                    <h3>[Interactive Demo Title]</h3>
-                    <ul class="mt-1">
-                        <li>[List item 1]</li>
-                        <li>[List item 2]</li>
-                        <li>[List item 3]</li>
-                    </ul>
+.header { background: var(--primary); color: var(--on-primary); }
+.nav { background: var(--primary); color: var(--on-primary); }
+.button { background: var(--primary); color: var(--on-primary); }
+.card { border: 1px solid var(--primary); }
+.hero { background: var(--primary); }
+.footer { background: var(--primary); color: var(--on-primary); }
+.link { color: var(--primary); }
+.link:hover { color: var(--primary-dark); }
+.tag { background: var(--primary-light); }
+.badge { background: var(--primary); }</code></pre>
+                    <p class="code-comment mt-1">Client wants a different blue? Change the hue and saturation values in all three variables. Better than hunting through 47 hex codes, but there's still a smarter way...</p>
                 </div>
 
                 <div class="warning-box mt-2">
-                    <h3>🟠 [Warning Title]</h3>
-                    <p><strong class="text-success">✅ RIGHT:</strong></p>
-                    <pre><code class="language-html">[Correct example]</code></pre>
-                    <p><strong class="text-error">❌ WRONG:</strong></p>
-                    <pre><code class="language-html">[Incorrect example]</code></pre>
-                    <p class="mt-1">[Explanation of why this matters]</p>
+                    <h3>🟠 Advanced Technique - HSL Component Variables</h3>
+                    <p>But Prof. Teeters showed me an even smarter way that professional developers use to max out HSL's capabilities:</p>
+                    <pre><code class="language-css">:root {
+  /* Base hue, saturation, and lightness */
+  --primary-h: 210;
+  --primary-s: 50%;
+  --primary-l: 50%;
+
+  /* Adjustable steps for lightness */
+  --primary-l-dark-step: 10%;
+  --primary-l-light-step: 10%;
+
+  /* Derived colors */
+  --primary: hsl(var(--primary-h), var(--primary-s), var(--primary-l));
+  --primary-dark: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) - var(--primary-l-dark-step)));
+  --primary-light: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) + var(--primary-l-light-step)));
+
+  --on-primary: hsl(0, 0%, 100%);
+}</code></pre>
+                    <p class="mt-1">Yeah, those lines look messy and are hard to read but we have moved into some serious theming now.</p>
+                    <p class="mt-1"><strong>Client wants green instead of blue?</strong> Change ONE line (the <code>--primary-h</code> definition). Done! Every instance updates automatically!</p>
+                    <p class="mt-1"><strong>Client wants darker green for button hovers?</strong> Change the step value. One line. One and done!</p>
+                    <p class="mt-1">This is next-level theming, but you don't need it when you're starting out. The basic version works great!</p>
+                </div>
+
+                <h3 class="mt-2">Creating Systematic Scales</h3>
+                <p>The real power of custom properties is systematic scales. Instead of random grays everywhere, create a scale:</p>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">Organized Gray Scale:</div>
+                    <pre><code class="language-css">:root {
+  --gray-100: hsl(0, 0%, 95%);   /* Lightest */
+  --gray-200: hsl(0, 0%, 85%);
+  --gray-300: hsl(0, 0%, 75%);
+  --gray-400: hsl(0, 0%, 65%);
+  --gray-500: hsl(0, 0%, 50%);   /* Middle */
+  --gray-600: hsl(0, 0%, 40%);
+  --gray-700: hsl(0, 0%, 30%);
+  --gray-800: hsl(0, 0%, 20%);
+  --gray-900: hsl(0, 0%, 10%);   /* Darkest */
+}</code></pre>
+                    <p class="code-comment mt-1">Now you have consistent grays! Light background? --gray-100. Muted text? --gray-600. Dark text? --gray-900. So organized!</p>
+                </div>
+
+                <h3 class="mt-2">Building a Complete System</h3>
+                <p>Prof. Teeters taught me to start with these core custom properties:</p>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">Complete Color System:</div>
+                    <pre><code class="language-css">:root {
+  /* Brand colors */
+  --primary: hsl(210, 70%, 50%);
+  --primary-hover: hsl(210, 70%, 40%);
+  --primary-light: hsl(210, 70%, 90%);
+  --primary-dark: hsl(210, 70%, 30%);
+
+  --secondary: hsl(280, 50%, 50%);
+  --secondary-hover: hsl(280, 50%, 40%);
+
+  /* Neutral scale */
+  --gray-100: hsl(0, 0%, 95%);
+  --gray-500: hsl(0, 0%, 50%);
+  --gray-900: hsl(0, 0%, 10%);
+
+  /* Semantic colors */
+  --success: hsl(120, 40%, 40%);
+  --warning: hsl(45, 90%, 50%);
+  --error: hsl(0, 65%, 50%);
+
+  /* Text colors */
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-500);
+  --text-on-primary: hsl(0, 0%, 100%);
+
+  /* Background colors */
+  --bg-page: hsl(0, 0%, 98%);
+  --bg-card: hsl(0, 0%, 100%);
+}</code></pre>
+                    <p class="code-comment mt-1">Notice how I reference other custom properties with var()! --text-primary uses --gray-900. That's allowed! If I change --gray-900, --text-primary updates too!</p>
+                </div>
+
+                <div class="interactive-demo mt-2">
+                    <h3>🔬 Try This: Refactor Your Hex Chaos</h3>
+                    <p>Take any old CSS with scattered hex codes and convert it:</p>
+                    <ol class="mt-1">
+                        <li>Find all unique colors (ignore case, shorthand)</li>
+                        <li>Group similar colors (your different blues probably should be the same blue)</li>
+                        <li>Name them semantically (--primary, not --blue)</li>
+                        <li>Create scales where needed (gray-100 through gray-900)</li>
+                        <li>Replace all hex codes with var(--name)</li>
+                        <li>Test by changing ONE custom property and watching everything update!</li>
+                    </ol>
+                    <p class="mt-1">Prof. Teeters had me do this with my worst project. 47 colors became 12 custom properties. TWELVE!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>The Power of Semantic Naming</h2>
+
+                <p class="mb-2">Custom properties were great, but I was still naming them badly! I had <code>--blue</code>, <code>--dark-blue</code>, <code>--light-blue</code>. Then the client said "change the blue to purple." Now my CSS had variables called <code>--blue</code> that were actually PURPLE! The variable was lying!</p>
+
+                <p class="mb-2">Prof. Teeters taught me semantic naming: describe the purpose, not the appearance.</p>
+
+                <h3 class="mt-2">Why Appearance Names Fail</h3>
+                <p>My old naming was all appearance-based:</p>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">Appearance-Based Naming (The Problem):</div>
+                    <pre><code class="language-css">:root {
+  --blue: hsl(210, 50%, 50%);
+  --dark-blue: hsl(210, 50%, 40%);
+  --red: hsl(0, 65%, 50%);
+}
+
+.button { background: var(--blue); }
+.link { color: var(--dark-blue); }
+.error { color: var(--red); }</code></pre>
+                    <p class="code-comment mt-1">Then the client said "change the blue to purple." Now I have:</p>
+                    <pre><code class="language-css">:root {
+  --blue: hsl(270, 50%, 50%);  /* This is PURPLE! */
+}</code></pre>
+                    <p class="code-comment mt-1">The variable is lying! Anyone reading my code is confused! Prof. Teeters said "names should describe purpose, not appearance."</p>
+                </div>
+
+                <h3 class="mt-2">Semantic Naming to the Rescue</h3>
+                <p>The semantic version:</p>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">Semantic Naming (The Solution):</div>
+                    <pre><code class="language-css">:root {
+  --primary: hsl(210, 50%, 50%);
+  --primary-dark: hsl(210, 50%, 40%);
+  --error: hsl(0, 65%, 50%);
+}
+
+.button { background: var(--primary); }
+.link { color: var(--primary-dark); }
+.error { color: var(--error); }</code></pre>
+                    <p class="code-comment mt-1">Client wants purple? Change the hue in both --primary and --primary-dark to purple! The names still make sense because they're STILL the primary brand color. The code doesn't lie! (And yes, with the advanced HSL component technique from Section 1, you really would only change ONE line!)</p>
+                </div>
+
+                <h3 class="mt-2">Semantic Naming Patterns</h3>
+                <p>Prof. Teeters taught me these naming patterns:</p>
+
+                <div class="analysis-grid mt-2">
+                    <div class="analysis-point">
+                        <h4>Brand Colors</h4>
+                        <pre><code class="language-css">--primary        /* Main brand color */
+--secondary      /* Supporting brand color */
+--accent         /* Pop of color for emphasis */</code></pre>
+                    </div>
+                    <div class="analysis-point">
+                        <h4>State Colors</h4>
+                        <pre><code class="language-css">--success        /* Successful actions */
+--warning        /* Caution */
+--error          /* Problems */
+--info           /* Neutral information */</code></pre>
+                    </div>
+                </div>
+
+                <div class="analysis-grid mt-2">
+                    <div class="analysis-point">
+                        <h4>Text Colors</h4>
+                        <pre><code class="language-css">--text-primary   /* Main content text */
+--text-secondary /* Muted text */
+--text-disabled  /* Inactive text */
+--text-on-primary /* Text on colored backgrounds */</code></pre>
+                    </div>
+                    <div class="analysis-point">
+                        <h4>Background Colors</h4>
+                        <pre><code class="language-css">--bg-page        /* Overall page background */
+--bg-card        /* Card/panel backgrounds */
+--bg-overlay     /* Modal overlays */</code></pre>
+                    </div>
+                </div>
+
+                <div class="analysis-grid mt-2">
+                    <div class="analysis-point">
+                        <h4>Border Colors</h4>
+                        <pre><code class="language-css">--border-subtle  /* Light dividers */
+--border-strong  /* Emphasized borders */</code></pre>
+                    </div>
+                </div>
+
+                <div class="hap-note-callout mt-2">
+                    <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
+                        alt="HAP studying with his book and tools" width="150" height="150" class="hap-note-image"
+                        decoding="async" loading="lazy">
+                    <div class="hap-note-content">
+                        <h3>HAP's Breakthrough Moment:</h3>
+                        <p>The day I refactored my worst project from 47 hex codes to 12 semantic custom properties, everything clicked. The client called with "design changes" - I expected hours of work. They wanted a completely different brand color scheme. With my old hex soup, that would've been HOURS of find-replace. With semantic custom properties? I updated my color definitions in the :root block, hit refresh, and it was DONE! The client thought I'd worked for hours. Nope! A few minutes! Prof. Teeters was right - good organization makes changes trivial!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>The 60-30-10 Design Rule</h2>
+
+                <p class="mb-2">Prof. Teeters taught me a secret formula that instantly made my designs look professional: the 60-30-10 rule. 60% dominant color, 30% secondary color, 10% accent color. Before this, I'd use equal amounts of all my colors and wonder why everything looked chaotic and busy!</p>
+
+                <h3 class="mt-2">What is 60-30-10?</h3>
+
+                <div class="analysis-grid mt-2">
+                    <div class="analysis-point">
+                        <h4>60% Dominant</h4>
+                        <p><strong>Your main color, usually a neutral like white, cream, or light gray.</strong> This is backgrounds, large areas. It creates calm and space!</p>
+                    </div>
+                    <div class="analysis-point">
+                        <h4>30% Secondary</h4>
+                        <p><strong>Your supporting color, creates contrast with the dominant.</strong> This is sidebars, navigation, secondary sections. It adds interest without overwhelming!</p>
+                    </div>
+                </div>
+
+                <div class="analysis-grid mt-2">
+                    <div class="analysis-point">
+                        <h4>10% Accent</h4>
+                        <p><strong>Your "pop" color, draws the eye to important things.</strong> This is buttons, links, calls-to-action. A little goes a LONG way!</p>
+                    </div>
+                </div>
+
+                <p class="mt-2">Prof. Teeters said "think of a room: 60% walls, 30% furniture, 10% art and accessories." That visual helped me SO much!</p>
+
+                <h3 class="mt-2">How I Was Violating It</h3>
+                <p>My old approach was chaos. "I have 5 colors, so I'll use each about 20%!"</p>
+                <p><strong>Result?</strong> Visual noise! Everything screamed for attention! Nothing was important because EVERYTHING was emphasized!</p>
+                <p>Prof. Teeters showed me a site I'd designed: 20% blue header, 20% orange sidebar, 20% green content area, 20% purple footer, 20% red buttons. Her exact words: "It looks like you're trying to use every crayon in the box." Ouch! But accurate!</p>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">BAD - Equal Distribution (My Old Way):</div>
+                    <pre><code class="language-css">:root {
+  --color-1: hsl(210, 50%, 50%);  /* Blue */
+  --color-2: hsl(30, 70%, 50%);   /* Orange */
+  --color-3: hsl(150, 50%, 50%);  /* Green */
+  --color-4: hsl(270, 50%, 50%);  /* Purple */
+  --color-5: hsl(0, 70%, 50%);    /* Red */
+}
+
+.header { background: var(--color-1); }        /* 20% blue */
+.sidebar { background: var(--color-2); }       /* 20% orange */
+.main { background: var(--color-3); }          /* 20% green */
+.footer { background: var(--color-4); }        /* 20% purple */
+.button { background: var(--color-5); }        /* 20% red */
+/* It's a rainbow explosion! */</code></pre>
+                </div>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">GOOD - 60-30-10 Distribution (What I Learned):</div>
+                    <pre><code class="language-css">:root {
+  /* 60% - Dominant (neutral, calm) */
+  --dominant: hsl(0, 0%, 97%);
+  --dominant-alt: hsl(0, 0%, 100%);
+
+  /* 30% - Secondary (your brand color) */
+  --secondary: hsl(210, 50%, 50%);
+  --secondary-dark: hsl(210, 50%, 40%);
+
+  /* 10% - Accent (pop of contrast) */
+  --accent: hsl(30, 80%, 55%);
+  --accent-hover: hsl(30, 80%, 45%);
+}
+
+/* 60% usage */
+body { background: var(--dominant); }
+.card { background: var(--dominant-alt); }
+.content-area { background: var(--dominant); }
+
+/* 30% usage */
+.header { background: var(--secondary); }
+.sidebar { background: var(--secondary); }
+.section-heading { color: var(--secondary-dark); }
+
+/* 10% usage */
+.button-primary { background: var(--accent); }
+.button-primary:hover { background: var(--accent-hover); }
+.link { color: var(--accent); }
+.highlight { background: var(--accent); }</code></pre>
+                    <p class="code-comment mt-1">See the difference? The 60-30-10 version has hierarchy! The dominant color creates calm space. The secondary color defines structure. The accent draws your eye to important actions. Visual harmony!</p>
+                </div>
+
+                <h3 class="mt-2">Applying the Rule to Your Variables</h3>
+                <p>When you create your color system, think about usage distribution:</p>
+
+                <ul class="mt-1">
+                    <li><strong>2-3 dominant/neutral custom properties</strong> (backgrounds, large areas = 60% of your site)</li>
+                    <li><strong>2-3 secondary/brand custom properties</strong> (navigation, structure = 30% of your site)</li>
+                    <li><strong>1-2 accent custom properties</strong> (buttons, links, CTAs = 10% of your site)</li>
+                </ul>
+
+                <p class="mt-2">Don't create 20 custom properties if you only need 8! Prof. Teeters says "custom properties should make decisions easier, not harder."</p>
+
+                <div class="interactive-demo mt-2">
+                    <h3>🔬 Try This: Audit Your Color Usage</h3>
+                    <p>Open your browser DevTools on any site and check color usage:</p>
+                    <ol class="mt-1">
+                        <li>What percentage is light/neutral backgrounds? (Should be ~60%)</li>
+                        <li>What percentage is your brand/structural color? (Should be ~30%)</li>
+                        <li>What percentage is attention-grabbing accent? (Should be ~10%)</li>
+                    </ol>
+                    <p class="mt-1">Prof. Teeters had me do this on professional sites. They ALL followed 60-30-10! Then I checked my own sites. I was doing 20-20-20-20-20. No wonder they looked amateur!</p>
                 </div>
             </div>
         </section>
@@ -137,24 +464,52 @@
                 <div class="tip-card">
                     <div class="tip-number">1</div>
                     <div>
-                        <h3>[Tip Title 1]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>Start with 8 Custom Properties Maximum</h3>
+                        <p><strong>Best for:</strong> Beginners who need simplicity and focus. Start with --primary, --secondary, --success, --error, --text, --background, --border, --accent. You can always add more later, but starting small prevents overwhelm!</p>
                     </div>
                 </div>
 
                 <div class="tip-card">
                     <div class="tip-number">2</div>
                     <div>
-                        <h3>[Tip Title 2]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>Use the Numbering System for Scales</h3>
+                        <p><strong>Best for:</strong> Grays and tints/shades. The 100-900 system (like Tailwind) is intuitive. 100 = lightest, 900 = darkest. Everyone understands it!</p>
+                        <pre><code class="language-css">--gray-100: hsl(0, 0%, 95%);
+--gray-500: hsl(0, 0%, 50%);
+--gray-900: hsl(0, 0%, 10%);</code></pre>
+                        <p><strong>Worst for:</strong> Brand colors where you only need one shade. Don't do --primary-500 if you're not making a scale!</p>
                     </div>
                 </div>
 
                 <div class="tip-card">
                     <div class="tip-number">3</div>
                     <div>
-                        <h3>[Tip Title 3]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>Document Your System</h3>
+                        <p><strong>Best for:</strong> Future you and your teammates! Add comments explaining your color system right in the CSS:</p>
+                        <pre><code class="language-css">:root {
+  /* === BRAND COLORS === */
+  /* Primary: Main brand color, used for buttons and key UI */
+  --primary: hsl(210, 70%, 50%);
+
+  /* === NEUTRAL SCALE === */
+  /* Gray scale: 100 (lightest) to 900 (darkest) */
+  --gray-100: hsl(0, 0%, 95%);
+  --gray-900: hsl(0, 0%, 10%);
+}</code></pre>
+                        <p>You'll thank yourself in 6 months when you can't remember why you chose these colors!</p>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">4</div>
+                    <div>
+                        <h3>Custom Properties Can Reference Each Other</h3>
+                        <p><strong>Quick tip:</strong> Let custom properties reference each other using var() to keep things DRY!</p>
+                        <pre><code class="language-css">:root {
+  --gray-900: hsl(0, 0%, 10%);
+  --text-primary: var(--gray-900);  /* References another variable! */
+}</code></pre>
+                        <p>Change --gray-900 and --text-primary updates automatically! Prof. Teeters calls this "cascading custom properties."</p>
                     </div>
                 </div>
             </div>
@@ -163,15 +518,15 @@
     </main>
 
     <nav aria-label="Station pagination" class="page-navigation bottom-nav">
-        <a href="station1.html" class="nav-link prev-link">← Previous: Station 1 - [PREV_STATION_TITLE]</a>
+        <a href="station1.html" class="nav-link prev-link">← Previous: Station 1 - Beyond Hex</a>
         <a href="../index.html" class="nav-link hub-link">🏠 Hub</a>
-        <a href="station3.html" class="nav-link next-link">Next: Station 3 - [NEXT_STATION_TITLE] →</a>
+        <a href="station3.html" class="nav-link next-link">Next: Station 3 - Color Harmony →</a>
     </nav>
 
     <footer class="footer">
         <p><strong>HAP's Learning Lab</strong> | An AI-Enhanced Educational Experience by Prof. Cynthia Teeters</p>
         <p class="footer-reminder">
-            [HAP's memorable takeaway about this station] 🟠 — HAP
+            Define once, name semantically, use the 60-30-10 rule. That's my color system mantra now! No more hex soup! 🟠 — HAP
         </p>
         <div class="footer-copyright">
             <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_80,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
