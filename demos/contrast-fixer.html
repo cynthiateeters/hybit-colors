@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix HAP's Contrast Problem - Interactive Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d2d2d;
+            background: #f5f5f5;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .intro {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .demo-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .demo-section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .text-preview {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 4px;
+            border: 2px solid #e0e0e0;
+            margin-bottom: 1.5rem;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .preview-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .preview-text-large {
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .controls {
+            margin-bottom: 1.5rem;
+        }
+
+        .control-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .control-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: 4px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #1976d2;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #1976d2;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .slider-value {
+            min-width: 50px;
+            font-weight: 600;
+            color: #1976d2;
+            font-size: 0.95rem;
+        }
+
+        .ratio-display {
+            background: #fafafa;
+            padding: 1.25rem;
+            border-radius: 4px;
+            border-left: 4px solid #999;
+            margin-bottom: 1rem;
+        }
+
+        .ratio-display.pass-aa {
+            background: #fff9e6;
+            border-color: #ff9800;
+        }
+
+        .ratio-display.pass-aaa {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+
+        .ratio-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+        }
+
+        .ratio-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.75rem;
+        }
+
+        .wcag-status {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .status-badge {
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .status-badge.fail {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .status-badge.pass {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .color-values {
+            background: #fafafa;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+
+        .color-values div {
+            margin-bottom: 0.5rem;
+        }
+
+        .color-values div:last-child {
+            margin-bottom: 0;
+        }
+
+        .color-label {
+            color: #666;
+            display: inline-block;
+            min-width: 80px;
+        }
+
+        .color-value {
+            color: #1976d2;
+            font-weight: 600;
+        }
+
+        .reset-button {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .reset-button:hover {
+            background: #1565c0;
+        }
+
+        .reset-button:active {
+            background: #0d47a1;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .demo-section h2 {
+                font-size: 1.25rem;
+            }
+
+            .reset-button {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fix HAP's Contrast Problem</h1>
+            <p class="intro">HAP used light gray text (#cccccc) on white because it looked "modern." But the contrast ratio was only 1.6:1 - way below WCAG standards! Adjust the lightness slider to fix it.</p>
+        </header>
+
+        <div class="demo-section">
+            <h2>Text preview</h2>
+            <div class="text-preview">
+                <p class="preview-text" id="normal-text">
+                    This is normal body text (16px). It needs a contrast ratio of at least 4.5:1 to meet WCAG AA standards. Can you adjust the color to make it pass?
+                </p>
+                <p class="preview-text-large" id="large-text">
+                    This is large text (24px, bold)
+                </p>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="lightness-slider">
+                        Lightness (L in HSL)
+                    </label>
+                    <div class="slider-container">
+                        <input
+                            type="range"
+                            id="lightness-slider"
+                            min="0"
+                            max="100"
+                            value="80"
+                            oninput="updateContrast()"
+                        >
+                        <span class="slider-value" id="lightness-value">80%</span>
+                    </div>
+                </div>
+                <button class="reset-button" onclick="setToPass()">
+                    Reset to PASS (25%)
+                </button>
+            </div>
+
+            <div class="ratio-display" id="ratio-display">
+                <div class="ratio-number" id="ratio-number">1.6:1</div>
+                <div class="ratio-label">Current contrast ratio</div>
+
+                <div class="wcag-status">
+                    <div class="status-badge fail" id="normal-aa">
+                        Normal Text AA: <strong>FAIL</strong>
+                    </div>
+                    <div class="status-badge fail" id="large-aa">
+                        Large Text AA: <strong>FAIL</strong>
+                    </div>
+                    <div class="status-badge fail" id="normal-aaa">
+                        Normal Text AAA: <strong>FAIL</strong>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color: #666; margin-top: 0.75rem;">
+                    WCAG AA requires ≥4.5:1 for normal text and ≥3:1 for large text.
+                </p>
+            </div>
+
+            <div class="color-values">
+                <div>
+                    <span class="color-label">HSL:</span>
+                    <span class="color-value" id="hsl-value">hsl(0, 0%, 80%)</span>
+                </div>
+                <div>
+                    <span class="color-label">Hex:</span>
+                    <span class="color-value" id="hex-value">#cccccc</span>
+                </div>
+                <div>
+                    <span class="color-label">RGB:</span>
+                    <span class="color-value" id="rgb-value">rgb(204, 204, 204)</span>
+                </div>
+            </div>
+
+            <button class="reset-button" onclick="resetToHAPsMistake()">
+                Reset to HAP's Original Mistake
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Convert HSL lightness to RGB (grayscale)
+        function lightnessToRGB(lightness) {
+            const value = Math.round((lightness / 100) * 255);
+            return value;
+        }
+
+        // Convert RGB to hex
+        function rgbToHex(r) {
+            const hex = r.toString(16).padStart(2, '0');
+            return `#${hex}${hex}${hex}`;
+        }
+
+        // Calculate relative luminance (simplified for grayscale)
+        function getRelativeLuminance(lightness) {
+            const rgb = lightnessToRGB(lightness) / 255;
+            // Simplified sRGB conversion for grayscale
+            if (rgb <= 0.03928) {
+                return rgb / 12.92;
+            } else {
+                return Math.pow((rgb + 0.055) / 1.055, 2.4);
+            }
+        }
+
+        // Calculate contrast ratio
+        function getContrastRatio(lightness1, lightness2) {
+            const l1 = getRelativeLuminance(lightness1);
+            const l2 = getRelativeLuminance(lightness2);
+            const lighter = Math.max(l1, l2);
+            const darker = Math.min(l1, l2);
+            return (lighter + 0.05) / (darker + 0.05);
+        }
+
+        function updateContrast() {
+            const lightness = parseInt(document.getElementById('lightness-slider').value);
+            const bgLightness = 100; // white background
+
+            // Update slider value display
+            document.getElementById('lightness-value').textContent = lightness + '%';
+
+            // Calculate contrast ratio
+            const ratio = getContrastRatio(lightness, bgLightness);
+
+            // Update text colors
+            const rgb = lightnessToRGB(lightness);
+            const color = `rgb(${rgb}, ${rgb}, ${rgb})`;
+            document.getElementById('normal-text').style.color = color;
+            document.getElementById('large-text').style.color = color;
+
+            // Update ratio display
+            document.getElementById('ratio-number').textContent = ratio.toFixed(2) + ':1';
+
+            // Update WCAG status badges
+            const normalAA = document.getElementById('normal-aa');
+            const largeAA = document.getElementById('large-aa');
+            const normalAAA = document.getElementById('normal-aaa');
+            const ratioDisplay = document.getElementById('ratio-display');
+
+            // Check against WCAG standards
+            const passNormalAA = ratio >= 4.5;
+            const passLargeAA = ratio >= 3.0;
+            const passNormalAAA = ratio >= 7.0;
+
+            // Update normal text AA
+            if (passNormalAA) {
+                normalAA.className = 'status-badge pass';
+                normalAA.innerHTML = 'Normal Text AA: <strong>PASS ✓</strong>';
+            } else {
+                normalAA.className = 'status-badge fail';
+                normalAA.innerHTML = 'Normal Text AA: <strong>FAIL</strong>';
+            }
+
+            // Update large text AA
+            if (passLargeAA) {
+                largeAA.className = 'status-badge pass';
+                largeAA.innerHTML = 'Large Text AA: <strong>PASS ✓</strong>';
+            } else {
+                largeAA.className = 'status-badge fail';
+                largeAA.innerHTML = 'Large Text AA: <strong>FAIL</strong>';
+            }
+
+            // Update normal text AAA
+            if (passNormalAAA) {
+                normalAAA.className = 'status-badge pass';
+                normalAAA.innerHTML = 'Normal Text AAA: <strong>PASS ✓</strong>';
+            } else {
+                normalAAA.className = 'status-badge fail';
+                normalAAA.innerHTML = 'Normal Text AAA: <strong>FAIL</strong>';
+            }
+
+            // Update ratio display background
+            if (passNormalAAA) {
+                ratioDisplay.className = 'ratio-display pass-aaa';
+            } else if (passNormalAA) {
+                ratioDisplay.className = 'ratio-display pass-aa';
+            } else {
+                ratioDisplay.className = 'ratio-display';
+            }
+
+            // Update color values
+            const hexValue = rgbToHex(rgb);
+            document.getElementById('hsl-value').textContent = `hsl(0, 0%, ${lightness}%)`;
+            document.getElementById('hex-value').textContent = hexValue;
+            document.getElementById('rgb-value').textContent = `rgb(${rgb}, ${rgb}, ${rgb})`;
+        }
+
+        function resetToHAPsMistake() {
+            document.getElementById('lightness-slider').value = 80;
+            updateContrast();
+        }
+
+        function setToPass() {
+            document.getElementById('lightness-slider').value = 25;
+            updateContrast();
+        }
+
+        // Initialize on load
+        updateContrast();
+    </script>
+</body>
+</html>

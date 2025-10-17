@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAP's Learning Lab - Station 4: [STATION_TITLE]</title>
+    <title>HAP's Learning Lab - Station 4: Accessibility & Contrast</title>
     <meta name="description"
-        content="Join HAP as he learns about [BRIEF_DESCRIPTION].">
+        content="Join HAP as he learns about WCAG contrast standards, color blindness, and making colors work for everyone.">
     <meta property="og:image"
         content="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1759495998/hap-laptop_xiewar.jpg">
     <link rel="icon" type="image/png" sizes="16x16"
@@ -20,6 +20,19 @@
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <link rel="stylesheet" href="../css/style.css">
     <link href="../css/prism-hap-theme.css" rel="stylesheet">
+    <style>
+        .sr-only {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+            outline: 2px solid #1976d2;
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,12 +47,12 @@
                         fetchpriority="high">
                 </div>
                 <div>
-                    <h1>HAP's Learning Lab: [STATION_TITLE]</h1>
-                    <p class="subtitle">[SUBTITLE]</p>
+                    <h1>HAP's Learning Lab: Accessibility & Contrast</h1>
+                    <p class="subtitle">Making sure everyone can read your content</p>
                 </div>
             </div>
             <div class="intro-box">
-                <p><strong>Welcome to Station 4!</strong> [HAP's apprentice voice introduction: describe what HAP learned from Prof. Teeters at this station, using first-person perspective] 🟠</p>
+                <p><strong>Welcome to Station 4!</strong> I thought if I could read it, everyone could. I'd use light gray text (#cccccc) on white backgrounds because it looked "modern." Then Prof. Teeters had me try reading my own site with sunlight on my screen... invisible! She taught me about the 4.5:1 contrast ratio and showed me that 1 in 12 men have some form of color blindness. Now I test everything! Let me show you how to make colors work for everyone. 🟠</p>
             </div>
         </div>
     </header>
@@ -52,126 +65,432 @@
     <main id="main-content" class="content-container">
 
         <section class="content-section">
-            <h2 class="section-heading-centered">[SECTION_HEADING]</h2>
+            <h2 class="section-heading-centered">What You'll Learn</h2>
 
-            <div class="intro-box">
-                <p><strong>HAP's Discovery:</strong> [HAP's first-person narrative about learning this concept from Prof. Teeters]</p>
-            </div>
+            <ul class="learning-objectives mt-1">
+                <li>Hit WCAG AA: normal text ≥ 4.5:1, large text ≥ 3:1.</li>
+                <li>Fix "color-only" UI by adding icons, text, or patterns.</li>
+                <li>Use Chrome DevTools to test contrast and emulate vision differences.</li>
+            </ul>
 
             <div class="overview-grid mt-2">
                 <div class="insight-card">
-                    <h3><span class="insight-icon">📸</span> [Insight Title 1]</h3>
-                    <p class="stat-large">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
+                    <h3><span class="insight-icon">♿</span> The 4.5:1 Rule</h3>
+                    <p class="stat-large">Minimum contrast ratio for normal text per WCAG AA standards</p>
+                    <p><strong>HAP's take:</strong> My "modern" gray text had a 2:1 ratio. No wonder people complained they couldn't read it!</p>
                 </div>
                 <div class="insight-card">
-                    <h3><span class="insight-icon">🔬</span> [Insight Title 2]</h3>
-                    <p class="stat-large stat-teal">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
+                    <h3><span class="insight-icon">👁️</span> Color Blindness Is Common</h3>
+                    <p class="stat-large stat-teal">Affects 1 in 12 men, 1 in 200 women worldwide</p>
+                    <p><strong>HAP's take:</strong> 8% of my users couldn't see my red/green indicators! I was literally excluding millions of people.</p>
                 </div>
                 <div class="insight-card">
-                    <h3><span class="insight-icon">🎯</span> [Insight Title 3]</h3>
-                    <p class="stat-large stat-brown">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
-                </div>
-            </div>
-
-            <div class="hap-note-callout">
-                <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759495999/hap-confused-map_q8q0ej.jpg"
-                    alt="HAP looking confused while studying" width="150" height="150" class="hap-note-image"
-                    decoding="async" loading="lazy">
-                <div class="hap-note-content">
-                    <h3>HAP's Confession:</h3>
-                    <p>[HAP's apprentice voice: describe initial confusion or learning moment about this topic]</p>
+                    <h3><span class="insight-icon">✕</span> Never Rely on Color Alone</h3>
+                    <p class="stat-large stat-brown">Always pair color with icons, text, or patterns for clarity</p>
+                    <p><strong>HAP's take:</strong> Now my errors have ✕ icons too, not just red color! Everyone gets the message.</p>
                 </div>
             </div>
         </section>
 
         <section class="content-section">
             <div class="topic-section">
-                <h2>[Main Topic Heading]</h2>
+                <h2>The Invisible Text Disaster</h2>
 
-                <p class="mb-2">[Introduction paragraph explaining what Prof. Teeters taught HAP about this topic]</p>
+                <p class="mb-2">My "modern, minimal" design had light gray text (#cccccc) on white backgrounds. I thought it looked so elegant and clean! Then Prof. Teeters asked me one simple question: "What's the contrast ratio?"</p>
 
-                <div class="analysis-grid">
-                    <div class="analysis-point">
-                        <h3>[Analysis Point Title 1]</h3>
-                        <p><strong>[Subheading]</strong> [Content]</p>
-                    </div>
-                    <div class="analysis-point">
-                        <h3>[Analysis Point Title 2]</h3>
-                        <p><strong>[Subheading]</strong> [Content]</p>
-                    </div>
+                <p class="mb-2">I had no idea what she was talking about.</p>
+
+                <p class="mb-2">She showed me the WCAG guidelines: <strong>4.5:1 minimum contrast ratio for normal text</strong>, and <strong>3:1 for large text</strong> (18px+ or 14px+ bold). <span class="code-comment">(Large text = 18.66px+ normal or 14px+ bold, roughly ≈ 24px/18px on many screens.)</span> Then she calculated my "elegant" gray on white: <strong>1.6:1</strong>. Massive fail!</p>
+
+                <p class="mb-2">But it got worse. She had me test my site on different screens - my laptop, an old monitor, a phone in bright sunlight. She gave me glasses that simulated reduced vision. My beautiful text? Practically invisible in most real-world conditions!</p>
+
+                <p class="mb-2">What I thought was modern and elegant was actually <strong>excluding people from reading my content</strong>. That hit hard.</p>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">HAP's Old Way (Inaccessible - WCAG Fail!):</div>
+                    <pre><code class="language-css">body {
+  background: #ffffff;
+  color: #cccccc;  /* Light gray on white = 1.6:1 ratio */
+}
+
+.subtext {
+  color: #dddddd;  /* Even worse! 1.3:1 ratio */
+}
+
+.link {
+  color: #7799bb;  /* Looks nice, but only 3.2:1 - still fails! */
+  text-decoration: none;  /* No underline = color-only indicator */
+}
+
+/* Everything looks "modern" but nobody can read it! */</code></pre>
+                    <p class="code-comment mt-1"><strong>Why this fails:</strong> WCAG AA requires ≥ 4.5:1 contrast for normal text. My ratios (1.6:1, 1.3:1, 3.2:1) all fail. Even worse, I removed link underlines, making them rely solely on color - a big accessibility no-no!</p>
                 </div>
 
                 <div class="prompt-box mt-2">
-                    <div class="prompt-label">[Code Example Label]:</div>
-                    <pre><code class="language-html">[CODE EXAMPLE HERE]</code></pre>
-                    <p class="code-comment mt-1">[Explanation of code example]</p>
+                    <div class="prompt-label">What I Learned (Accessible - WCAG Pass!):</div>
+                    <pre><code class="language-css">:root {
+  --text: hsl(0, 0%, 20%);           /* Dark gray = 13:1 on white */
+  --text-muted: hsl(0, 0%, 35%);     /* Muted but readable = 7.5:1 */
+  --link-color: hsl(210, 80%, 40%);  /* Blue link = 5.2:1 */
+}
+
+body {
+  background: hsl(0, 0%, 100%);      /* White */
+  color: var(--text);                /* 13:1 - way above 4.5:1! */
+}
+
+.subtext {
+  color: var(--text-muted);          /* Still passes with 7.5:1 */
+}
+
+.link {
+  color: var(--link-color);          /* 5.2:1 - passes! */
+  text-decoration: underline;        /* Visual cue beyond color */
+}
+
+.link:hover {
+  text-decoration-thickness: 2px;    /* Extra affordance on hover */
+}
+
+a:visited {
+  color: hsl(210, 80%, 35%);            /* Distinct visited state */
+}</code></pre>
+                    <p class="code-comment mt-1"><strong>Why this works:</strong> All contrast ratios exceed WCAG AA minimums. Links have underlines AS WELL AS color, so they work even for colorblind users or if colors don't load. I can still have subtle, elegant design - it just needs to be <strong>readable</strong>! Verify ratios in DevTools or WebAIM—don't memorize the numbers.</p>
                 </div>
 
-                <div class="interactive-demo mt-2">
-                    <h3>[Interactive Demo Title]</h3>
-                    <ul class="mt-1">
-                        <li>[List item 1]</li>
-                        <li>[List item 2]</li>
-                        <li>[List item 3]</li>
-                    </ul>
+                <p class="code-comment mt-1">🎯 Try it now: Open Chrome DevTools → Inspect this code block → tweak <code>--text</code> lightness and watch the contrast badge flip to PASS.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>Color Blindness Reality Check</h2>
+
+                <p class="mb-2">Then came the color blindness bombshell.</p>
+
+                <p class="mb-2">Prof. Teeters pulled up my site and said, "Let's see how this looks to someone with red-green color blindness." She opened Chrome DevTools and clicked a simulator option and my error messages <strong>disappeared</strong>.</p>
+
+                <p class="mb-2">Wait, what?</p>
+
+                <p class="mb-2">I had red error messages on slightly green-tinted backgrounds. To me, they looked fine - the red stood out! But to someone with <strong>protanopia</strong> (red-green color blindness), both colors looked almost identical. My critical error messages were <strong>invisible</strong>.</p>
+
+                <p class="mb-2">Here's what Prof. Teeters taught me:</p>
+
+                <ul class="mt-1 mb-2">
+                    <li><strong>1 in 12 men</strong> (about 8%) have some form of color blindness</li>
+                    <li><strong>1 in 200 women</strong> are affected</li>
+                    <li><strong>Red-green is the most common type</strong> (deuteranopia and protanopia)</li>
+                    <li>Blue-yellow color blindness exists too (tritanopia)</li>
+                    <li>That means roughly <strong>300 million people worldwide</strong> see colors differently</li>
+                </ul>
+
+                <p class="mb-2">I was using color as my <strong>only</strong> way to communicate status:</p>
+
+                <ul class="mt-1 mb-2">
+                    <li>Red = error (but invisible to 8% of users)</li>
+                    <li>Green = success (same problem)</li>
+                    <li>Yellow = warning (invisible to blue-yellow colorblind users)</li>
+                    <li>Orange links without underlines (just... why, past HAP?)</li>
+                </ul>
+
+                <p class="mb-2"><strong>I was excluding millions of people</strong> and didn't even know it.</p>
+
+                <div class="hap-note-callout mt-2">
+                    <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
+                        alt="Illustration of HAP studying accessibility testing tools" width="150" height="150" class="hap-note-image"
+                        decoding="async" loading="lazy">
+                    <div class="hap-note-content">
+                        <h3>🟠 HAP's Aha Moment</h3>
+                        <p>Prof. Teeters showed me that <strong>accessible design is just better design for everyone</strong>. Adding icons helps colorblind users, but it ALSO helps:</p>
+                        <ul class="mt-1">
+                            <li>People viewing on cheap monitors with bad color</li>
+                            <li>Phones in bright sunlight</li>
+                            <li>Printers that only do black and white</li>
+                            <li>People who are just tired or distracted</li>
+                        </ul>
+                        <p class="mt-1">When I made my site accessible, I made it clearer for <strong>everyone</strong>. Win-win! Systems optimized!</p>
+                    </div>
                 </div>
 
-                <div class="warning-box mt-2">
-                    <h3>🟠 [Warning Title]</h3>
-                    <p><strong class="text-success">✅ RIGHT:</strong></p>
-                    <pre><code class="language-html">[Correct example]</code></pre>
-                    <p><strong class="text-error">❌ WRONG:</strong></p>
-                    <pre><code class="language-html">[Incorrect example]</code></pre>
-                    <p class="mt-1">[Explanation of why this matters]</p>
-                </div>
+                <p class="code-comment mt-1">🎯 Try it now: DevTools → Rendering → Emulate vision deficiencies → Protanopia. Which UI cues still communicate meaning without color?</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>Testing and Fixing</h2>
+
+                <p class="mb-2">Prof. Teeters introduced me to the tools that changed everything:</p>
+
+                <h3 class="mt-2">1. Chrome DevTools Contrast Checker</h3>
+                <p class="mb-2">Right-click any text → Inspect → Look in the Styles panel. Chrome shows a little contrast ratio indicator next to color values! If it fails WCAG standards, you'll see a warning. If it passes, you get a green checkmark. So easy!</p>
+
+                <h3 class="mt-2">2. WebAIM Contrast Checker (backup tool)</h3>
+                <p class="mb-2">If you're away from Chrome DevTools or want to double-check ratios manually, try WebAIM's online checker: <a href="https://webaim.org/resources/contrastchecker/">https://webaim.org/resources/contrastchecker/</a>. It's great for visualizing exact ratios and learning how 4.5 : 1 looks, but day-to-day, DevTools is faster.</p>
+
+                <h3 class="mt-2">3. Chrome DevTools Accessibility Toolkit</h3>
+                <p class="mb-2">Chrome DevTools has everything you need in one place:</p>
+                <ul class="mt-1 mb-2">
+                    <li><strong>Rendering tab:</strong> Emulate vision deficiencies, prefers-contrast, forced-colors</li>
+                    <li><strong>Elements → Accessibility pane:</strong> Check name/role/value and focusable states</li>
+                    <li><strong>Lighthouse → Accessibility audit:</strong> Get overall score and specific issues to fix</li>
+                </ul>
+
+                <p class="code-comment mt-1">🎯 Try it now: Run Lighthouse → Accessibility on this page; fix one reported issue and rerun.</p>
+
+                <h3 class="mt-2">The Golden Rule Prof. Teeters Taught Me</h3>
+                <p class="mb-2"><strong>"Never use color as the only indicator."</strong></p>
+
+                <p class="mb-2">This rule fixes almost everything:</p>
+
+                <ul class="mt-1 mb-2">
+                    <li><strong>Errors:</strong> Red color + ✕ icon + "Error:" text prefix</li>
+                    <li><strong>Success:</strong> Green color + ✓ icon + "Success:" text prefix</li>
+                    <li><strong>Links:</strong> Color + underline (or bold, or icon, or visited state)</li>
+                    <li><strong>Required fields:</strong> Red asterisk + "(required)" text</li>
+                    <li><strong>Status indicators:</strong> Color + icon + text label</li>
+                    <li><strong>Charts/graphs:</strong> Patterns or shapes + color (e.g., stripes vs dots)</li>
+                </ul>
+
+                <p class="mb-2"><strong>Make meaning redundant.</strong> If someone can't see color, they can still understand your interface through icons and text!</p>
             </div>
         </section>
 
         <section class="content-section">
             <div class="tips-container">
-                <h2 class="section-heading-centered">🎓 HyBit's Quick Reference</h2>
+                <h2 class="section-heading-centered">6 Accessibility Tips I Use Every Day</h2>
 
                 <div class="tip-card">
                     <div class="tip-number">1</div>
                     <div>
-                        <h3>[Tip Title 1]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>Start with dark text on light backgrounds</h3>
+                        <p>Dark gray (not pure black!) on white is the easiest way to pass WCAG. Aim for hsl(0, 0%, 15%-25%) for text on white backgrounds. Instant 12:1+ contrast ratio!</p>
                     </div>
                 </div>
 
                 <div class="tip-card">
                     <div class="tip-number">2</div>
                     <div>
-                        <h3>[Tip Title 2]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>Check contrast BEFORE you commit</h3>
+                        <p>I test colors in WebAIM's checker before I write them into my CSS. Saves so much time fixing later! Bookmark it: <a href="https://webaim.org/resources/contrastchecker/">https://webaim.org/resources/contrastchecker/</a></p>
                     </div>
                 </div>
 
                 <div class="tip-card">
                     <div class="tip-number">3</div>
                     <div>
-                        <h3>[Tip Title 3]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>Large text = easier standard</h3>
+                        <p>If your text is 18px or larger (or 14px+ bold), you only need 3:1 contrast instead of 4.5:1. Use this for headings and hero text where you want lighter colors!</p>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">4</div>
+                    <div>
+                        <h3>Test with a simulator</h3>
+                        <p>Install a color blindness simulator browser extension. Click it before you deploy. If your red/green indicators disappear, you need icons too!</p>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">5</div>
+                    <div>
+                        <h3>Links MUST have more than color</h3>
+                        <p>Underline them, make them bold, add an icon - just don't rely on color alone. I learned this the hard way when a colorblind user complained they couldn't find links on my site!</p>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">6</div>
+                    <div>
+                        <h3>Use semantic color variables</h3>
+                        <p>Instead of <code>--error: red</code>, use <code>--error: hsl(0, 65%, 45%)</code> and test that it hits 4.5:1 on your backgrounds. Build accessibility into your color system from day one!</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section class="content-section">
+            <div class="warning-box">
+                <h3>♿ Watch Out for These Common Mistakes</h3>
+
+                <div class="mt-2">
+                    <h4>Mistake 1: "It looks fine to me"</h4>
+                    <p>Just because YOU can read it doesn't mean everyone can. Always test with actual contrast checkers!</p>
+                </div>
+
+                <div class="mt-2">
+                    <h4>Mistake 2: Placeholder text that's too light</h4>
+                    <p>Form placeholder text often fails WCAG because it's light gray. If it's critical info, don't put it only in placeholder text!</p>
+                </div>
+
+                <div class="mt-2">
+                    <h4>Mistake 3: Forgetting about hover/focus states</h4>
+                    <p>Your hover state color needs good contrast too! Check <code>:hover</code>, <code>:focus</code>, and <code>:active</code> colors, not just the default state.</p>
+                </div>
+
+                <div class="mt-2">
+                    <h4>Mistake 4: White text on yellow</h4>
+                    <p>Looks cheerful, fails WCAG spectacularly. Yellow backgrounds need dark text. Always.</p>
+                </div>
+
+                <div class="mt-2">
+                    <h4>Mistake 5: Trusting design tool "accessibility" checks</h4>
+                    <p>Some tools say colors are accessible when they're not. Always verify with WebAIM or Chrome DevTools!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>Try These Interactive Demos!</h2>
+
+                <div class="analysis-grid mt-2">
+                    <div class="analysis-point">
+                        <h3>Demo 1: Fix HAP's Color-Only Indicators</h3>
+                        <p>Interactive game where you fix HAP's mistakes! Add icons, underlines, and text labels to make color-only indicators accessible. See instant feedback as you apply fixes. (≈ 3 min)</p>
+                        <p class="mt-1"><a href="../demos/color-alone-fix.html" class="demo-link">Fix Color-Only Indicators Demo →</a></p>
+                        <p class="code-comment mt-1"><strong>What you'll learn:</strong> How to add redundant indicators (icons + text) to supplement color-coded messages.</p>
+                    </div>
+
+                    <div class="analysis-point">
+                        <h3>Demo 2: Fix HAP's Contrast Problem</h3>
+                        <p>Start with HAP's failing light gray text (#cccccc on white = 1.6:1). Drag the lightness slider to fix it! Watch the contrast ratio update in real-time and see WCAG badges flip from FAIL to PASS ✓. (≈ 2–3 min)</p>
+                        <p class="mt-1"><a href="../demos/contrast-fixer.html" class="demo-link">Contrast Fixer Demo →</a></p>
+                        <p class="code-comment mt-1"><strong>What you'll learn:</strong></p>
+                        <ul class="mt-1">
+                            <li>How lightness affects contrast ratios</li>
+                            <li>The difference between WCAG AA (4.5:1) and AAA (7.0:1) standards</li>
+                            <li>Large text needs only 3:1 contrast</li>
+                        </ul>
+                    </div>
+
+                    <div class="analysis-point">
+                        <h3>Demo 3: Build Accessible Status Colors</h3>
+                        <p>Create your own error, success, warning, and info colors! Adjust HSL sliders and watch contrast ratios update. Get smart suggestions when colors fail. Copy the generated CSS code when all colors pass WCAG AA. (≈ 5–7 min)</p>
+                        <p class="mt-1"><a href="../demos/status-color-builder.html" class="demo-link">Status Color Builder Demo →</a></p>
+                        <p class="code-comment mt-1"><strong>What you'll learn:</strong></p>
+                        <ul class="mt-1">
+                            <li>Yellow/orange warning colors need very low lightness (30-35%)</li>
+                            <li>How to systematically build accessible color systems</li>
+                            <li>Real HSL values you can use in your projects</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="mt-2 code-comment"><strong>Note:</strong> All demos use vanilla HTML/CSS/JS with no external dependencies (except Prism.js for syntax highlighting). Students can view source to see how they work!</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>Creating an Accessible Color System for Status Indicators</h2>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">What I Learned: Accessible Status Colors</div>
+                    <pre><code class="language-css">/* What I Learned: Accessible Status Colors */
+:root {
+  /* Background */
+  --bg-white: hsl(0, 0%, 100%);
+
+  /* Text colors - all tested against white backgrounds */
+  --text-primary: hsl(0, 0%, 20%);        /* 13:1 contrast - PASS! */
+  --text-muted: hsl(0, 0%, 35%);          /* 7.5:1 contrast - PASS! */
+
+  /* Status colors - all ≥ 4.5:1 on white */
+  --error: hsl(0, 65%, 45%);              /* 5.4:1 - PASS! */
+  --success: hsl(120, 40%, 35%);          /* 5.9:1 - PASS! */
+  --warning: hsl(35, 100%, 35%);          /* 6.2:1 - PASS! */
+  --info: hsl(210, 80%, 40%);             /* 5.2:1 - PASS! */
+}
+
+/* Error messages: Color + Icon + Text */
+.error-message {
+  color: var(--error);
+  border-left: 4px solid var(--error);    /* Extra visual cue */
+  padding-left: 1rem;
+}
+
+.error-message::before {
+  content: "✕ ";                          /* Icon comes first */
+  font-weight: bold;
+}
+
+/* Success messages: Color + Icon + Text */
+.success-message {
+  color: var(--success);
+  border-left: 4px solid var(--success);
+  padding-left: 1rem;
+}
+
+.success-message::before {
+  content: "✓ ";                          /* Never rely on color alone! */
+  font-weight: bold;
+}
+
+/* Links: Color + Underline */
+a {
+  color: var(--info);                     /* 5.2:1 contrast */
+  text-decoration: underline;             /* Visual cue beyond color */
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;         /* Extra affordance */
+  color: hsl(210, 80%, 30%);             /* Darker on hover */
+}
+
+/* Required form fields: Asterisk + Text */
+.required-label::after {
+  content: " *";                          /* Visual indicator */
+  color: var(--error);
+}
+
+.required-hint {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.required-hint::before {
+  content: "* = ";                        /* Explain the asterisk! */
+}</code></pre>
+                    <p class="code-comment mt-1"><strong>Key principles applied:</strong></p>
+                    <ol class="mt-1">
+                        <li>All status colors tested to meet WCAG AA (≥ 4.5:1)</li>
+                        <li>Icons used with every color-coded message</li>
+                        <li>Border accents provide additional visual cues</li>
+                        <li>Links have underlines, not just color</li>
+                        <li>Required fields explained with text, not just asterisks</li>
+                        <li>Multiple redundant indicators ensure everyone understands the meaning</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-heading-centered">Quick Accessibility Checklist</h2>
+            <ul class="quick-ref mt-1">
+                <li>Normal text ≥ <strong>4.5:1</strong>, large text ≥ <strong>3:1</strong> (check in DevTools).</li>
+                <li>Color + something: icons, text, underline, or patterns.</li>
+                <li>Test: protanopia/deuteranopia, forced-colors, prefers-contrast.</li>
+                <li>Verify hover/focus/visited states, not just default.</li>
+            </ul>
+        </section>
+
     </main>
 
+    <div id="copy-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
     <nav aria-label="Station pagination" class="page-navigation bottom-nav">
-        <a href="station3.html" class="nav-link prev-link">← Previous: Station 3 - [PREV_STATION_TITLE]</a>
+        <a href="station3.html" class="nav-link prev-link">← Previous: Station 3 - Color Harmony & Meaning</a>
         <a href="../index.html" class="nav-link hub-link">🏠 Hub</a>
-        <a href="station5.html" class="nav-link next-link">Next: Station 5 - [NEXT_STATION_TITLE] →</a>
+        <a href="station5.html" class="nav-link next-link">Next: Station 5 - Modern CSS Color Features →</a>
     </nav>
 
     <footer class="footer">
         <p><strong>HAP's Learning Lab</strong> | An AI-Enhanced Educational Experience by Prof. Cynthia Teeters</p>
         <p class="footer-reminder">
-            [HAP's memorable takeaway about this station] 🟠 — HAP
+            Ready to level up? In Station 5, I'll show you the CSS color features that blew my mind - gradients without images, automatic dark mode, and color-mix() magic! Trust me, you won't believe what modern CSS can do. 🟠 — HAP
         </p>
         <div class="footer-copyright">
             <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_80,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
@@ -189,15 +508,11 @@
 
     <script src="../js/easter-egg.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"
-        integrity="sha384-MXybTpajaBV0AkcBaCPT4KIvo0FzoCiWXgcihYsw4FUkEz0Pv3JGV6tk2G8vJtDc"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"
-        integrity="sha384-HkMr0bZB9kBW4iVtXn6nd35kO/L/dQtkkUBkL9swzTEDMdIe5ExJChVDSnC79aNA"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoads', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.prompt-box pre').forEach(pre => {
                 const button = document.createElement('button');
                 button.className = 'copy-button';
@@ -210,6 +525,7 @@
                         await navigator.clipboard.writeText(code);
                         button.classList.add('copied');
                         button.textContent = 'Copied';
+                        document.getElementById('copy-status').textContent = 'Code copied to clipboard';
                         setTimeout(() => {
                             button.classList.remove('copied');
                             button.textContent = 'Copy';

@@ -752,6 +752,203 @@ AI helps, but verify everything! Check ?hybit=prompts for my prompt templates!
 
 ---
 
+## Station implementation workflow
+
+### Step 1: Content draft (markdown)
+
+**Request format**:
+```
+Draft Station [N] content in markdown using CONTENT-PLAN.md
+```
+
+**Claude creates**: `reports/station-[N]-draft.md` containing:
+- All section content written in HAP's voice
+- Code examples (Old Way vs What I Learned)
+- Component suggestions (which HAP components to use where)
+- Interactive demo descriptions
+- Any questions or clarifications needed
+
+**Draft should include**:
+- Header introduction (HAP's first-person narrative)
+- All main content sections
+- Code examples with comments
+- Educational notes and tips
+- Accessibility reminders
+- Navigation text
+
+### Step 2: Content review and approval
+
+**You review the markdown draft and provide**:
+- Approval: "Looks good, implement it"
+- Specific changes: "Change [section] to say [this]"
+- Major revision: "Revise the draft with these changes..."
+
+**Do not proceed to HTML until content is approved!**
+
+### Step 3: HTML implementation
+
+**Request format** (after approval):
+```
+Implement Station [N] using the approved draft
+```
+
+**Claude will**:
+- Read the approved draft from `reports/station-[N]-draft.md`
+- Implement in `stations/station[N].html`
+- Apply all best practices (accessibility, components, voice)
+- Test locally if you provide server info
+- Report completion
+
+### Step 4: Technical testing and refinement
+
+- Test on live-server
+- Run Lighthouse audits
+- Check accessibility
+- Request specific fixes if needed
+
+---
+
+## Best practices from Station 3 implementation
+
+### Accessibility requirements
+
+**ARIA and screen readers**:
+- Include `aria-live="polite"` regions for dynamic announcements (copy buttons, form feedback)
+- Use `.sr-only` class for visually hidden screen reader content
+- Add descriptive `aria-label` attributes to interactive elements
+- Place aria-live regions near relevant interactive elements
+
+**HAP image alt text**:
+- ALWAYS start with "Illustration of HAP" to clarify it's not a photograph
+- Be descriptive about HAP's activity or expression
+- Examples:
+  - ✅ "Illustration of HAP looking confused while studying"
+  - ✅ "Illustration of HAP studying on his laptop"
+  - ❌ "HAP looking confused" (missing "Illustration of" prefix)
+
+**WCAG contrast standards**:
+- Always include specific ratios: "≥ 4.5:1 for body text (≥ 3:1 for large text)"
+- Add warning boxes when discussing color choices that could fail contrast
+- Remind students to recheck contrast when modifying colors
+- Place accessibility reminders contextually near relevant code examples
+
+### Component usage patterns
+
+**Warning boxes** (`.warning-box`):
+- Use for critical accessibility reminders
+- Place immediately after code examples that could go wrong
+- Include specific guidance on what to check
+- Example: Contrast ratio warnings when swapping color temperatures
+
+**HAP note callouts** (`.hap-note-callout`):
+- For HAP's personal tips and insights
+- Keep them conversational and first-person
+- Reference Prof. Teeters or HAP's mistakes
+- Place near related content sections
+
+**Code examples**:
+- Always structure as "Old Way" vs "What I Learned"
+- Include helpful CSS comments explaining the logic
+- Add educational notes after code blocks (using `.code-comment`)
+- Show the math behind calculations (hue + 180° for complementary)
+- Include modulo wrap explanations where relevant
+
+**Interactive elements**:
+- Copy buttons with screen reader announcements
+- Clear aria-labels for demo links
+- Descriptive button text ("Copy" → "Copied" transition)
+- Error handling with screen reader feedback
+
+### Code structure standards
+
+**CSS code examples**:
+```css
+/* HAP's Old Way (Descriptive Problem) */
+/* Show actual problematic code */
+/* Include comments about what's wrong */
+
+/* What I Learned (Solution) */
+/* Show improved code */
+/* Include helpful comments explaining why it works */
+```
+
+**Educational comments**:
+- Use `<p class="code-comment">` after code blocks
+- Explain the "why" not just the "what"
+- Reference HAP's learning moments
+- Include mathematical explanations where applicable
+
+### HAP's voice consistency
+
+**First-person narrative**:
+- "I used to..." not "You might..."
+- "Prof. Teeters taught me..." not "Experts recommend..."
+- "This was confusing for me too!" not "This is confusing!"
+
+**Specific struggles**:
+- Reference actual mistakes from CONTENT-PLAN.md
+- Show vulnerability and learning
+- Make it relatable to student experience
+
+**Enthusiasm balanced with humility**:
+- Excited about discoveries but acknowledges difficulty
+- Credits Prof. Teeters for teaching
+- Shares "aha moments" genuinely
+
+### Navigation standards
+
+**Top navigation** (`.page-navigation`):
+- Previous station link (left)
+- Station title and number (center)
+- Next station link (right)
+- Use semantic markup with `<nav>` element
+
+**Bottom navigation**:
+- Clear "Next up" indicator
+- Link to next station with descriptive text
+- Encouraging message from HAP
+- Always include footer with copyright
+
+### Image optimization
+
+**HAP images**:
+- Use Cloudinary CDN with optimization parameters
+- Header avatar: `fetchpriority="high"` (LCP image)
+- Below-fold images: `loading="lazy"`
+- Always include explicit `width` and `height`
+- Use `decoding="async"` for better performance
+
+**Alt text formula**:
+```html
+<img src="[cloudinary-url]"
+     alt="Illustration of HAP [doing activity/showing emotion]"
+     width="[width]"
+     height="[height]"
+     fetchpriority="high" OR loading="lazy"
+     decoding="async">
+```
+
+### Technical review checklist
+
+Before considering a station complete:
+
+- [ ] All HAP images use "Illustration of HAP" alt text prefix
+- [ ] ARIA live regions included for dynamic content
+- [ ] WCAG contrast ratios specified with exact numbers (4.5:1, 3:1)
+- [ ] Warning boxes placed near code that could fail accessibility
+- [ ] Code examples follow "Old Way" vs "What I Learned" structure
+- [ ] Educational comments explain the math/logic
+- [ ] Top and bottom navigation work correctly
+- [ ] All interactive elements have proper aria-labels
+- [ ] Copy buttons provide screen reader feedback
+- [ ] HAP's voice is first-person throughout
+- [ ] Specific struggles from CONTENT-PLAN.md are referenced
+- [ ] Images optimized with correct loading strategy
+- [ ] Test locally with live-server before review
+- [ ] Run Lighthouse audit (target: 99+ performance, 100 accessibility)
+
+---
+
 ## Checklist before starting customization
 
 - [x] All 6 station titles match design document
@@ -762,5 +959,6 @@ AI helps, but verify everything! Check ?hybit=prompts for my prompt templates!
 - [x] Easter eggs reference HAP's specific mistakes
 - [x] Resources are practical and current
 - [x] Voice maintains HAP's enthusiasm and humility
+- [x] Best practices documented from Station 3 implementation
 
 **Ready to build with Claude Code using this plan and the design rules from hap-design.md!**

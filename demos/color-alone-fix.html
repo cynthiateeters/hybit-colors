@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix HAP's Color-Only Indicators - Interactive Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d2d2d;
+            background: #f5f5f5;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .intro {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .problem-card h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .problem-example {
+            background: #fafafa;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 2px solid #e0e0e0;
+            margin-bottom: 1rem;
+        }
+
+        .problem-example.fixed {
+            border-color: #4caf50;
+            background: #f1f8f4;
+        }
+
+        /* Demo-specific styles */
+        .error-text {
+            color: #d32f2f;
+        }
+
+        .success-text {
+            color: #388e3c;
+        }
+
+        .link-example {
+            color: #1976d2;
+            cursor: pointer;
+        }
+
+        .link-example.fixed {
+            text-decoration: underline;
+        }
+
+        .link-example.fixed:visited {
+            color: #124b86;
+        }
+
+        .required-field label {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .required-asterisk {
+            color: #d32f2f;
+        }
+
+        .required-field input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .fix-controls {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .fix-controls h3 {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .fix-option {
+            display: block;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .fix-option input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        .feedback {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #4caf50;
+        }
+
+        .feedback.partial {
+            background: #fff3e0;
+            color: #e65100;
+            border-left: 4px solid #ff9800;
+        }
+
+        .icon-before::before {
+            margin-right: 0.25rem;
+            font-weight: bold;
+        }
+
+        .error-icon::before {
+            content: "✕ ";
+        }
+
+        .success-icon::before {
+            content: "✓ ";
+        }
+
+        .required-text {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        /* Keyboard focus visibility */
+        :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+            outline: 2px solid #1976d2;
+            outline-offset: 2px;
+        }
+
+        input[type="checkbox"]:focus-visible {
+            outline: 2px solid #1976d2;
+            outline-offset: 2px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .problem-card h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fix HAP's Color-Only Indicators</h1>
+            <p class="intro">HAP used to rely only on color to communicate meaning. Help fix these examples by adding icons, underlines, or text labels so everyone can understand them! Remember: icons supplement text—don't use icons or color alone.</p>
+        </header>
+
+        <!-- Problem 1: Error Message -->
+        <div class="problem-card">
+            <h2>Problem 1: Error message</h2>
+            <div class="problem-example" id="error-example">
+                <p class="error-text" id="error-message">Your password is incorrect.</p>
+            </div>
+
+            <div class="fix-controls">
+                <h3>Add accessibility fixes:</h3>
+                <label class="fix-option">
+                    <input type="checkbox" id="error-icon-check" onchange="updateError()">
+                    Add ✕ icon before text
+                </label>
+                <label class="fix-option">
+                    <input type="checkbox" id="error-label-check" onchange="updateError()">
+                    Add "Error:" text label
+                </label>
+            </div>
+
+            <div class="feedback" id="error-feedback"></div>
+        </div>
+
+        <!-- Problem 2: Success Message -->
+        <div class="problem-card">
+            <h2>Problem 2: Success message</h2>
+            <div class="problem-example" id="success-example">
+                <p class="success-text" id="success-message">Profile updated successfully!</p>
+            </div>
+
+            <div class="fix-controls">
+                <h3>Add accessibility fixes:</h3>
+                <label class="fix-option">
+                    <input type="checkbox" id="success-icon-check" onchange="updateSuccess()">
+                    Add ✓ icon before text
+                </label>
+                <label class="fix-option">
+                    <input type="checkbox" id="success-label-check" onchange="updateSuccess()">
+                    Add "Success:" text label
+                </label>
+            </div>
+
+            <div class="feedback" id="success-feedback"></div>
+        </div>
+
+        <!-- Problem 3: Link -->
+        <div class="problem-card">
+            <h2>Problem 3: Link with no underline</h2>
+            <div class="problem-example" id="link-example">
+                <p>Check out <span class="link-example" id="link-text">HAP's color guide</span> for more tips.</p>
+            </div>
+
+            <div class="fix-controls">
+                <h3>Add accessibility fixes:</h3>
+                <label class="fix-option">
+                    <input type="checkbox" id="link-underline-check" onchange="updateLink()">
+                    Add underline to link
+                </label>
+            </div>
+
+            <div class="feedback" id="link-feedback"></div>
+        </div>
+
+        <!-- Problem 4: Required Field -->
+        <div class="problem-card">
+            <h2>Problem 4: Required field indicator</h2>
+            <div class="problem-example" id="required-example">
+                <div class="required-field">
+                    <label for="email-input">
+                        Email <span class="required-asterisk">*</span>
+                    </label>
+                    <input type="email" id="email-input" placeholder="you@example.com">
+                    <div id="required-hint"></div>
+                </div>
+            </div>
+
+            <div class="fix-controls">
+                <h3>Add accessibility fixes:</h3>
+                <label class="fix-option">
+                    <input type="checkbox" id="required-text-check" onchange="updateRequired()">
+                    Add text explaining what * means
+                </label>
+            </div>
+
+            <div class="feedback" id="required-feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        // Problem 1: Error Message
+        function updateError() {
+            const iconChecked = document.getElementById('error-icon-check').checked;
+            const labelChecked = document.getElementById('error-label-check').checked;
+            const message = document.getElementById('error-message');
+            const example = document.getElementById('error-example');
+            const feedback = document.getElementById('error-feedback');
+
+            // Reset
+            message.className = 'error-text';
+            let text = 'Your password is incorrect.';
+
+            // Apply fixes
+            if (iconChecked) {
+                message.classList.add('icon-before', 'error-icon');
+            }
+            if (labelChecked) {
+                text = 'Error: Your password is incorrect.';
+            }
+
+            message.textContent = text;
+
+            // Show feedback
+            if (iconChecked && labelChecked) {
+                example.classList.add('fixed');
+                feedback.className = 'feedback success show';
+                feedback.textContent = '✓ Perfect! Now colorblind users and screen readers can understand this is an error.';
+            } else if (iconChecked || labelChecked) {
+                example.classList.remove('fixed');
+                feedback.className = 'feedback partial show';
+                feedback.textContent = '⚠️ Good start! Try adding both the icon AND the text label for maximum clarity.';
+            } else {
+                example.classList.remove('fixed');
+                feedback.className = 'feedback';
+            }
+        }
+
+        // Problem 2: Success Message
+        function updateSuccess() {
+            const iconChecked = document.getElementById('success-icon-check').checked;
+            const labelChecked = document.getElementById('success-label-check').checked;
+            const message = document.getElementById('success-message');
+            const example = document.getElementById('success-example');
+            const feedback = document.getElementById('success-feedback');
+
+            // Reset
+            message.className = 'success-text';
+            let text = 'Profile updated successfully!';
+
+            // Apply fixes
+            if (iconChecked) {
+                message.classList.add('icon-before', 'success-icon');
+            }
+            if (labelChecked) {
+                text = 'Success: Profile updated successfully!';
+            }
+
+            message.textContent = text;
+
+            // Show feedback
+            if (iconChecked && labelChecked) {
+                example.classList.add('fixed');
+                feedback.className = 'feedback success show';
+                feedback.textContent = '✓ Excellent! The checkmark and "Success:" label make this clear for everyone.';
+            } else if (iconChecked || labelChecked) {
+                example.classList.remove('fixed');
+                feedback.className = 'feedback partial show';
+                feedback.textContent = '⚠️ Getting there! Both icon and label together provide the clearest message.';
+            } else {
+                example.classList.remove('fixed');
+                feedback.className = 'feedback';
+            }
+        }
+
+        // Problem 3: Link
+        function updateLink() {
+            const underlineChecked = document.getElementById('link-underline-check').checked;
+            const link = document.getElementById('link-text');
+            const example = document.getElementById('link-example');
+            const feedback = document.getElementById('link-feedback');
+
+            if (underlineChecked) {
+                link.classList.add('fixed');
+                example.classList.add('fixed');
+                feedback.className = 'feedback success show';
+                feedback.textContent = '✓ Perfect! Now everyone can see this is a clickable link, not just people who can see blue.';
+            } else {
+                link.classList.remove('fixed');
+                example.classList.remove('fixed');
+                feedback.className = 'feedback';
+            }
+        }
+
+        // Problem 4: Required Field
+        function updateRequired() {
+            const textChecked = document.getElementById('required-text-check').checked;
+            const hint = document.getElementById('required-hint');
+            const example = document.getElementById('required-example');
+            const feedback = document.getElementById('required-feedback');
+
+            if (textChecked) {
+                hint.className = 'required-text';
+                hint.textContent = '* = required field';
+                example.classList.add('fixed');
+                feedback.className = 'feedback success show';
+                feedback.textContent = '✓ Great! Now the asterisk meaning is clear even if someone can\'t see the red color.';
+            } else {
+                hint.textContent = '';
+                hint.className = '';
+                example.classList.remove('fixed');
+                feedback.className = 'feedback';
+            }
+        }
+    </script>
+</body>
+</html>

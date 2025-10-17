@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Accessible Status Colors - Interactive Demo</title>
+    <link rel="stylesheet" href="../css/prism-hap-theme.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d2d2d;
+            background: #f5f5f5;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .intro {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .color-picker-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .color-picker-section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .color-controls {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .color-control {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .color-control.pass {
+            border-color: #4caf50;
+            background: #f9fdf9;
+        }
+
+        .color-control.fail {
+            border-color: #f44336;
+            background: #fffafa;
+        }
+
+        .color-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .color-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .status-indicator {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-indicator.pass {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-indicator.fail {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .sliders {
+            display: grid;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .slider-group {
+            display: grid;
+            grid-template-columns: 60px 1fr 60px;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .slider-label {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #1976d2;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #1976d2;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .slider-value {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1976d2;
+            text-align: right;
+        }
+
+        .color-preview {
+            padding: 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .ratio-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .ratio-number {
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 1rem;
+        }
+
+        .suggestion {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #e65100;
+        }
+
+        .preview-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .preview-section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .preview-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .message-preview {
+            padding: 1rem;
+            border-radius: 4px;
+            border-left: 4px solid;
+        }
+
+        .message-preview::before {
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .summary {
+            background: #fafafa;
+            padding: 1.25rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .summary h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            color: #1a1a1a;
+        }
+
+        .code-block-wrapper {
+            position: relative;
+            margin-top: 0.75rem;
+        }
+
+        pre[class*="language-"] {
+            margin: 0;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        code[class*="language-"] {
+            font-size: 0.85rem;
+        }
+
+        .copy-button {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .copy-button:hover {
+            background: #1565c0;
+        }
+
+        .copy-button.copied {
+            background: #4caf50;
+        }
+
+        .sr-only {
+            position: absolute;
+            left: -9999px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .color-picker-section h2,
+            .preview-section h2 {
+                font-size: 1.25rem;
+            }
+
+            .color-controls {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="copy-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    <div class="container">
+        <header>
+            <h1>Build Accessible Status Colors</h1>
+            <p class="intro">Create error, success, and warning colors that meet WCAG AA standards (4.5:1 contrast on white). Adjust the HSL sliders and watch the contrast ratios update in real-time! Tip: use ←/→ for fine adjustments; Shift+←/→ for larger steps (if supported).</p>
+        </header>
+
+        <div class="color-picker-section">
+            <h2>Color controls</h2>
+            <div class="color-controls">
+                <!-- Error Color -->
+                <div class="color-control" id="error-control">
+                    <div class="color-header">
+                        <span class="color-name">Error</span>
+                        <span class="status-indicator fail" id="error-status">FAIL</span>
+                    </div>
+                    <div class="sliders">
+                        <div class="slider-group">
+                            <label class="slider-label" for="error-h">Hue</label>
+                            <input type="range" id="error-h" min="0" max="360" value="0" oninput="updateColor('error')">
+                            <span class="slider-value" id="error-h-val">0°</span>
+                        </div>
+                        <div class="slider-group">
+                            <label class="slider-label" for="error-s">Sat</label>
+                            <input type="range" id="error-s" min="0" max="100" value="100" oninput="updateColor('error')">
+                            <span class="slider-value" id="error-s-val">100%</span>
+                        </div>
+                        <div class="slider-group">
+                            <label class="slider-label" for="error-l">Light</label>
+                            <input type="range" id="error-l" min="0" max="100" value="50" oninput="updateColor('error')">
+                            <span class="slider-value" id="error-l-val">50%</span>
+                        </div>
+                    </div>
+                    <div class="color-preview" id="error-preview">Error Message</div>
+                    <div class="ratio-info">
+                        <span>Contrast ratio:</span>
+                        <span class="ratio-number" id="error-ratio">3.9:1</span>
+                    </div>
+                    <div class="suggestion" id="error-suggestion" style="display: none;"></div>
+                </div>
+
+                <!-- Success Color -->
+                <div class="color-control" id="success-control">
+                    <div class="color-header">
+                        <span class="color-name">Success</span>
+                        <span class="status-indicator fail" id="success-status">FAIL</span>
+                    </div>
+                    <div class="sliders">
+                        <div class="slider-group">
+                            <label class="slider-label" for="success-h">Hue</label>
+                            <input type="range" id="success-h" min="0" max="360" value="120" oninput="updateColor('success')">
+                            <span class="slider-value" id="success-h-val">120°</span>
+                        </div>
+                        <div class="slider-group">
+                            <label class="slider-label" for="success-s">Sat</label>
+                            <input type="range" id="success-s" min="0" max="100" value="100" oninput="updateColor('success')">
+                            <span class="slider-value" id="success-s-val">100%</span>
+                        </div>
+                        <div class="slider-group">
+                            <label class="slider-label" for="success-l">Light</label>
+                            <input type="range" id="success-l" min="0" max="100" value="50" oninput="updateColor('success')">
+                            <span class="slider-value" id="success-l-val">50%</span>
+                        </div>
+                    </div>
+                    <div class="color-preview" id="success-preview">Success Message</div>
+                    <div class="ratio-info">
+                        <span>Contrast ratio:</span>
+                        <span class="ratio-number" id="success-ratio">4.2:1</span>
+                    </div>
+                    <div class="suggestion" id="success-suggestion" style="display: none;"></div>
+                </div>
+
+                <!-- Warning Color -->
+                <div class="color-control" id="warning-control">
+                    <div class="color-header">
+                        <span class="color-name">Warning</span>
+                        <span class="status-indicator fail" id="warning-status">FAIL</span>
+                    </div>
+                    <div class="sliders">
+                        <div class="slider-group">
+                            <label class="slider-label" for="warning-h">Hue</label>
+                            <input type="range" id="warning-h" min="0" max="360" value="45" oninput="updateColor('warning')">
+                            <span class="slider-value" id="warning-h-val">45°</span>
+                        </div>
+                        <div class="slider-group">
+                            <label class="slider-label" for="warning-s">Sat</label>
+                            <input type="range" id="warning-s" min="0" max="100" value="100" oninput="updateColor('warning')">
+                            <span class="slider-value" id="warning-s-val">100%</span>
+                        </div>
+                        <div class="slider-group">
+                            <label class="slider-label" for="warning-l">Light</label>
+                            <input type="range" id="warning-l" min="0" max="100" value="34" oninput="updateColor('warning')">
+                            <span class="slider-value" id="warning-l-val">34%</span>
+                        </div>
+                    </div>
+                    <div class="color-preview" id="warning-preview">Warning Message</div>
+                    <div class="ratio-info">
+                        <span>Contrast ratio:</span>
+                        <span class="ratio-number" id="warning-ratio">1.6:1</span>
+                    </div>
+                    <div class="suggestion" id="warning-suggestion" style="display: none;"></div>
+                </div>
+
+                <!-- Info Color -->
+                <div class="color-control" id="info-control">
+                    <div class="color-header">
+                        <span class="color-name">Info</span>
+                        <span class="status-indicator fail" id="info-status">FAIL</span>
+                    </div>
+                    <div class="sliders">
+                        <div class="slider-group">
+                            <label class="slider-label" for="info-h">Hue</label>
+                            <input type="range" id="info-h" min="0" max="360" value="210" oninput="updateColor('info')">
+                            <span class="slider-value" id="info-h-val">210°</span>
+                        </div>
+                        <div class="slider-group">
+                            <label class="slider-label" for="info-s">Sat</label>
+                            <input type="range" id="info-s" min="0" max="100" value="80" oninput="updateColor('info')">
+                            <span class="slider-value" id="info-s-val">80%</span>
+                        </div>
+                        <div class="slider-group">
+                            <label class="slider-label" for="info-l">Light</label>
+                            <input type="range" id="info-l" min="0" max="100" value="50" oninput="updateColor('info')">
+                            <span class="slider-value" id="info-l-val">50%</span>
+                        </div>
+                    </div>
+                    <div class="color-preview" id="info-preview">Info Message</div>
+                    <div class="ratio-info">
+                        <span>Contrast ratio:</span>
+                        <span class="ratio-number" id="info-ratio">4.3:1</span>
+                    </div>
+                    <div class="suggestion" id="info-suggestion" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <h2>Live preview</h2>
+            <div class="preview-grid">
+                <div class="message-preview" id="error-message">
+                    ✕ Error: Your password is incorrect. Please try again.
+                </div>
+                <div class="message-preview" id="success-message">
+                    ✓ Success: Profile updated successfully!
+                </div>
+                <div class="message-preview" id="warning-message">
+                    ⚠ Warning: Your session will expire in 5 minutes.
+                </div>
+                <div class="message-preview" id="info-message">
+                    ℹ Info: New features are available in the settings menu.
+                </div>
+            </div>
+
+            <div class="summary">
+                <h3>Your accessible color system</h3>
+                <div class="code-block-wrapper">
+                    <pre><code class="language-css" id="css-output">/* Adjust the sliders to see your CSS code here */</code></pre>
+                </div>
+                <button class="copy-button" id="copy-button" onclick="copyCSSCode()">Copy CSS Code</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // HSL to RGB conversion
+        function hslToRgb(h, s, l) {
+            s /= 100;
+            l /= 100;
+            const k = n => (n + h / 30) % 12;
+            const a = s * Math.min(l, 1 - l);
+            const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+            return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+        }
+
+        // Calculate relative luminance
+        function getLuminance(r, g, b) {
+            const [rs, gs, bs] = [r, g, b].map(c => {
+                c = c / 255;
+                return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+            });
+            return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+        }
+
+        // Calculate contrast ratio
+        function getContrastRatio(rgb1, rgb2) {
+            const l1 = getLuminance(...rgb1);
+            const l2 = getLuminance(...rgb2);
+            const lighter = Math.max(l1, l2);
+            const darker = Math.min(l1, l2);
+            return (lighter + 0.05) / (darker + 0.05);
+        }
+
+        // RGB to Hex conversion
+        function rgbToHex(r, g, b) {
+            return '#' + [r, g, b].map(x => {
+                const hex = x.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            }).join('');
+        }
+
+        function updateColor(type) {
+            const h = parseInt(document.getElementById(`${type}-h`).value);
+            const s = parseInt(document.getElementById(`${type}-s`).value);
+            const l = parseInt(document.getElementById(`${type}-l`).value);
+
+            // Update slider values
+            document.getElementById(`${type}-h-val`).textContent = h + '°';
+            document.getElementById(`${type}-s-val`).textContent = s + '%';
+            document.getElementById(`${type}-l-val`).textContent = l + '%';
+
+            // Get RGB values
+            const rgb = hslToRgb(h, s, l);
+            const whiteRGB = [255, 255, 255];
+
+            // Calculate contrast ratio
+            const ratio = getContrastRatio(rgb, whiteRGB);
+
+            // Update preview
+            const color = `hsl(${h}, ${s}%, ${l}%)`;
+            document.getElementById(`${type}-preview`).style.color = color;
+            document.getElementById(`${type}-ratio`).textContent = ratio.toFixed(1) + ':1';
+
+            // Update status
+            const passes = ratio >= 4.5;
+            const control = document.getElementById(`${type}-control`);
+            const status = document.getElementById(`${type}-status`);
+            const suggestion = document.getElementById(`${type}-suggestion`);
+
+            if (passes) {
+                control.className = 'color-control pass';
+                status.className = 'status-indicator pass';
+                status.textContent = 'PASS ✓';
+                suggestion.style.display = 'none';
+            } else {
+                control.className = 'color-control fail';
+                status.className = 'status-indicator fail';
+                status.textContent = 'FAIL';
+
+                // Show suggestion with special handling for yellow/orange warning colors
+                if (type === 'warning' && h >= 30 && h <= 60 && l > 35) {
+                    suggestion.textContent = `💡 Yellow/orange needs very low lightness! Try 30-35% (currently ${l}%)`;
+                } else if (l > 50) {
+                    suggestion.textContent = `💡 Try decreasing lightness to darken the color (currently ${l}%)`;
+                } else if (l < 30) {
+                    suggestion.textContent = `💡 Try increasing lightness to brighten the color (currently ${l}%)`;
+                } else if (s < 40) {
+                    suggestion.textContent = `💡 Try increasing saturation for more vivid color (currently ${s}%)`;
+                } else {
+                    suggestion.textContent = `💡 Adjust lightness or saturation to reach 4.5:1 contrast`;
+                }
+                suggestion.style.display = 'block';
+            }
+
+            // Update message preview
+            const message = document.getElementById(`${type}-message`);
+            message.style.color = color;
+            message.style.borderLeftColor = color;
+
+            updateCSSOutput();
+        }
+
+        function updateCSSOutput() {
+            const colors = ['error', 'success', 'warning', 'info'];
+            let css = ':root {\n';
+
+            colors.forEach(type => {
+                const h = document.getElementById(`${type}-h`).value;
+                const s = document.getElementById(`${type}-s`).value;
+                const l = document.getElementById(`${type}-l`).value;
+                const ratio = document.getElementById(`${type}-ratio`).textContent;
+                const rgb = hslToRgb(h, s, l);
+                const hex = rgbToHex(...rgb);
+                css += `  --${type}: hsl(${h}, ${s}%, ${l}%); /* ${ratio} | ${hex} */\n`;
+            });
+
+            css += '}';
+            const codeElement = document.getElementById('css-output');
+            codeElement.textContent = css;
+
+            // Re-highlight with Prism
+            if (window.Prism) {
+                Prism.highlightElement(codeElement);
+            }
+        }
+
+        function copyCSSCode() {
+            const code = document.getElementById('css-output').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const button = document.getElementById('copy-button');
+                button.textContent = 'Copied! ✓';
+                button.className = 'copy-button copied';
+
+                // Announce to screen readers
+                document.getElementById('copy-status').textContent = 'CSS copied to clipboard';
+
+                setTimeout(() => {
+                    button.textContent = 'Copy CSS Code';
+                    button.className = 'copy-button';
+                }, 2000);
+            });
+        }
+
+        // Initialize all colors
+        ['error', 'success', 'warning', 'info'].forEach(type => updateColor(type));
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+</body>
+</html>
