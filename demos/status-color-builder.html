@@ -68,16 +68,46 @@
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             padding: 1rem;
+            background: white;
         }
 
         .color-control.pass {
             border-color: #4caf50;
-            background: #f9fdf9;
+            border-width: 3px;
         }
 
         .color-control.fail {
             border-color: #f44336;
-            background: #fffafa;
+            border-width: 3px;
+        }
+
+        /* Dark mode only affects preview samples */
+        .preview-samples {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .preview-samples.dark-bg {
+            background: hsl(0 0% 10%);          /* near-black */
+            color: hsl(0 0% 95%);               /* readable neutral text */
+        }
+
+        .preview-samples.dark-bg .message-preview {
+            background: hsl(0 0% 12%);          /* subtle card surface */
+            border-color: hsl(0 0% 25%);        /* faint divider */
+        }
+
+        .preview-samples:not(.dark-bg) .message-preview {
+            background: white;
+            border-color: hsl(0 0% 85%);
+        }
+
+        .mode-dark .color-preview {
+            background: hsl(0 0% 10%);
+            border-color: hsl(0 0% 25%);
+            color: hsl(0 0% 95%);
         }
 
         .color-header {
@@ -174,6 +204,8 @@
             margin-bottom: 0.75rem;
             font-weight: 600;
             text-align: center;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
         }
 
         .ratio-info {
@@ -308,7 +340,17 @@
     <div class="container">
         <header>
             <h1>Build Accessible Status Colors</h1>
-            <p class="intro">Create error, success, and warning colors that meet WCAG AA standards (4.5:1 contrast on white). Adjust the HSL sliders and watch the contrast ratios update in real-time! Tip: use ←/→ for fine adjustments; Shift+←/→ for larger steps (if supported).</p>
+            <p class="intro">Create error, success, warning, and info colors that meet WCAG AA standards (4.5:1 contrast). Toggle between light and dark backgrounds to see how your colors perform! Adjust the HSL sliders and watch the contrast ratios update in real-time. Tip: use ←/→ for fine adjustments; Shift+←/→ for larger steps (if supported).</p>
+            <div style="margin-top: 1rem; padding: 0.75rem; background: #f0f0f0; border-radius: 4px;">
+                <label style="font-weight: 600; margin-right: 1rem;">Test background:</label>
+                <label style="margin-right: 1rem;">
+                    <input type="radio" name="bg-mode" value="light" checked> Light (white)
+                </label>
+                <label>
+                    <input type="radio" name="bg-mode" value="dark"> Dark (near-black)
+                </label>
+                <span style="margin-left: 1rem; font-size: 0.9rem; color: #666;">← This changes the preview section background below</span>
+            </div>
         </header>
 
         <div class="color-picker-section">
@@ -442,18 +484,21 @@
 
         <div class="preview-section">
             <h2>Live preview</h2>
-            <div class="preview-grid">
-                <div class="message-preview" id="error-message">
-                    ✕ Error: Your password is incorrect. Please try again.
-                </div>
-                <div class="message-preview" id="success-message">
-                    ✓ Success: Profile updated successfully!
-                </div>
-                <div class="message-preview" id="warning-message">
-                    ⚠ Warning: Your session will expire in 5 minutes.
-                </div>
-                <div class="message-preview" id="info-message">
-                    ℹ Info: New features are available in the settings menu.
+            <p style="margin-bottom: 1rem; font-size: 0.95rem; color: #555;">These sample messages show how your colors look on the selected background. Toggle between light and dark to test readability.</p>
+            <div class="preview-samples">
+                <div class="preview-grid">
+                    <div class="message-preview" id="error-message">
+                        ✕ Error: Your password is incorrect. Please try again.
+                    </div>
+                    <div class="message-preview" id="success-message">
+                        ✓ Success: Profile updated successfully!
+                    </div>
+                    <div class="message-preview" id="warning-message">
+                        ⚠ Warning: Your session will expire in 5 minutes.
+                    </div>
+                    <div class="message-preview" id="info-message">
+                        ℹ Info: New features are available in the settings menu.
+                    </div>
                 </div>
             </div>
 
@@ -516,10 +561,12 @@
 
             // Get RGB values
             const rgb = hslToRgb(h, s, l);
-            const whiteRGB = [255, 255, 255];
+            const previewSamples = document.querySelector('.preview-samples');
+            const isDark = previewSamples && previewSamples.classList.contains('dark-bg');
+            const bgRGB = isDark ? [26, 26, 26] : [255, 255, 255];
 
             // Calculate contrast ratio
-            const ratio = getContrastRatio(rgb, whiteRGB);
+            const ratio = getContrastRatio(rgb, bgRGB);
 
             // Update preview
             const color = `hsl(${h}, ${s}%, ${l}%)`;
@@ -567,26 +614,24 @@
 
         function updateCSSOutput() {
             const colors = ['error', 'success', 'warning', 'info'];
-            let css = ':root {\n';
+            const previewSamples = document.querySelector('.preview-samples');
+            const isDark = previewSamples && previewSamples.classList.contains('dark-bg');
+            const bgNote = isDark ? 'on dark bg' : 'on white bg';
+            let css = `:root {\n  /* Status colors tested ${bgNote} */\n`;
 
             colors.forEach(type => {
                 const h = document.getElementById(`${type}-h`).value;
                 const s = document.getElementById(`${type}-s`).value;
                 const l = document.getElementById(`${type}-l`).value;
                 const ratio = document.getElementById(`${type}-ratio`).textContent;
-                const rgb = hslToRgb(h, s, l);
-                const hex = rgbToHex(...rgb);
-                css += `  --${type}: hsl(${h}, ${s}%, ${l}%); /* ${ratio} | ${hex} */\n`;
+                css += `  --${type}: hsl(${h} ${s}% ${l}%); /* ${ratio} */\n`;
             });
 
             css += '}';
             const codeElement = document.getElementById('css-output');
             codeElement.textContent = css;
 
-            // Re-highlight with Prism
-            if (window.Prism) {
-                Prism.highlightElement(codeElement);
-            }
+            if (window.Prism) Prism.highlightElement(codeElement);
         }
 
         function copyCSSCode() {
@@ -605,6 +650,23 @@
                 }, 2000);
             });
         }
+
+        // Background mode toggle
+        document.querySelectorAll('input[name="bg-mode"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const previewSamples = document.querySelector('.preview-samples');
+                const dark = e.target.value === 'dark';
+
+                // Toggle dark mode on preview
+                previewSamples.classList.toggle('dark-bg', dark);
+
+                // Reflect mode globally so other UI parts can style too
+                document.documentElement.classList.toggle('mode-dark', dark);
+
+                // Recalculate all colors with new background
+                ['error', 'success', 'warning', 'info'].forEach(type => updateColor(type));
+            });
+        });
 
         // Initialize all colors
         ['error', 'success', 'warning', 'info'].forEach(type => updateColor(type));
