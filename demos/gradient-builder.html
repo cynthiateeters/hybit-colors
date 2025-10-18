@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAP's Gradient Builder - Interactive Demo</title>
+    <meta name="description" content="Learn to create CSS gradients by hand - linear, radial, and conic gradients with live preview and copy-paste ready code.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="../css/prism-hap-theme.css" rel="stylesheet">
+    <style>
+        .gradient-builder {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .demo-header h1 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--dark-brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-header p {
+            color: var(--text-muted, #666);
+        }
+
+        /* Tab Controls */
+        .tab-controls {
+            display: flex;
+            gap: 0;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--warm-orange);
+        }
+
+        .tab {
+            background: white;
+            border: 2px solid var(--warm-orange);
+            border-bottom: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--warm-orange);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 8px 8px 0 0;
+            margin-right: -2px;
+        }
+
+        .tab:hover {
+            background: var(--peach-background);
+        }
+
+        .tab.active {
+            background: var(--warm-orange);
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Preview Area */
+        .preview-section {
+            margin-bottom: 2rem;
+        }
+
+        .preview-section h2 {
+            font-size: 1.25rem;
+            color: var(--dark-brown);
+            margin-bottom: 1rem;
+        }
+
+        .gradient-preview {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 2px solid var(--warm-orange);
+            background: linear-gradient(135deg, hsl(210 70% 50%), hsl(280 60% 55%));
+        }
+
+        /* Controls Panel */
+        .controls-panel {
+            background: var(--cream-white);
+            border: 2px solid var(--warm-orange);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .controls-panel.hidden {
+            display: none;
+        }
+
+        .control-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .control-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--dark-brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .slider-control {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .slider-control input[type="range"] {
+            width: 100%;
+        }
+
+        .slider-control output {
+            font-weight: 600;
+            color: var(--warm-orange);
+            min-width: 60px;
+            text-align: right;
+        }
+
+        /* Color Stop Controls */
+        .color-stops {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .color-stop {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .color-stop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .color-stop-label {
+            font-weight: 600;
+            color: var(--dark-brown);
+        }
+
+        .remove-stop {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .remove-stop:hover {
+            background: #c0392b;
+        }
+
+        .color-input-group {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .color-input-group input[type="color"] {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .color-input-group input[type="text"] {
+            padding: 0.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--warm-orange);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #d49547;
+        }
+
+        .btn-secondary {
+            background: var(--teal-darker);
+        }
+
+        .btn-secondary:hover {
+            background: #2f6157;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        /* Output Section */
+        .output-section {
+            background: var(--cream-white);
+            border: 2px solid var(--warm-orange);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .output-section h2 {
+            font-size: 1.25rem;
+            color: var(--dark-brown);
+            margin-bottom: 1rem;
+        }
+
+        .output-section pre {
+            background: #2d2d2d;
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+            position: relative;
+            /* Define Prism theme variables for dark background */
+            --code-text: #f8f8f2;
+            --code-tag: #E8A557;
+            --code-attr: #5BA69C;
+            --code-value: #FFB366;
+            --code-comment: #C8B8A8;
+            --code-punctuation: #C8B8A8;
+        }
+
+        .output-section pre code {
+            color: var(--code-text);
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--warm-orange);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .copy-button:hover {
+            background: #d49547;
+        }
+
+        .copy-button.copied {
+            background: #27ae60;
+        }
+
+        /* Tips Box */
+        .tips-box {
+            background: #fff3e0;
+            border-left: 4px solid var(--warm-orange);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+
+        .tips-box h3 {
+            color: var(--dark-brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .tips-box ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .tips-box li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Presets Dropdown */
+        select.preset-select {
+            padding: 0.75rem;
+            border: 2px solid var(--warm-orange);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .gradient-preview {
+                height: 300px;
+            }
+
+            .color-input-group {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Screen reader only */
+        .sr-only {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        /* Spinner Demo Section */
+        .spinner-demo {
+            background: var(--cream-white);
+            border: 2px solid var(--warm-orange);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .spinner-demo h3 {
+            color: var(--dark-brown);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .spinner-demo-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .spinner-preview {
+            --spinner-speed: 1s; /* CSS custom property - best practice! */
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg at 50% 50%, hsl(210 70% 50%) 0%, hsl(210 70% 50% / 0) 50%);
+            animation: spin var(--spinner-speed) linear infinite;
+            position: relative;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinner-code {
+            background: #f9f9f9;
+            border-radius: 4px;
+            padding: 1rem;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .spinner-code code {
+            color: var(--dark-brown);
+        }
+
+        .spinner-controls {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .spinner-controls label {
+            display: block;
+            font-weight: 600;
+            color: var(--dark-brown);
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .speed-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .speed-control input[type="range"] {
+            width: 200px;
+        }
+
+        .speed-control output {
+            font-weight: 600;
+            color: var(--warm-orange);
+            min-width: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .spinner-demo-content {
+                grid-template-columns: 1fr;
+            }
+
+            .spinner-preview {
+                margin-bottom: 1rem;
+            }
+
+            .speed-control input[type="range"] {
+                width: 150px;
+            }
+        }
+
+        /* Contrast warning */
+        .contrast-warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .contrast-warning.show {
+            display: block;
+        }
+
+        .contrast-warning p {
+            margin: 0;
+            color: #856404;
+            font-weight: 600;
+        }
+
+        /* Accessibility - prefers-contrast */
+        @media (prefers-contrast: more) {
+            .tab {
+                border-width: 3px;
+            }
+
+            .gradient-preview {
+                border-width: 3px;
+            }
+
+            .controls-panel,
+            .output-section {
+                border-width: 3px;
+            }
+        }
+
+        /* Accessibility - prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .spinner-preview {
+                animation: none !important;
+            }
+
+            .spinner-preview::after {
+                content: '⏸';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 2rem;
+                color: white;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <main id="main-content" class="gradient-builder">
+        <div class="demo-header">
+            <h1>🎨 HAP's Gradient Builder</h1>
+            <p>Create CSS gradients visually and copy the code!</p>
+            <p><a href="../stations/station5.html">← Back to Station 5</a></p>
+        </div>
+
+        <!-- Tab Controls -->
+        <div class="tab-controls" role="tablist">
+            <button class="tab active" role="tab" aria-selected="true" aria-controls="linear-panel" id="linear-tab" data-type="linear">
+                Linear Gradient
+            </button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="radial-panel" id="radial-tab" data-type="radial">
+                Radial Gradient
+            </button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="conic-panel" id="conic-tab" data-type="conic">
+                Conic Gradient
+            </button>
+        </div>
+
+        <!-- Contrast Warning -->
+        <div class="contrast-warning" id="contrast-warning" role="alert">
+            <p>⚠️ Contrast warning: Some gradient colors may not meet WCAG AA standards (4.5:1) for text readability. Test with actual text before using in production.</p>
+        </div>
+
+        <!-- Preview Area -->
+        <section class="preview-section">
+            <h2>Live Preview</h2>
+            <div class="gradient-preview" id="gradient-preview" role="img" aria-label="Live gradient preview"></div>
+        </section>
+
+        <!-- Linear Controls -->
+        <div class="controls-panel" id="linear-panel" role="tabpanel" aria-labelledby="linear-tab">
+            <div class="control-group">
+                <label for="linear-direction">Direction (degrees)</label>
+                <div class="slider-control">
+                    <input type="range" id="linear-direction" min="0" max="360" value="135" step="1">
+                    <output for="linear-direction" id="linear-direction-val">135°</output>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Color Stops</label>
+                <div class="color-stops" id="linear-stops"></div>
+            </div>
+        </div>
+
+        <!-- Radial Controls -->
+        <div class="controls-panel hidden" id="radial-panel" role="tabpanel" aria-labelledby="radial-tab">
+            <div class="control-group">
+                <label for="radial-shape">Shape</label>
+                <div style="display: flex; gap: 1rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="radio" name="radial-shape" value="circle" checked>
+                        Circle
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="radio" name="radial-shape" value="ellipse">
+                        Ellipse
+                    </label>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="radial-pos-x">Position X</label>
+                <div class="slider-control">
+                    <input type="range" id="radial-pos-x" min="0" max="100" value="50" step="1">
+                    <output for="radial-pos-x" id="radial-pos-x-val">50%</output>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="radial-pos-y">Position Y</label>
+                <div class="slider-control">
+                    <input type="range" id="radial-pos-y" min="0" max="100" value="50" step="1">
+                    <output for="radial-pos-y" id="radial-pos-y-val">50%</output>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Color Stops</label>
+                <div class="color-stops" id="radial-stops"></div>
+            </div>
+        </div>
+
+        <!-- Conic Controls -->
+        <div class="controls-panel hidden" id="conic-panel" role="tabpanel" aria-labelledby="conic-tab">
+            <div class="control-group">
+                <label for="conic-angle">Starting Angle</label>
+                <div class="slider-control">
+                    <input type="range" id="conic-angle" min="0" max="360" value="0" step="1">
+                    <output for="conic-angle" id="conic-angle-val">0°</output>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="conic-pos-x">Position X</label>
+                <div class="slider-control">
+                    <input type="range" id="conic-pos-x" min="0" max="100" value="50" step="1">
+                    <output for="conic-pos-x" id="conic-pos-x-val">50%</output>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="conic-pos-y">Position Y</label>
+                <div class="slider-control">
+                    <input type="range" id="conic-pos-y" min="0" max="100" value="50" step="1">
+                    <output for="conic-pos-y" id="conic-pos-y-val">50%</output>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Color Stops</label>
+                <div class="color-stops" id="conic-stops"></div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn" id="add-stop-btn">+ Add Color Stop</button>
+            <select class="preset-select" id="preset-select">
+                <option value="">Load Preset...</option>
+                <option value="sunset">Sunset (Linear 3-stop)</option>
+                <option value="ocean">Ocean (Radial 2-stop)</option>
+                <option value="rainbow">Rainbow (Linear 5-stop)</option>
+                <option value="spinner">Loading Spinner (Conic with transparency - add animation!)</option>
+            </select>
+            <button class="btn btn-secondary" id="reset-btn">Reset</button>
+        </div>
+
+        <!-- Output Section -->
+        <section class="output-section">
+            <h2>Generated CSS</h2>
+            <pre><code id="css-output" class="language-css">background: linear-gradient(135deg, hsl(210 70% 50%), hsl(280 60% 55%));</code></pre>
+            <button class="copy-button" id="copy-btn">Copy</button>
+        </section>
+
+        <!-- Tips Box -->
+        <div class="tips-box">
+            <h3>🟠 HAP's Gradient Tips</h3>
+            <ul>
+                <li>Start with 2 colors, add more only if it improves readability</li>
+                <li>Use HSL for easier color adjustments—same hue, change lightness!</li>
+                <li>Test contrast if placing text on the gradient</li>
+                <li>Linear works great for headers, radial for spotlights, conic for loading spinners</li>
+                <li><strong>Loading Spinner tip:</strong> The spinner preset creates a static gradient. To animate it, add CSS animation as shown below!</li>
+            </ul>
+        </div>
+
+        <!-- Spinner Animation Demo -->
+        <section class="spinner-demo">
+            <h3>🎡 Loading Spinner Animation Demo</h3>
+            <div class="spinner-demo-content">
+                <div>
+                    <div class="spinner-preview" id="spinner-preview" role="img" aria-label="Animated loading spinner"></div>
+                    <div class="spinner-controls">
+                        <label for="spinner-speed">Animation Speed (CSS Custom Property)</label>
+                        <div class="speed-control">
+                            <span>Fast</span>
+                            <input type="range" id="spinner-speed" min="0.5" max="3" step="0.1" value="1" aria-label="Spinner animation speed in seconds">
+                            <span>Slow</span>
+                            <output for="spinner-speed" id="speed-value">1.0s</output>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem; color: #666;">
+                        This spinner uses the conic gradient from the preset + CSS animation
+                    </p>
+                </div>
+                <div class="spinner-code">
+                    <p style="margin-bottom: 0.5rem; font-weight: 600; color: var(--dark-brown);">CSS Best Practice: Use Custom Properties!</p>
+                    <code>.spinner {<br>
+  <strong style="color: var(--warm-orange);">--spinner-speed: 1s;</strong> /* Variable */<br>
+  background: conic-gradient(from 0deg,<br>
+    hsl(210 70% 50%) 0%,<br>
+    hsl(210 70% 50% / 0) 50%);<br>
+  animation: spin <strong style="color: var(--warm-orange);">var(--spinner-speed)</strong> linear infinite;<br>
+}<br>
+<br>
+@keyframes spin {<br>
+  to { transform: rotate(360deg); }<br>
+}</code>
+                <p style="margin-top: 1rem; font-size: 0.875rem; color: #666; line-height: 1.6;">
+                    <strong>Why this is better:</strong> Change speed in one place (--spinner-speed) instead of editing the animation line. JavaScript can update it easily too!
+                </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="announcement" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+
+    <script>
+        // State management
+        const state = {
+            type: 'linear',
+            linear: {
+                direction: 135,
+                stops: [
+                    { color: 'hsl(210 70% 50%)', position: 0 },
+                    { color: 'hsl(280 60% 55%)', position: 100 }
+                ]
+            },
+            radial: {
+                shape: 'circle',
+                posX: 50,
+                posY: 50,
+                stops: [
+                    { color: 'hsl(210 70% 50%)', position: 0 },
+                    { color: 'hsl(280 60% 55%)', position: 100 }
+                ]
+            },
+            conic: {
+                angle: 0,
+                posX: 50,
+                posY: 50,
+                stops: [
+                    { color: 'hsl(210 70% 50%)', position: 0 },
+                    { color: 'hsl(350 100% 60%)', position: 100 }
+                ]
+            }
+        };
+
+        // Helper functions
+        function hslToHex(hslString) {
+            // Updated regex to accept optional alpha channel: hsl(210 70% 50%) or hsl(210 70% 50% / 0.5)
+            const match = hslString.match(/hsl\((\d+)\s+(\d+)%\s+(\d+)%(?:\s*\/\s*[\d.]+)?\)/);
+            if (!match) return '#000000';
+
+            const h = parseInt(match[1]) / 360;
+            const s = parseInt(match[2]) / 100;
+            const l = parseInt(match[3]) / 100;
+
+            const hue2rgb = (p, q, t) => {
+                if (t < 0) t += 1;
+                if (t > 1) t -= 1;
+                if (t < 1/6) return p + (q - p) * 6 * t;
+                if (t < 1/2) return q;
+                if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                return p;
+            };
+
+            const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            const p = 2 * l - q;
+            const r = Math.round(hue2rgb(p, q, h + 1/3) * 255);
+            const g = Math.round(hue2rgb(p, q, h) * 255);
+            const b = Math.round(hue2rgb(p, q, h - 1/3) * 255);
+
+            return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+        }
+
+        function hexToHsl(hex) {
+            const r = parseInt(hex.slice(1, 3), 16) / 255;
+            const g = parseInt(hex.slice(3, 5), 16) / 255;
+            const b = parseInt(hex.slice(5, 7), 16) / 255;
+
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                    case g: h = ((b - r) / d + 2) / 6; break;
+                    case b: h = ((r - g) / d + 4) / 6; break;
+                }
+            }
+
+            h = Math.round(h * 360);
+            s = Math.round(s * 100);
+            l = Math.round(l * 100);
+
+            return `hsl(${h} ${s}% ${l}%)`;
+        }
+
+        // Calculate relative luminance (for WCAG contrast checking)
+        function getLuminance(hslString) {
+            const match = hslString.match(/hsl\((\d+)\s+(\d+)%\s+(\d+)%/);
+            if (!match) return 0;
+
+            const h = parseInt(match[1]) / 360;
+            const s = parseInt(match[2]) / 100;
+            const l = parseInt(match[3]) / 100;
+
+            // Convert HSL to RGB
+            const hue2rgb = (p, q, t) => {
+                if (t < 0) t += 1;
+                if (t > 1) t -= 1;
+                if (t < 1/6) return p + (q - p) * 6 * t;
+                if (t < 1/2) return q;
+                if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                return p;
+            };
+
+            const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            const p = 2 * l - q;
+            let r = hue2rgb(p, q, h + 1/3);
+            let g = hue2rgb(p, q, h);
+            let b = hue2rgb(p, q, h - 1/3);
+
+            // Apply gamma correction
+            r = r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
+            g = g <= 0.03928 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
+            b = b <= 0.03928 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+
+            // Calculate relative luminance
+            return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        }
+
+        // Calculate contrast ratio between two colors
+        function getContrastRatio(color1, color2) {
+            const lum1 = getLuminance(color1);
+            const lum2 = getLuminance(color2);
+            const lighter = Math.max(lum1, lum2);
+            const darker = Math.min(lum1, lum2);
+            return (lighter + 0.05) / (darker + 0.05);
+        }
+
+        // Check gradient contrast (WCAG AA requires 4.5:1 for normal text)
+        function checkGradientContrast() {
+            const stops = state[state.type].stops;
+            if (stops.length < 2) return;
+
+            // Find lightest and darkest stops
+            const luminances = stops.map(stop => ({ color: stop.color, lum: getLuminance(stop.color) }));
+            luminances.sort((a, b) => a.lum - b.lum);
+
+            const darkest = luminances[0].color;
+            const lightest = luminances[luminances.length - 1].color;
+
+            // Assume text color is dark brown (from CSS variable)
+            const textColor = 'hsl(28 40% 17%)'; // Approximate --dark-brown
+            const contrastWithDarkest = getContrastRatio(textColor, darkest);
+            const contrastWithLightest = getContrastRatio(textColor, lightest);
+
+            // Show warning if either end fails WCAG AA (4.5:1)
+            const warning = document.getElementById('contrast-warning');
+            if (contrastWithDarkest < 4.5 || contrastWithLightest < 4.5) {
+                warning.classList.add('show');
+            } else {
+                warning.classList.remove('show');
+            }
+        }
+
+        // Generate CSS
+        function generateCSS() {
+            const currentState = state[state.type];
+            const stops = currentState.stops
+                .sort((a, b) => a.position - b.position)
+                .map(s => `${s.color} ${s.position}%`)
+                .join(', ');
+
+            let css;
+            switch (state.type) {
+                case 'linear':
+                    css = `background: linear-gradient(${currentState.direction}deg, ${stops});`;
+                    break;
+                case 'radial':
+                    css = `background: radial-gradient(${currentState.shape} at ${currentState.posX}% ${currentState.posY}%, ${stops});`;
+                    break;
+                case 'conic':
+                    css = `background: conic-gradient(from ${currentState.angle}deg at ${currentState.posX}% ${currentState.posY}%, ${stops});`;
+                    break;
+            }
+
+            return css;
+        }
+
+        // Update preview and output
+        function updateGradient() {
+            const css = generateCSS();
+            const preview = document.getElementById('gradient-preview');
+            const gradientValue = css.replace('background: ', '').replace(';', '');
+
+            // Use setProperty with 'important' to override CSS default
+            preview.style.setProperty('background', gradientValue, 'important');
+
+            const output = document.getElementById('css-output');
+            output.textContent = css;
+            Prism.highlightElement(output);
+
+            // Check contrast for accessibility
+            checkGradientContrast();
+
+            // Update button state based on stop count
+            updateAddStopButton();
+        }
+
+        // Update "Add Color Stop" button state
+        function updateAddStopButton() {
+            const btn = document.getElementById('add-stop-btn');
+            const stops = state[state.type].stops;
+
+            if (stops.length >= 5) {
+                btn.disabled = true;
+                btn.textContent = 'Maximum 5 Stops Reached';
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+            } else {
+                btn.disabled = false;
+                btn.textContent = '+ Add Color Stop';
+                btn.style.opacity = '1';
+                btn.style.cursor = 'pointer';
+            }
+        }
+
+        // Render color stops
+        function renderColorStops() {
+            const container = document.getElementById(`${state.type}-stops`);
+            const stops = state[state.type].stops;
+
+            container.innerHTML = '';
+
+            stops.forEach((stop, index) => {
+                const stopEl = document.createElement('div');
+                stopEl.className = 'color-stop';
+
+                const hexColor = hslToHex(stop.color);
+
+                stopEl.innerHTML = `
+                    <div class="color-stop-header">
+                        <span class="color-stop-label">Color Stop ${index + 1}</span>
+                        ${stops.length > 2 ? `<button class="remove-stop" data-index="${index}">Remove</button>` : ''}
+                    </div>
+                    <div class="color-input-group">
+                        <input type="color" value="${hexColor}" data-index="${index}" class="color-picker">
+                        <input type="text" value="${stop.color}" data-index="${index}" class="hsl-input" placeholder="hsl(210 70% 50%)">
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" min="0" max="100" value="${stop.position}" step="1" data-index="${index}" class="position-slider">
+                        <output>${stop.position}%</output>
+                    </div>
+                `;
+
+                container.appendChild(stopEl);
+            });
+
+            attachStopEventListeners();
+        }
+
+        // Attach event listeners to color stops
+        function attachStopEventListeners() {
+            const container = document.getElementById(`${state.type}-stops`);
+
+            // Color pickers
+            container.querySelectorAll('.color-picker').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const index = parseInt(e.target.dataset.index);
+                    const hsl = hexToHsl(e.target.value);
+                    state[state.type].stops[index].color = hsl;
+                    const hslInput = container.querySelector(`.hsl-input[data-index="${index}"]`);
+                    hslInput.value = hsl;
+                    updateGradient();
+                });
+            });
+
+            // HSL inputs - accepts modern syntax with optional alpha: hsl(210 70% 50%) or hsl(210 70% 50% / 0.5)
+            container.querySelectorAll('.hsl-input').forEach(input => {
+                input.addEventListener('change', (e) => {
+                    const index = parseInt(e.target.dataset.index);
+                    const hsl = e.target.value.trim();
+                    // Updated regex: accepts hsl(h s% l%) and hsl(h s% l% / alpha)
+                    if (/^hsl\(\d+\s+\d+%\s+\d+%(?:\s*\/\s*[\d.]+)?\)$/.test(hsl)) {
+                        state[state.type].stops[index].color = hsl;
+                        const colorPicker = container.querySelector(`.color-picker[data-index="${index}"]`);
+                        colorPicker.value = hslToHex(hsl);
+                        updateGradient();
+                    } else {
+                        e.target.value = state[state.type].stops[index].color;
+                        announce('Invalid HSL format. Use: hsl(210 70% 50%) or hsl(210 70% 50% / 0.5)');
+                    }
+                });
+            });
+
+            // Position sliders
+            container.querySelectorAll('.position-slider').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const index = parseInt(e.target.dataset.index);
+                    const position = parseInt(e.target.value);
+                    state[state.type].stops[index].position = position;
+                    e.target.nextElementSibling.textContent = `${position}%`;
+                    updateGradient();
+                });
+            });
+
+            // Remove buttons
+            container.querySelectorAll('.remove-stop').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const index = parseInt(e.target.dataset.index);
+                    state[state.type].stops.splice(index, 1);
+                    renderColorStops();
+                    updateGradient();
+                    announce('Color stop removed');
+                });
+            });
+        }
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const type = tab.dataset.type;
+
+                // Update tabs
+                document.querySelectorAll('.tab').forEach(t => {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+
+                // Update panels
+                document.querySelectorAll('.controls-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById(`${type}-panel`).classList.remove('hidden');
+
+                // Update state
+                state.type = type;
+
+                // Render and update
+                renderColorStops();
+                updateGradient();
+
+                announce(`Switched to ${type} gradient`);
+            });
+        });
+
+        // Control event listeners
+        document.getElementById('linear-direction').addEventListener('input', (e) => {
+            state.linear.direction = parseInt(e.target.value);
+            document.getElementById('linear-direction-val').textContent = `${e.target.value}°`;
+            updateGradient();
+        });
+
+        document.querySelectorAll('input[name="radial-shape"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                state.radial.shape = e.target.value;
+                updateGradient();
+            });
+        });
+
+        ['radial-pos-x', 'radial-pos-y', 'conic-pos-x', 'conic-pos-y', 'conic-angle'].forEach(id => {
+            const input = document.getElementById(id);
+            if (input) {
+                input.addEventListener('input', (e) => {
+                    const value = parseInt(e.target.value);
+                    const outputEl = document.getElementById(`${id}-val`);
+
+                    if (id.includes('pos')) {
+                        const axis = id.includes('-x') ? 'posX' : 'posY';
+                        const type = id.includes('radial') ? 'radial' : 'conic';
+                        state[type][axis] = value;
+                        outputEl.textContent = `${value}%`;
+                    } else if (id === 'conic-angle') {
+                        state.conic.angle = value;
+                        outputEl.textContent = `${value}°`;
+                    }
+
+                    updateGradient();
+                });
+            }
+        });
+
+        // Add color stop
+        document.getElementById('add-stop-btn').addEventListener('click', () => {
+            const stops = state[state.type].stops;
+            if (stops.length >= 5) {
+                announce('Maximum 5 color stops allowed');
+                return;
+            }
+
+            const newStop = {
+                color: 'hsl(0 70% 50%)',
+                position: 50
+            };
+            stops.push(newStop);
+            renderColorStops();
+            updateGradient();
+            announce('Color stop added');
+        });
+
+        // Presets
+        const presets = {
+            sunset: {
+                type: 'linear',
+                data: {
+                    direction: 180,
+                    stops: [
+                        { color: 'hsl(25 100% 50%)', position: 0 },
+                        { color: 'hsl(350 100% 60%)', position: 50 },
+                        { color: 'hsl(280 70% 40%)', position: 100 }
+                    ]
+                }
+            },
+            ocean: {
+                type: 'radial',
+                data: {
+                    shape: 'circle',
+                    posX: 50,
+                    posY: 50,
+                    stops: [
+                        { color: 'hsl(200 100% 70%)', position: 0 },
+                        { color: 'hsl(210 80% 40%)', position: 100 }
+                    ]
+                }
+            },
+            rainbow: {
+                type: 'linear',
+                data: {
+                    direction: 90,
+                    stops: [
+                        { color: 'hsl(0 100% 50%)', position: 0 },
+                        { color: 'hsl(60 100% 50%)', position: 25 },
+                        { color: 'hsl(120 100% 50%)', position: 50 },
+                        { color: 'hsl(240 100% 50%)', position: 75 },
+                        { color: 'hsl(300 100% 50%)', position: 100 }
+                    ]
+                }
+            },
+            spinner: {
+                type: 'conic',
+                data: {
+                    angle: 0,
+                    posX: 50,
+                    posY: 50,
+                    stops: [
+                        { color: 'hsl(210 70% 50%)', position: 0 },
+                        { color: 'hsl(210 70% 50% / 0)', position: 50 }
+                    ]
+                }
+            }
+        };
+
+        document.getElementById('preset-select').addEventListener('change', (e) => {
+            const presetName = e.target.value;
+            if (!presetName) return;
+
+            const preset = presets[presetName];
+            state.type = preset.type;
+            state[preset.type] = { ...preset.data };
+
+            // Switch to correct tab
+            document.querySelector(`.tab[data-type="${preset.type}"]`).click();
+
+            e.target.value = '';
+            announce(`${presetName} preset loaded`);
+        });
+
+        // Reset
+        document.getElementById('reset-btn').addEventListener('click', () => {
+            state.type = 'linear';
+            state.linear = {
+                direction: 135,
+                stops: [
+                    { color: 'hsl(210 70% 50%)', position: 0 },
+                    { color: 'hsl(280 60% 55%)', position: 100 }
+                ]
+            };
+
+            document.querySelector('.tab[data-type="linear"]').click();
+            announce('Reset to default gradient');
+        });
+
+        // Copy button - improved UX with better failure handling
+        document.getElementById('copy-btn').addEventListener('click', async () => {
+            const codeElement = document.getElementById('css-output');
+            const code = codeElement.textContent;
+            const btn = document.getElementById('copy-btn');
+
+            try {
+                await navigator.clipboard.writeText(code);
+                btn.classList.add('copied');
+                btn.textContent = 'Copied ✅';
+                btn.disabled = true; // Prevent rapid clicks
+                announce('CSS code copied to clipboard');
+
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.textContent = 'Copy';
+                    btn.disabled = false;
+                }, 3000); // Extended to 3 seconds
+            } catch (err) {
+                console.error('Copy failed:', err);
+                // Auto-select the code so user can press Ctrl+C
+                const range = document.createRange();
+                range.selectNodeContents(codeElement);
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+
+                btn.textContent = 'Press Ctrl+C';
+                announce('Copy failed. Code is now selected - press Ctrl+C to copy manually.');
+
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                    selection.removeAllRanges(); // Clear selection
+                }, 4000);
+            }
+        });
+
+        // Screen reader announcements
+        function announce(message) {
+            const el = document.getElementById('announcement');
+            el.textContent = message;
+        }
+
+        // Initialize
+        renderColorStops();
+        updateGradient();
+
+        // Spinner speed control - demonstrates CSS custom properties best practice
+        const spinnerSpeedSlider = document.getElementById('spinner-speed');
+        const speedValueOutput = document.getElementById('speed-value');
+        const spinnerPreview = document.getElementById('spinner-preview');
+
+        if (spinnerSpeedSlider && speedValueOutput && spinnerPreview) {
+            spinnerSpeedSlider.addEventListener('input', (e) => {
+                const speed = parseFloat(e.target.value);
+                speedValueOutput.textContent = `${speed.toFixed(1)}s`;
+
+                // Update CSS custom property - best practice!
+                spinnerPreview.style.setProperty('--spinner-speed', `${speed}s`);
+
+                announce(`Spinner speed set to ${speed.toFixed(1)} seconds`);
+            });
+        }
+    </script>
+
+</body>
+
+</html>

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAP's Learning Lab - Station 5: [STATION_TITLE]</title>
+    <title>HAP's Learning Lab - Station 5: Modern CSS Color Features</title>
     <meta name="description"
-        content="Join HAP as he learns about [BRIEF_DESCRIPTION].">
+        content="Join HAP as he discovers CSS gradients, color-mix(), filters, and automatic dark mode - no images or JavaScript required!">
     <meta property="og:image"
         content="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1759495998/hap-laptop_xiewar.jpg">
     <link rel="icon" type="image/png" sizes="16x16"
@@ -20,6 +20,19 @@
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <link rel="stylesheet" href="../css/style.css">
     <link href="../css/prism-hap-theme.css" rel="stylesheet">
+    <style>
+        .sr-only {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+            outline: 2px solid #1976d2;
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,16 +43,17 @@
             <div class="hybit-welcome">
                 <div class="hybit-avatar">
                     <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1759495998/hap-laptop_xiewar.jpg"
-                        alt="HAP (HyBit A. ProtoBot) studying on his laptop" width="200" height="200" decoding="async"
+                        alt="Illustration of HAP studying CSS documentation on his laptop with amazement" width="200" height="200" decoding="async"
                         fetchpriority="high">
                 </div>
                 <div>
-                    <h1>HAP's Learning Lab: [STATION_TITLE]</h1>
-                    <p class="subtitle">[SUBTITLE]</p>
+                    <h1>HAP's Learning Lab: Modern CSS Color Features</h1>
+                    <p class="subtitle">Cool new things you can do with color in CSS</p>
                 </div>
             </div>
             <div class="intro-box">
-                <p><strong>Welcome to Station 5!</strong> [HAP's apprentice voice introduction: describe what HAP learned from Prof. Teeters at this station, using first-person perspective] 🟠</p>
+                <p><strong>Welcome to Station 5!</strong> I thought gradients needed image files and dark mode needed a separate stylesheet. Turns out CSS handles both with a few lines: gradients in code, color-mix() for precise hovers, and prefers-color-scheme for automatic theming. Let me show you the most useful patterns you can ship today. 🟠</p>
+                <p class="mt-1"><strong>Support note:</strong> Works in current stable browsers. Provide a fallback for color-mix().</p>
             </div>
         </div>
     </header>
@@ -52,130 +66,478 @@
     <main id="main-content" class="content-container">
 
         <section class="content-section">
-            <h2 class="section-heading-centered">[SECTION_HEADING]</h2>
+            <h2 class="section-heading-centered">What You'll Learn</h2>
 
-            <div class="intro-box">
-                <p><strong>HAP's Discovery:</strong> [HAP's first-person narrative about learning this concept from Prof. Teeters]</p>
-            </div>
+            <ul class="learning-objectives mt-1">
+                <li>Create linear, radial, and conic gradients with CSS instead of image files.</li>
+                <li>Use color-mix() to blend colors for hover states and variations.</li>
+                <li>Implement automatic dark mode with prefers-color-scheme media queries.</li>
+                <li>Apply CSS filters for visual effects without image editing software.</li>
+            </ul>
 
             <div class="overview-grid mt-2">
                 <div class="insight-card">
-                    <h3><span class="insight-icon">📸</span> [Insight Title 1]</h3>
-                    <p class="stat-large">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
+                    <h3><span class="insight-icon">🎨</span> Gradients are just CSS</h3>
+                    <p class="stat-large">No images needed, infinite variations possible</p>
+                    <p><strong>HAP's take:</strong> One line of CSS replaced my 20KB gradient image!</p>
                 </div>
                 <div class="insight-card">
-                    <h3><span class="insight-icon">🔬</span> [Insight Title 2]</h3>
-                    <p class="stat-large stat-teal">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
+                    <h3><span class="insight-icon">🔬</span> color-mix() is magic</h3>
+                    <p class="stat-large stat-teal">Blend colors for hovers and focus rings, with a simple fallback</p>
+                    <p><strong>HAP's take:</strong> No more guessing lighter/darker shades!</p>
                 </div>
                 <div class="insight-card">
-                    <h3><span class="insight-icon">🎯</span> [Insight Title 3]</h3>
-                    <p class="stat-large stat-brown">[Key Statistic]</p>
-                    <p>[Supporting details about this insight]</p>
-                </div>
-            </div>
-
-            <div class="hap-note-callout">
-                <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759495999/hap-confused-map_q8q0ej.jpg"
-                    alt="HAP looking confused while studying" width="150" height="150" class="hap-note-image"
-                    decoding="async" loading="lazy">
-                <div class="hap-note-content">
-                    <h3>HAP's Confession:</h3>
-                    <p>[HAP's apprentice voice: describe initial confusion or learning moment about this topic]</p>
+                    <h3><span class="insight-icon">🌐</span> Automatic dark mode</h3>
+                    <p class="stat-large stat-brown">prefers-color-scheme adapts to user system settings</p>
+                    <p><strong>HAP's take:</strong> One media query handles everything automatically!</p>
                 </div>
             </div>
         </section>
 
         <section class="content-section">
             <div class="topic-section">
-                <h2>[Main Topic Heading]</h2>
+                <h2>The Gradient Revolution</h2>
 
-                <p class="mb-2">[Introduction paragraph explaining what Prof. Teeters taught HAP about this topic]</p>
+                <p class="mb-2">Old way: gradient images increase requests and lock you into fixed art. New way: linear-gradient(), radial-gradient(), and conic-gradient() give you flexible, tiny CSS.</p>
 
-                <div class="analysis-grid">
-                    <div class="analysis-point">
-                        <h3>[Analysis Point Title 1]</h3>
-                        <p><strong>[Subheading]</strong> [Content]</p>
-                    </div>
-                    <div class="analysis-point">
-                        <h3>[Analysis Point Title 2]</h3>
-                        <p><strong>[Subheading]</strong> [Content]</p>
-                    </div>
+                <p class="mb-2"><strong>Tip:</strong> start with two color stops, then add a third only if it improves readability.</p>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">HAP's Old Way:</div>
+                    <pre><code class="language-css">.header {
+  background-image: url('header-gradient.png'); /* 20KB download */
+}</code></pre>
                 </div>
 
                 <div class="prompt-box mt-2">
-                    <div class="prompt-label">[Code Example Label]:</div>
-                    <pre><code class="language-html">[CODE EXAMPLE HERE]</code></pre>
-                    <p class="code-comment mt-1">[Explanation of code example]</p>
+                    <div class="prompt-label">What I Learned (CSS Magic!):</div>
+                    <pre><code class="language-css">.header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+.button {
+  background: linear-gradient(to bottom,
+    hsl(210 70% 55%),
+    hsl(210 70% 45%)
+  );
+}
+.spotlight {
+  background: radial-gradient(circle at 30% 40%,
+    hsl(210 100% 70% / 0.3),
+    transparent 70%
+  );
+}</code></pre>
+                    <p class="code-comment mt-1"><strong>Educational note:</strong> Linear gradients flow in a direction (to right, 135deg, etc.). Radial gradients spread from a center point. Conic gradients rotate around a center like a pie chart. All three are widely supported; start simple and test contrast.</p>
                 </div>
 
-                <div class="interactive-demo mt-2">
-                    <h3>[Interactive Demo Title]</h3>
-                    <ul class="mt-1">
-                        <li>[List item 1]</li>
-                        <li>[List item 2]</li>
-                        <li>[List item 3]</li>
-                    </ul>
+                <div class="hap-note-callout mt-2">
+                    <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
+                        alt="Illustration of HAP discovering the DevTools gradient editor" width="150" height="150" class="hap-note-image"
+                        decoding="async" loading="lazy">
+                    <div class="hap-note-content">
+                        <h3>🟠 HAP's DevTools Discovery</h3>
+                        <p>Prof. Teeters showed me the DevTools gradient editor—open DevTools → Elements → click the tiny gradient preview next to your gradient CSS to adjust colors, positions, and angles visually!</p>
+                    </div>
                 </div>
 
                 <div class="warning-box mt-2">
-                    <h3>🟠 [Warning Title]</h3>
-                    <p><strong class="text-success">✅ RIGHT:</strong></p>
-                    <pre><code class="language-html">[Correct example]</code></pre>
-                    <p><strong class="text-error">❌ WRONG:</strong></p>
-                    <pre><code class="language-html">[Incorrect example]</code></pre>
-                    <p class="mt-1">[Explanation of why this matters]</p>
+                    <h3>⚠️ Contrast check</h3>
+                    <p>Choose the text color first, then keep the gradient's lightest and darkest stops within readable L values, or place text on a subtle solid surface over the gradient. If contrast is borderline, place text on a semi-opaque solid surface.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>Filters, Blend Modes, and Visual Effects</h2>
+
+                <p class="mb-2">Many "Photoshop" effects are live in CSS. Use filter for element effects and backdrop-filter for glassy surfaces. Keep effect areas small; test on mobile.</p>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">HAP's Old Way:</div>
+                    <pre><code class="language-css">.hero-image:hover {
+  /* Required photo-dark.jpg (separate file!) */
+}</code></pre>
+                </div>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">What I Learned (Pure CSS Effects!):</div>
+                    <pre><code class="language-css">.hero-image {
+  transition: filter 0.3s ease;
+}
+.hero-image:hover {
+  filter: brightness(0.8) contrast(1.1);
+}
+.vintage-section {
+  filter: sepia(0.6) contrast(0.9);
+}
+
+/* Glassmorphism Effect */
+.glass-card {
+  background: hsl(0 0% 100% / 0.1); /* fallback if no backdrop-filter */
+  backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid hsl(0 0% 100% / 0.2);
+}
+
+/* Auto-Contrast Text */
+.overlay-text {
+  mix-blend-mode: difference;
+  color: white;
+}</code></pre>
+                    <p class="code-comment mt-1"><strong>Educational note:</strong> Filters apply to the element itself. Backdrop-filter applies to what's <em>behind</em> the element. Multiple filters can be chained: <code>filter: brightness(0.9) contrast(1.1) saturate(1.2);</code></p>
+                    <p class="code-comment mt-1"><strong>Note:</strong> Reserve mix-blend-mode for decorative layers; do not rely on it for readable text.</p>
+                </div>
+
+                <p class="code-comment mt-1">Try it now: Open DevTools → Elements → find an image → add <code>filter: hue-rotate(90deg)</code> to the styles panel. Watch the colors shift! Try different values (0-360deg) and see how hue rotation works.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>color-mix() and Automatic Dark Mode</h2>
+
+                <p class="mb-2">color-mix() gives predictable hover and active states without guessing. Dark mode is automatic with prefers-color-scheme and a few flipped custom properties.</p>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">HAP's Old Way:</div>
+                    <pre><code class="language-css">.button {
+  background: #3366cc;
+}
+.button:hover {
+  background: #4477dd; /* Guessed! */
+}</code></pre>
+                </div>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">What I Learned (Precision & Automation):</div>
+                    <pre><code class="language-css">:root {
+  --primary: hsl(210 70% 50%);
+  --text: hsl(0 0% 10%);
+  --background: hsl(0 0% 100%);
+}
+
+.button {
+  background: var(--primary);
+}
+.button:hover {
+  background: color-mix(in srgb, var(--primary) 80%, white);
+}
+.button:active {
+  background: color-mix(in srgb, var(--primary) 80%, black);
+}
+
+/* Automatic Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: hsl(0 0% 90%);
+    --background: hsl(0 0% 10%);
+  }
+}
+
+:root { color-scheme: light dark; } /* native form controls match theme */</code></pre>
+                    <p class="code-comment mt-1"><strong>Educational note:</strong> color-mix() works in all modern browsers (as of 2023). The first parameter is the color space (<code>in srgb</code> is most common). The percentages must add to 100% (or you can omit one and it's automatic). prefers-color-scheme checks the user's system setting—Windows dark mode, macOS dark mode, etc.</p>
+                </div>
+
+                <div class="hap-note-callout mt-2">
+                    <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
+                        alt="Illustration of HAP learning the flip only what changes rule for dark mode" width="150" height="150" class="hap-note-image"
+                        decoding="async" loading="lazy">
+                    <div class="hap-note-content">
+                        <h3>🟠 HAP's Dark Mode Rule</h3>
+                        <p>Prof. Teeters taught me the "flip only what changes" rule—just flip background, text, and border colors. Accent colors often stay the same!</p>
+                    </div>
+                </div>
+
+                <p class="code-comment mt-1">Try it now: If your OS supports dark mode, toggle it in system settings while viewing this page. Notice how <code>prefers-color-scheme</code> detects the change automatically? In DevTools color picker, watch the contrast badge as you toggle themes.</p>
+
+                <div class="warning-box mt-2">
+                    <h3>⚠️ Dark mode accessibility</h3>
+                    <p>Test your dark theme colors separately. Light gray text that passes on white might fail on dark gray.</p>
                 </div>
             </div>
         </section>
 
         <section class="content-section">
             <div class="tips-container">
-                <h2 class="section-heading-centered">🎓 HyBit's Quick Reference</h2>
+                <h2 class="section-heading-centered">Practical Tips from HAP's Lab</h2>
 
                 <div class="tip-card">
                     <div class="tip-number">1</div>
                     <div>
-                        <h3>[Tip Title 1]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>Start with HSL for gradients</h3>
+                        <p>Way easier to adjust than hex! <code>linear-gradient(135deg, hsl(210 70% 40%), hsl(210 70% 60%))</code> makes sense—same hue, lightness increases.</p>
                     </div>
                 </div>
 
                 <div class="tip-card">
                     <div class="tip-number">2</div>
                     <div>
-                        <h3>[Tip Title 2]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>Combine filters carefully</h3>
+                        <p>Too many filters hurt performance. <code>filter: brightness(1.1) contrast(1.05)</code> is fine. Stacking 5+ filters will lag on older devices.</p>
                     </div>
                 </div>
 
                 <div class="tip-card">
                     <div class="tip-number">3</div>
                     <div>
-                        <h3>[Tip Title 3]</h3>
-                        <p>[HAP's practical advice about this topic]</p>
+                        <h3>Test color-mix() fallbacks</h3>
+                        <p>If you support older browsers, provide a fallback first, then modern:</p>
+                        <pre class="mt-1"><code class="language-css">.button:hover {
+  background: hsl(210 70% 58%); /* fallback approx */
+  background: color-mix(in srgb, var(--primary) 80%, white);
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">4</div>
+                    <div>
+                        <h3>Dark mode isn't just colors</h3>
+                        <p>Don't forget <code>color-scheme: light dark;</code> on the <code>:root</code>—it makes browser UI elements match your theme automatically!</p>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">5</div>
+                    <div>
+                        <h3>Conic gradients for loading spinners</h3>
+                        <p>Skip the SVG animation! <code>conic-gradient(from 0deg, var(--primary), transparent)</code> with CSS rotation creates smooth spinners.</p>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">6</div>
+                    <div>
+                        <h3>Respect motion settings</h3>
+                        <p>Pause animated gradients for <code>prefers-reduced-motion</code>.</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>Try These Interactive Demos!</h2>
+
+                <div class="analysis-grid mt-2">
+                    <div class="analysis-point">
+                        <h3>Demo 1: Gradient Builder</h3>
+                        <p>Build linear, radial, and conic gradients and copy the CSS. (≈ 5–7 min)</p>
+                        <p class="mt-1"><a href="../demos/gradient-builder.html" class="demo-link" aria-label="Open interactive gradient builder tool">Gradient Builder Demo →</a></p>
+                        <p class="code-comment mt-1"><strong>What you'll practice:</strong></p>
+                        <ul class="mt-1">
+                            <li>Creating gradients by hand</li>
+                            <li>Understanding color stop positions</li>
+                            <li>Adjusting gradient directions</li>
+                            <li>Run Lighthouse → Accessibility → Contrast</li>
+                        </ul>
+                    </div>
+
+                    <div class="analysis-point">
+                        <h3>Demo 2: Filter Effects Playground</h3>
+                        <p>Combine filters and see immediate results. (≈ 3–4 min)</p>
+                        <p class="mt-1"><a href="../demos/filter-effects.html" class="demo-link" aria-label="Open CSS filter effects playground">Filter Effects Demo →</a></p>
+                        <p class="code-comment mt-1"><strong>What you'll practice:</strong></p>
+                        <ul class="mt-1">
+                            <li>Combining filters</li>
+                            <li>Creating visual effects</li>
+                            <li>Understanding filter performance</li>
+                            <li>Run Lighthouse → Accessibility → Contrast</li>
+                        </ul>
+                    </div>
+
+                    <div class="analysis-point">
+                        <h3>Demo 3: Dark Mode Toggle Demo</h3>
+                        <p>Compare themes with a single media query. (≈ 2–3 min)</p>
+                        <p class="mt-1"><a href="../demos/dark-mode-demo.html" class="demo-link" aria-label="Open automatic dark mode demonstration">Dark Mode Demo →</a></p>
+                        <p class="code-comment mt-1"><strong>What you'll practice:</strong></p>
+                        <ul class="mt-1">
+                            <li>Setting up dark mode media queries</li>
+                            <li>Choosing which colors to flip</li>
+                            <li>Testing contrast in both themes</li>
+                            <li>Run Lighthouse → Accessibility → Contrast</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="mt-2 code-comment"><strong>Note:</strong> Demo links are placeholders for now. These will be created as separate interactive HTML files.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="warning-box">
+                <h3>⚠️ Common Mistakes I Made</h3>
+
+                <div class="mt-2">
+                    <h4>Too many gradient stops muddy colors</h4>
+                    <p>Start with 2 or 3.</p>
+                </div>
+
+                <div class="mt-2">
+                    <h4>No fallback for color-mix()</h4>
+                    <p>Provide one line above it.</p>
+                </div>
+
+                <div class="mt-2">
+                    <h4>Heavy blur() and stacked filters hurt performance</h4>
+                    <p>Keep effects light on large elements.</p>
+                </div>
+
+                <div class="mt-2">
+                    <h4>Assuming dark mode passes contrast</h4>
+                    <p>Test both themes.</p>
+                </div>
+
+                <div class="mt-2">
+                    <h4>Relying on difference for text contrast</h4>
+                    <p>Use solid colors for text.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>Quick Reference: Modern CSS Color Cheat Sheet</h2>
+
+                <div class="hap-info-grid mt-2">
+                    <div>
+                        <h3>Gradients</h3>
+                        <pre><code class="language-css">/* Linear */
+background: linear-gradient(135deg, color1, color2);
+
+/* Radial */
+background: radial-gradient(circle, color1, color2);
+
+/* Conic */
+background: conic-gradient(from 0deg, color1, color2);
+
+/* Multiple stops */
+background: linear-gradient(
+  to right,
+  color1 0%,
+  color2 50%,
+  color3 100%
+);</code></pre>
+                    </div>
+
+                    <div>
+                        <h3>Modern Features</h3>
+                        <pre><code class="language-css">/* color-mix() */
+color-mix(in srgb, var(--primary) 80%, white);
+
+/* Filters */
+filter: brightness(1.1) contrast(1.05);
+backdrop-filter: blur(10px);
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root { --bg: hsl(0 0% 10%); }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+  :root { --text: hsl(0 0% 0%); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation: none; }
+}
+
+/* color-mix() with fallback */
+background: hsl(210 70% 58%); background: color-mix(in srgb, var(--primary) 80%, white);
+
+/* Gradient borders */
+border-image: linear-gradient(135deg, color1, color2) 1;</code></pre>
+                    </div>
+                </div>
+
+                <p class="code-comment mt-2">Copy these patterns and customize for your projects. Remember: modern doesn't mean complicated—it means smarter!</p>
+
+                <p class="code-comment mt-1"><strong>Support note:</strong> These patterns work in current stable browsers. Provide a static color fallback for color-mix() and keep backdrop-filter areas small.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="topic-section">
+                <h2>Putting It All Together</h2>
+
+                <div class="prompt-box mt-2">
+                    <div class="prompt-label">What I Learned (Modern & Maintainable):</div>
+                    <pre><code class="language-css">:root {
+  --primary: hsl(210 70% 50%);
+  --secondary: hsl(280 60% 55%);
+  --text: hsl(0 0% 10%);
+  --background: hsl(0 0% 100%);
+
+  color-scheme: light dark;
+}
+
+/* Gradient backgrounds */
+.hero {
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
+}
+
+/* Perfect hover states */
+.button {
+  background: var(--primary);
+  transition: background 0.2s ease;
+}
+.button:hover {
+  background: color-mix(in srgb, var(--primary) 85%, white);
+}
+
+/* Visual effects */
+.card:hover {
+  filter: brightness(1.05) contrast(1.02);
+}
+
+/* Glassmorphism */
+.overlay {
+  background: hsl(0 0% 100% / 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Automatic dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: hsl(0 0% 90%);
+    --background: hsl(0 0% 10%);
+  }
+
+  .card:hover {
+    filter: brightness(1.15) contrast(1.05);
+  }
+}</code></pre>
+                    <p class="code-comment mt-1"><strong>Educational note:</strong> This complete system handles gradients, hover states, effects, and automatic dark mode—all with maintainable CSS. No image files, no JavaScript, no duplicate stylesheets. Modern browsers make this easy!</p>
+                    <p class="code-comment mt-1"><strong>Test both themes with DevTools contrast and a Lighthouse pass.</strong></p>
+                </div>
+
+                <p class="code-comment mt-1">Try it now: Copy this complete system and customize the HSL values for your own brand colors. Change just the <code>:root</code> variables and watch everything update together—gradients, hovers, filters, and dark mode all stay coordinated!</p>
+            </div>
+        </section>
+
     </main>
 
+    <div id="copy-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
     <nav aria-label="Station pagination" class="page-navigation bottom-nav">
-        <a href="station4.html" class="nav-link prev-link">← Previous: Station 4 - [PREV_STATION_TITLE]</a>
+        <a href="station4.html" class="nav-link prev-link">← Previous: Station 4 - Accessibility & Contrast</a>
         <a href="../index.html" class="nav-link hub-link">🏠 Hub</a>
-        <a href="station6.html" class="nav-link next-link">Next: Station 6 - [NEXT_STATION_TITLE] →</a>
+        <a href="station6.html" class="nav-link next-link">Next: Station 6 - AI Assistance for Color Design →</a>
     </nav>
 
     <footer class="footer">
         <p><strong>HAP's Learning Lab</strong> | An AI-Enhanced Educational Experience by Prof. Cynthia Teeters</p>
         <p class="footer-reminder">
-            [HAP's memorable takeaway about this station] 🟠 — HAP
+            Ready to supercharge your workflow with AI? In Station 6, I'll show you how to use AI as your color assistant (while avoiding my biggest mistakes)! Trust me, you'll want to see this. 🟠 — HAP
         </p>
         <div class="footer-copyright">
             <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_80,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
-                alt="HAP the apprentice learner with his study book and tools" class="footer-hybit" width="80"
+                alt="Illustration of HAP the apprentice learner with his study book and tools" class="footer-hybit" width="80"
                 height="80" decoding="async" loading="lazy">
             <div>
                 <p>HAP&trade; Educational Content &copy; 2025 Cynthia Teeters. All rights reserved.</p>
@@ -189,12 +551,8 @@
 
     <script src="../js/easter-egg.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"
-        integrity="sha384-MXybTpajaBV0AkcBaCPT4KIvo0FzoCiWXgcihYsw4FUkEz0Pv3JGV6tk2G8vJtDc"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"
-        integrity="sha384-HkMr0bZB9kBW4iVtXn6nd35kO/L/dQtkkUBkL9swzTEDMdIe5ExJChVDSnC79aNA"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -210,6 +568,7 @@
                         await navigator.clipboard.writeText(code);
                         button.classList.add('copied');
                         button.textContent = 'Copied';
+                        document.getElementById('copy-status').textContent = 'Code copied to clipboard';
                         setTimeout(() => {
                             button.classList.remove('copied');
                             button.textContent = 'Copy';
@@ -227,3 +586,10 @@
 </body>
 
 </html>
+
+<!--
+HAP™ Educational Content © 2025 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot™ (HAP™) character and the apprentice learning methodology are proprietary educational innovations.
+Character concept, teaching methodology, and all written content created by Prof. Cynthia Teeters.
+Visual elements created with AI assistance.
+-->
