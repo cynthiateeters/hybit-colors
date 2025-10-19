@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAP's Dark Mode Demo - Station 5</title>
+    <meta name="description"
+        content="Interactive demo showing how to implement automatic dark mode with CSS prefers-color-scheme media query. Learn what to flip and what to keep consistent.">
+
+    <!-- HAP Design System -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+
+</head>
+
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="page-navigation" aria-label="Demo navigation">
+        <a href="../stations/station5.html">← Back to Station 5</a>
+        <span>Demo 3: Dark Mode Toggle</span>
+    </nav>
+
+    <main id="main-content">
+        <div class="demo-container">
+            <!-- Header -->
+            <header style="text-align: center; margin-bottom: 2rem;">
+                <h1 style="color: hsl(32 62% 47%); margin-bottom: 0.5rem;">
+                    HAP's Dark Mode Demo
+                </h1>
+                <p style="font-size: 1.125rem; color: var(--dark-brown);">
+                    Learn how to implement automatic dark mode with just CSS
+                </p>
+            </header>
+
+            <!-- System Status Detection -->
+            <section class="system-status" aria-label="System preference detection">
+                <p>
+                    Your system is currently in:
+                    <strong id="system-mode" aria-live="polite">LIGHT MODE</strong>
+                    <span id="mode-icon" aria-hidden="true">🌞</span>
+                </p>
+                <p class="hint" style="margin-top: 1rem; line-height: 1.6;">
+                    <strong>Try it yourself!</strong> Open Chrome DevTools (F12 or Cmd+Option+I),<br>
+                    click the <strong>paint brush icon 🎨</strong> in the Styles panel,<br>
+                    then select <strong>"Emulate CSS prefers-color-scheme"</strong> and toggle between light/dark!
+                </p>
+                <p class="hint" style="font-size: 0.875rem; margin-top: 0.5rem;">
+                    <em>Quick tip:</em> Press <strong>Cmd+Shift+P</strong> (Mac) or <strong>Ctrl+Shift+P</strong>
+                    (Windows) and type "dark" to quickly switch modes.
+                </p>
+            </section>
+
+            <!-- Side-by-Side Preview -->
+            <section aria-label="Light and dark mode comparison">
+                <h2 class="sr-only">Mode Comparison</h2>
+                <div class="preview-grid">
+                    <!-- Light Mode Preview -->
+                    <div class="preview-card force-light" aria-label="Light mode preview">
+                        <h3>Light Mode (Forced)</h3>
+                        <div class="sample-content">
+                            <p>Body text in light mode with proper contrast for readability.</p>
+                            <button class="sample-button" aria-label="Sample button in light mode">Sample
+                                Button</button>
+                            <a href="#" class="sample-link" onclick="return false;">Link text example</a>
+                            <div class="status-row" role="list" aria-label="Status indicators">
+                                <span class="status success" role="listitem">✓ Success</span>
+                                <span class="status warning" role="listitem">⚠ Warning</span>
+                                <span class="status error" role="listitem">✕ Error</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dark Mode Preview -->
+                    <div class="preview-card force-dark" aria-label="Dark mode preview">
+                        <h3>Dark Mode (Forced)</h3>
+                        <div class="sample-content">
+                            <p>Body text in dark mode with proper contrast for readability.</p>
+                            <button class="sample-button" aria-label="Sample button in dark mode">Sample Button</button>
+                            <a href="#" class="sample-link" onclick="return false;">Link text example</a>
+                            <div class="status-row" role="list" aria-label="Status indicators">
+                                <span class="status success" role="listitem">✓ Success</span>
+                                <span class="status warning" role="listitem">⚠ Warning</span>
+                                <span class="status error" role="listitem">✕ Error</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comparison Section -->
+            <section class="comparison-section" aria-labelledby="comparison-heading">
+                <h3 id="comparison-heading">📊 What Changed?</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Property</th>
+                            <th scope="col">Light Mode</th>
+                            <th scope="col">Dark Mode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Background</strong></td>
+                            <td><code>hsl(0 0% 100%)</code></td>
+                            <td><code>hsl(0 0% 10%)</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Text</strong></td>
+                            <td><code>hsl(0 0% 10%)</code></td>
+                            <td><code>hsl(0 0% 90%)</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Border</strong></td>
+                            <td><code>hsl(0 0% 85%)</code></td>
+                            <td><code>hsl(0 0% 25%)</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="stayed-same">
+                    ✅ <strong>Stayed the same:</strong> Accent colors (blue), status colors (success/warning/error)
+                </p>
+            </section>
+
+            <!-- CSS Output -->
+            <section class="output-section" aria-labelledby="css-heading">
+                <h3 id="css-heading">Generated CSS Code</h3>
+                <pre><code id="css-output" class="language-css"></code></pre>
+                <button id="copy-btn" aria-label="Copy CSS code to clipboard">Copy CSS</button>
+            </section>
+
+            <!-- HAP's Tips -->
+            <aside class="tips-box" aria-labelledby="tips-heading">
+                <h3 id="tips-heading">🟠 HAP's Dark Mode Tips</h3>
+                <ul>
+                    <li><strong>Flip only neutral colors:</strong> Background, text, and borders are what change between
+                        modes.</li>
+                    <li><strong>Keep brand colors consistent:</strong> Your accent colors (like buttons and links)
+                        should stay recognizable in both modes.</li>
+                    <li><strong>Test contrast ratios:</strong> Make sure text meets WCAG AA (4.5:1) in both light and
+                        dark modes.</li>
+                    <li><strong>Use the color-scheme property:</strong> This tells the browser to use native dark mode
+                        for form controls and scrollbars.</li>
+                    <li><strong>No JavaScript needed:</strong> The <code>prefers-color-scheme</code> media query does
+                        all the work automatically!</li>
+                    <li><strong>Start with grayscale:</strong> Use neutral grays for backgrounds and text, then add
+                        color for accents.</li>
+                </ul>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="page-navigation" aria-label="Demo navigation">
+        <a href="../stations/station5.html">← Back to Station 5</a>
+        <a href="../index.html">Return to Hub →</a>
+    </nav>
+
+    <!-- Screen reader announcements -->
+    <div id="announcement" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+
+    <script>
+        // ============================================
+        // System Preference Detection
+        // ============================================
+
+        function updateSystemStatus() {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const modeText = isDark ? 'DARK MODE' : 'LIGHT MODE';
+            const modeIcon = isDark ? '🌙' : '🌞';
+
+            document.getElementById('system-mode').textContent = modeText;
+            document.getElementById('mode-icon').textContent = modeIcon;
+        }
+
+        // Listen for system preference changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            updateSystemStatus();
+
+            // Announce change to screen readers
+            const announcement = e.matches
+                ? 'System switched to dark mode'
+                : 'System switched to light mode';
+            announce(announcement);
+        });
+
+        // ============================================
+        // CSS Code Generation
+        // ============================================
+
+        function generateCSSCode() {
+            const code = `:root {
+  /* Light mode (default) */
+  --bg: hsl(0 0% 100%);
+  --text: hsl(0 0% 10%);
+  --border: hsl(0 0% 85%);
+  --accent: hsl(210 70% 50%);
+
+  /* Tell browser to use native dark mode for controls */
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* Automatic dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: hsl(0 0% 10%);
+    --text: hsl(0 0% 90%);
+    --border: hsl(0 0% 25%);
+    /* --accent stays the same! */
+  }
+}`;
+
+            document.getElementById('css-output').textContent = code;
+            Prism.highlightElement(document.getElementById('css-output'));
+        }
+
+        // ============================================
+        // Copy Button Functionality
+        // ============================================
+
+        document.getElementById('copy-btn').addEventListener('click', async () => {
+            const code = document.getElementById('css-output').textContent;
+            const btn = document.getElementById('copy-btn');
+
+            try {
+                await navigator.clipboard.writeText(code);
+                btn.classList.add('copied');
+                btn.textContent = 'Copied ✅';
+                btn.disabled = true;
+                announce('CSS code copied to clipboard');
+
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.textContent = 'Copy CSS';
+                    btn.disabled = false;
+                }, 3000);
+            } catch (err) {
+                console.error('Copy failed:', err);
+                // Auto-select the code for manual copy
+                const range = document.createRange();
+                range.selectNodeContents(document.getElementById('css-output'));
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+
+                btn.textContent = 'Press Ctrl+C';
+                announce('Copy failed. Code is now selected - press Ctrl+C to copy manually.');
+
+                setTimeout(() => {
+                    btn.textContent = 'Copy CSS';
+                    selection.removeAllRanges();
+                }, 4000);
+            }
+        });
+
+        // ============================================
+        // Accessibility Announcements
+        // ============================================
+
+        function announce(message) {
+            const announcement = document.getElementById('announcement');
+            if (announcement) {
+                announcement.textContent = message;
+            }
+        }
+
+        // ============================================
+        // Initialize on Page Load
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSystemStatus();
+            generateCSSCode();
+        });
+    </script>
+
+</body>
+
+</html>
+
+<!--
+HAP™ Educational Content © 2025 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot™ (HAP™) character and the apprentice learning methodology are proprietary educational innovations.
+Character concept, teaching methodology, and all written content created by Prof. Cynthia Teeters.
+Visual elements created with AI assistance.
+-->
