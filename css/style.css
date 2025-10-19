@@ -100,6 +100,19 @@
   --readable-width: 75ch;
   --readable-width-narrow: 65ch;
   --readable-width-wide: 85ch;
+
+  /* Station 5 Demo 3: Dark Mode Toggle - Custom properties */
+  --demo-bg: hsl(0, 0%, 100%);
+  --demo-text: hsl(0, 0%, 10%);
+  --demo-border: hsl(0, 0%, 85%);
+  --demo-accent: hsl(210, 100%, 30%);
+  /* Blue - darker for better contrast */
+  --demo-success: hsl(142, 70%, 35%);
+  /* Green - darker for better contrast */
+  --demo-warning: hsl(45, 100%, 30%);
+  /* Gold - darker for better contrast */
+  --demo-error: hsl(0, 75%, 45%);
+  /* Red - darker for better contrast */
 }
 
 * {
@@ -280,7 +293,7 @@ body {
 }
 
 .hybit-badge {
-  background: white;
+  background: hsl(0, 0%, 100%);
   border-radius: 50%;
   padding: 0.5rem;
   box-shadow: var(--shadow-md);
@@ -308,7 +321,7 @@ body {
 }
 
 .dialog-close:hover {
-  background: white;
+  background: hsl(0, 0%, 100%);
   transform: scale(1.1);
 }
 
@@ -1154,7 +1167,7 @@ pre {
 /* Content Boxes */
 .content-box {
   padding: 1.5rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
   border-radius: 16px;
 }
 
@@ -1167,7 +1180,7 @@ pre {
   right: 1rem;
   background: var(--teal-darker);
   /* WCAG AA compliant: 4.5:1 contrast with white text */
-  color: white;
+  color: hsl(0, 0%, 100%);
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -1253,7 +1266,7 @@ pre {
   padding: 1rem;
   background: var(--teal-darker);
   /* Changed from #27ae60 for better contrast */
-  color: white;
+  color: hsl(0, 0%, 100%);
   /* White text on dark background - WCAG AAA compliant */
   text-align: center;
   font-weight: 700;
@@ -1275,7 +1288,7 @@ pre {
   border-radius: 16px;
   padding: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background: white;
+  background: hsl(0, 0%, 100%);
 }
 
 .device-frame h4 {
@@ -1321,7 +1334,7 @@ pre {
   font-size: clamp(1rem, 2vw + 0.5rem, 1.1rem);
   background: var(--teal-darker);
   /* WCAG AA compliant: 4.5:1 contrast with white text */
-  color: white;
+  color: hsl(0, 0%, 100%);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -1725,7 +1738,7 @@ pre {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
   border-radius: 8px;
   border: 2px solid var(--soft-orange);
   flex-wrap: wrap;
@@ -1827,7 +1840,7 @@ pre {
   max-width: 30ch;
   margin: 0 auto 1rem auto;
   padding: 1rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
   border-radius: 8px;
   line-height: 1.6;
 }
@@ -1836,7 +1849,7 @@ pre {
   max-width: 65ch;
   margin: 0 auto 1rem auto;
   padding: 1rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
   border-radius: 8px;
   line-height: 1.6;
 }
@@ -1845,7 +1858,7 @@ pre {
   max-width: 90ch;
   margin: 0 auto 1rem auto;
   padding: 1rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
   border-radius: 8px;
   line-height: 1.6;
 }
@@ -1953,7 +1966,7 @@ pre {
 }
 
 .preview-box {
-  background: white;
+  background: hsl(0, 0%, 100%);
   border: 2px solid var(--soft-orange);
   border-radius: var(--radius);
   padding: 1.5rem;
@@ -2191,7 +2204,7 @@ pre {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  background: white;
+  background: hsl(0, 0%, 100%);
 }
 
 .format-table th,
@@ -2232,7 +2245,7 @@ pre {
 }
 
 .preview-box {
-  background: white;
+  background: hsl(0, 0%, 100%);
   border: 2px solid var(--ui-border-light);
   border-radius: 4px;
   padding: 2rem;
@@ -2265,7 +2278,7 @@ pre {
   border: 2px solid var(--warm-orange);
   border-radius: 8px;
   padding: 1rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
 }
 
 .loading-example h3 {
@@ -2419,7 +2432,7 @@ pre {
   width: 28px;
   height: 28px;
   background: var(--warm-orange);
-  border: 3px solid white;
+  border: 3px solid hsl(0, 0%, 100%);
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
@@ -2439,7 +2452,7 @@ pre {
   width: 28px;
   height: 28px;
   background: var(--warm-orange);
-  border: 3px solid white;
+  border: 3px solid hsl(0, 0%, 100%);
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
@@ -2456,7 +2469,7 @@ pre {
 }
 
 .preview-text {
-  background: white;
+  background: hsl(0, 0%, 100%);
   border: 2px solid var(--ui-border-light);
   border-radius: 4px;
   padding: 2rem;
@@ -2504,7 +2517,7 @@ pre {
   border: 2px solid var(--warm-orange);
   border-radius: 8px;
   padding: 1.5rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
 }
 
 .chart-bad {
@@ -2542,7 +2555,7 @@ pre {
   border: 2px solid var(--warm-orange);
   border-radius: 8px;
   padding: 2rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
   margin: 1.5rem 0;
 }
 
@@ -2590,7 +2603,7 @@ pre {
   border: 2px solid var(--warm-orange);
   border-radius: 8px;
   padding: 1rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
 }
 
 .axis-demo {
@@ -2608,7 +2621,7 @@ pre {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  background: white;
+  background: hsl(0, 0%, 100%);
 }
 
 .support-table th,
@@ -2620,7 +2633,7 @@ pre {
 
 .support-table th {
   background: var(--teal-darker);
-  color: white;
+  color: hsl(0, 0%, 100%);
   font-weight: 600;
 }
 
@@ -2674,7 +2687,7 @@ pre {
 
 .pairing-bad-badge {
   background: var(--error-darker);
-  color: white;
+  color: hsl(0, 0%, 100%);
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.875rem;
@@ -2682,7 +2695,7 @@ pre {
 
 .pairing-preview {
   padding: 1.5rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
   border-radius: 4px;
   margin-bottom: 1rem;
 }
@@ -2768,7 +2781,7 @@ pre {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
   border: 1px solid var(--soft-orange);
   border-radius: 4px;
 }
@@ -2790,7 +2803,7 @@ pre {
   font-size: 2rem;
   line-height: 1.4;
   padding: 2rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
   border-radius: 4px;
   border: 2px solid var(--soft-orange);
   min-height: 150px;
@@ -2835,7 +2848,7 @@ pre {
 .wrap-label {
   display: inline-block;
   background: var(--teal-darker);
-  color: white;
+  color: hsl(0, 0%, 100%);
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.75rem;
@@ -2867,7 +2880,7 @@ pre {
 
 .feature-column {
   padding: 1rem;
-  background: white;
+  background: hsl(0, 0%, 100%);
   border-radius: 4px;
   border: 2px solid var(--soft-orange);
 }
@@ -2963,6 +2976,403 @@ pre {
 
 .cta-link:hover {
   text-decoration: underline;
+}
+
+/* ================================================
+   Station 5 Demo 3: Dark Mode Toggle Demo
+   ================================================ */
+
+/* System status section */
+.system-status {
+  background: var(--cream-white);
+  border: 2px solid var(--warm-orange);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.system-status p {
+  margin: 0.5rem 0;
+  font-size: 1.125rem;
+}
+
+#system-mode {
+  color: hsl(32 62% 47%);
+  /* HAP orange-darker (3:1 for large bold) */
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+#mode-icon {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+.hint {
+  color: var(--dark-brown);
+  font-size: 0.9375rem;
+  font-style: italic;
+}
+
+/* Preview grid and cards */
+.preview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .preview-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.preview-card {
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.preview-card:hover {
+  transform: translateY(-2px);
+}
+
+.preview-card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.125rem;
+  text-align: center;
+  padding-bottom: 0.75rem;
+}
+
+.sample-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sample-content p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Force light mode styling - CRITICAL for demo */
+.force-light {
+  background: hsl(0 0% 100%);
+  color: hsl(0 0% 10%);
+  border: 2px solid hsl(0 0% 85%);
+}
+
+.force-light h3 {
+  border-bottom: 2px solid hsl(0 0% 85%);
+}
+
+/* Force dark mode styling - CRITICAL for demo */
+.force-dark {
+  background: hsl(0 0% 10%);
+  color: hsl(0 0% 90%);
+  border: 2px solid hsl(0 0% 25%);
+}
+
+.force-dark h3 {
+  border-bottom: 2px solid hsl(0 0% 25%);
+}
+
+/* Sample interactive elements - Light mode versions */
+.force-light .sample-button {
+  background: hsl(210, 100%, 30%);
+  /* Dark blue for white bg */
+  color: hsl(0, 0%, 100%);
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.force-light .sample-button:hover {
+  opacity: 0.9;
+}
+
+.force-light .sample-link {
+  color: hsl(210, 100%, 30%);
+  /* Dark blue for white bg - 7.8:1 contrast */
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/* Sample interactive elements - Dark mode versions */
+.force-dark .sample-button {
+  background: hsl(210, 100%, 60%);
+  /* Light blue for dark bg */
+  color: hsl(0, 0%, 10%);
+  /* Dark text on light button */
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.force-dark .sample-button:hover {
+  opacity: 0.9;
+}
+
+.force-dark .sample-link {
+  color: hsl(210, 100%, 70%);
+  /* Light blue for dark bg - 9.5:1 contrast */
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/* Status indicators - Light mode versions */
+.status-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.status {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.force-light .status.success {
+  color: hsl(142, 70%, 30%);
+  /* Dark green for white bg - 5.2:1 contrast */
+}
+
+.force-light .status.warning {
+  color: hsl(45, 100%, 25%);
+  /* Dark gold for white bg - 6.8:1 contrast */
+}
+
+.force-light .status.error {
+  color: hsl(0, 75%, 40%);
+  /* Dark red for white bg - 5.9:1 contrast */
+}
+
+/* Status indicators - Dark mode versions */
+.force-dark .status.success {
+  color: hsl(142, 70%, 60%);
+  /* Light green for dark bg - 7.1:1 contrast */
+}
+
+.force-dark .status.warning {
+  color: hsl(45, 100%, 65%);
+  /* Light gold for dark bg - 11.2:1 contrast */
+}
+
+.force-dark .status.error {
+  color: hsl(0, 75%, 65%);
+  /* Light red for dark bg - 7.8:1 contrast */
+}
+
+/* Comparison table section */
+.comparison-section {
+  background: var(--cream-white);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.comparison-section h3 {
+  margin: 0 0 1.5rem 0;
+  color: var(--dark-brown);
+  font-size: 1.375rem;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--peach-background);
+}
+
+.comparison-table th {
+  background: var(--peach-background);
+  font-weight: 700;
+  color: var(--dark-brown);
+}
+
+.comparison-table code {
+  background: var(--peach-background);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  color: var(--orange-darkest);
+}
+
+.stayed-same {
+  color: var(--dark-brown);
+  font-weight: 600;
+}
+
+/* CSS output section */
+.output-section {
+  background: var(--cream-white);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.output-section h3 {
+  margin: 0 0 1rem 0;
+  color: var(--dark-brown);
+  font-size: 1.25rem;
+}
+
+.output-section pre {
+  background: #2d2d2d;
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-x: auto;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.output-section code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* Demo-specific copy button */
+.demo-copy-btn {
+  background: var(--warm-orange);
+  color: var(--dark-brown);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.demo-copy-btn:hover {
+  background: var(--soft-orange);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(232, 165, 87, 0.3);
+}
+
+.demo-copy-btn:active {
+  transform: translateY(0);
+}
+
+.demo-copy-btn.copied {
+  background: var(--teal-darker);
+  color: hsl(0, 0%, 100%);
+}
+
+/* HAP Tips section */
+.tips-box {
+  background: linear-gradient(135deg, var(--cream-white) 0%, var(--peach-background) 100%);
+  border-left: 4px solid var(--warm-orange);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.tips-box h3 {
+  margin: 0 0 1rem 0;
+  color: var(--dark-brown);
+  font-size: 1.25rem;
+}
+
+.tips-box ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.tips-box li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  color: var(--dark-brown);
+}
+
+.tips-box li:last-child {
+  margin-bottom: 0;
+}
+
+/* Skip link for accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  padding: 1rem 1.5rem;
+  margin: 0.5rem;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background: var(--warm-orange);
+  color: var(--dark-brown);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+/* Demo navigation links */
+.page-navigation a {
+  padding: 0.75rem 1.5rem;
+  background: var(--cream-white);
+  color: var(--dark-brown);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.page-navigation a:hover {
+  background: var(--warm-orange);
+  border-color: var(--soft-orange);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(232, 165, 87, 0.3);
+}
+
+.page-navigation a:focus {
+  outline: 3px solid var(--warm-orange);
+  outline-offset: 2px;
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+  .preview-card,
+  .demo-copy-btn,
+  .page-navigation a {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /*
