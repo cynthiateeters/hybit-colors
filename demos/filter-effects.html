@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HAP's Filter Effects Playground - Learn CSS Filters</title>
-    <meta name="description" content="Interactive CSS filter effects playground. Adjust brightness, contrast, saturation, blur, and more to see how CSS filters transform images.">
+    <meta name="description"
+        content="Interactive CSS filter effects playground. Adjust brightness, contrast, saturation, blur, and more to see how CSS filters transform images.">
 
     <!-- HAP Learning Lab Styles -->
     <link rel="stylesheet" href="../css/style.css">
@@ -12,336 +14,24 @@
     <!-- Prism.js for syntax highlighting -->
     <link rel="stylesheet" href="../css/prism-hap-theme.css">
 
-    <style>
-        /* Filter Playground Specific Styles */
-        .filter-playground {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
 
-        .demo-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .demo-header h1 {
-            color: var(--dark-brown);
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .demo-header p {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* Preview Section */
-        .preview-section {
-            background: var(--cream-white);
-            border: 2px solid var(--warm-orange);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .preview-section h2 {
-            color: var(--dark-brown);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        #filter-target {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            display: block;
-            margin: 0 auto;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: filter 0.1s ease;
-        }
-
-        /* Controls Grid */
-        .controls-section {
-            background: var(--cream-white);
-            border: 2px solid #E8A557;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .controls-section h2 {
-            color: var(--dark-brown);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .controls-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.25rem;
-        }
-
-        @media (min-width: 768px) {
-            .controls-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .filter-control {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .filter-control label {
-            font-weight: 600;
-            color: var(--dark-brown);
-            font-size: 0.9rem;
-        }
-
-        .slider-row {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .filter-control input[type="range"] {
-            flex: 1;
-            height: 8px;
-            border-radius: 4px;
-            background: linear-gradient(to right, #DDD 0%, var(--warm-orange) 50%, #DDD 100%);
-            outline: none;
-            -webkit-appearance: none;
-        }
-
-        .filter-control input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--warm-orange);
-            cursor: pointer;
-            border: 3px solid white;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .filter-control input[type="range"]::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--warm-orange);
-            cursor: pointer;
-            border: 3px solid white;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .filter-control input[type="range"]:focus::-webkit-slider-thumb {
-            outline: 2px solid var(--teal-darker);
-            outline-offset: 2px;
-        }
-
-        .filter-control input[type="range"]:focus::-moz-range-thumb {
-            outline: 2px solid var(--teal-darker);
-            outline-offset: 2px;
-        }
-
-        .filter-control output {
-            min-width: 4rem;
-            text-align: right;
-            font-weight: 600;
-            color: var(--dark-brown);
-            font-size: 0.9rem;
-        }
-
-        /* Action Buttons */
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .action-buttons button,
-        .action-buttons select {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid var(--warm-orange);
-            border-radius: 8px;
-            background: white;
-            color: var(--dark-brown);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 1rem;
-        }
-
-        .action-buttons button:hover,
-        .action-buttons select:hover {
-            background: var(--warm-orange);
-            color: white;
-        }
-
-        .action-buttons button:active {
-            transform: scale(0.98);
-        }
-
-        .action-buttons select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%233D2817' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            padding-right: 2.5rem;
-        }
-
-        /* Performance Indicator */
-        .performance-indicator {
-            background: #FFF8F0;
-            border: 2px solid #E8A557;
-            border-radius: 8px;
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .performance-indicator h3 {
-            color: var(--dark-brown);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .performance-indicator p {
-            margin: 0;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .perf-excellent { color: #2D7A2D; font-weight: 600; }
-        .perf-good { color: #5B8A3C; font-weight: 600; }
-        .perf-moderate { color: #D97706; font-weight: 600; }
-        .perf-expensive { color: #C53030; font-weight: 600; }
-
-        /* Output Section */
-        .output-section {
-            background: var(--cream-white);
-            border: 2px solid #E8A557;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .output-section h2 {
-            color: var(--dark-brown);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .output-section pre {
-            background: #2d2d2d;
-            border-radius: 8px;
-            padding: 1rem;
-            overflow-x: auto;
-            position: relative;
-            margin-bottom: 1rem;
-            /* Prism theme variables for dark background */
-            --code-text: #f8f8f2;
-            --code-tag: #E8A557;
-            --code-attr: #5BA69C;
-            --code-value: #FFB366;
-            --code-comment: #C8B8A8;
-            --code-punctuation: #C8B8A8;
-        }
-
-        .output-section pre code {
-            color: var(--code-text);
-        }
-
-        #copy-btn {
-            background: var(--warm-orange);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 1rem;
-        }
-
-        #copy-btn:hover {
-            background: #D89847;
-            transform: translateY(-1px);
-        }
-
-        #copy-btn:active {
-            transform: translateY(0);
-        }
-
-        #copy-btn.copied {
-            background: #2D7A2D;
-        }
-
-        /* HAP Tips Section */
-        .tips-section {
-            margin-top: 2rem;
-        }
-
-        /* Screen reader only announcements */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
-        }
-
-        /* Accessibility - prefers-contrast */
-        @media (prefers-contrast: more) {
-            .preview-section,
-            .controls-section,
-            .output-section,
-            .performance-indicator {
-                border-width: 3px;
-            }
-        }
-
-        /* Accessibility - prefers-reduced-motion */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                transition-duration: 0.01ms !important;
-            }
-
-            #filter-target {
-                transition: none !important;
-            }
-        }
-    </style>
 </head>
+
 <body>
     <div class="filter-playground">
         <!-- Demo Header -->
         <header class="demo-header">
             <h1>🎨 HAP's Filter Effects Playground</h1>
-            <p>Adjust the sliders below to see how CSS filters transform images. Combine multiple filters to create unique effects!</p>
+            <p>Adjust the sliders below to see how CSS filters transform images. Combine multiple filters to create
+                unique effects!</p>
         </header>
 
         <!-- Preview Section -->
         <section class="preview-section">
             <h2>Live Preview</h2>
-            <img
-                id="filter-target"
-                src="https://picsum.photos/600/400?random=42"
-                alt="Colorful landscape photo used for demonstrating CSS filter effects"
-                width="600"
-                height="400"
-                loading="eager"
-                fetchpriority="high"
-            >
+            <img id="filter-target" src="https://picsum.photos/600/400?random=42"
+                alt="Colorful landscape photo used for demonstrating CSS filter effects" width="600" height="400"
+                loading="eager" fetchpriority="high">
         </section>
 
         <!-- Filter Controls -->
@@ -352,7 +42,8 @@
                 <div class="filter-control">
                     <label for="brightness">Brightness</label>
                     <div class="slider-row">
-                        <input type="range" id="brightness" min="0" max="200" value="100" step="5" aria-label="Brightness percentage">
+                        <input type="range" id="brightness" min="0" max="200" value="100" step="5"
+                            aria-label="Brightness percentage">
                         <output for="brightness" id="brightness-val">100%</output>
                     </div>
                 </div>
@@ -361,7 +52,8 @@
                 <div class="filter-control">
                     <label for="contrast">Contrast</label>
                     <div class="slider-row">
-                        <input type="range" id="contrast" min="0" max="200" value="100" step="5" aria-label="Contrast percentage">
+                        <input type="range" id="contrast" min="0" max="200" value="100" step="5"
+                            aria-label="Contrast percentage">
                         <output for="contrast" id="contrast-val">100%</output>
                     </div>
                 </div>
@@ -370,7 +62,8 @@
                 <div class="filter-control">
                     <label for="saturate">Saturation</label>
                     <div class="slider-row">
-                        <input type="range" id="saturate" min="0" max="200" value="100" step="5" aria-label="Saturation percentage">
+                        <input type="range" id="saturate" min="0" max="200" value="100" step="5"
+                            aria-label="Saturation percentage">
                         <output for="saturate" id="saturate-val">100%</output>
                     </div>
                 </div>
@@ -379,7 +72,8 @@
                 <div class="filter-control">
                     <label for="grayscale">Grayscale</label>
                     <div class="slider-row">
-                        <input type="range" id="grayscale" min="0" max="100" value="0" step="5" aria-label="Grayscale percentage">
+                        <input type="range" id="grayscale" min="0" max="100" value="0" step="5"
+                            aria-label="Grayscale percentage">
                         <output for="grayscale" id="grayscale-val">0%</output>
                     </div>
                 </div>
@@ -388,7 +82,8 @@
                 <div class="filter-control">
                     <label for="sepia">Sepia</label>
                     <div class="slider-row">
-                        <input type="range" id="sepia" min="0" max="100" value="0" step="5" aria-label="Sepia percentage">
+                        <input type="range" id="sepia" min="0" max="100" value="0" step="5"
+                            aria-label="Sepia percentage">
                         <output for="sepia" id="sepia-val">0%</output>
                     </div>
                 </div>
@@ -397,7 +92,8 @@
                 <div class="filter-control">
                     <label for="hue-rotate">Hue Rotate</label>
                     <div class="slider-row">
-                        <input type="range" id="hue-rotate" min="0" max="360" value="0" step="5" aria-label="Hue rotation in degrees">
+                        <input type="range" id="hue-rotate" min="0" max="360" value="0" step="5"
+                            aria-label="Hue rotation in degrees">
                         <output for="hue-rotate" id="hue-rotate-val">0°</output>
                     </div>
                 </div>
@@ -415,7 +111,8 @@
                 <div class="filter-control">
                     <label for="invert">Invert</label>
                     <div class="slider-row">
-                        <input type="range" id="invert" min="0" max="100" value="0" step="5" aria-label="Invert percentage">
+                        <input type="range" id="invert" min="0" max="100" value="0" step="5"
+                            aria-label="Invert percentage">
                         <output for="invert" id="invert-val">0%</output>
                     </div>
                 </div>
@@ -458,8 +155,10 @@
                     <li><strong>Sepia and grayscale</strong> create vintage or artistic looks instantly</li>
                     <li><strong>Hue-rotate</strong> shifts the entire color palette - perfect for theme variations</li>
                     <li><strong>Blur is expensive!</strong> I learned to keep blurred areas small for performance</li>
-                    <li><strong>Filters stack</strong> - the order matters! Brightness before saturate gives different results than saturate before brightness</li>
-                    <li><strong>Use backdrop-filter</strong> for blurring backgrounds behind elements (like frosted glass)</li>
+                    <li><strong>Filters stack</strong> - the order matters! Brightness before saturate gives different
+                        results than saturate before brightness</li>
+                    <li><strong>Use backdrop-filter</strong> for blurring backgrounds behind elements (like frosted
+                        glass)</li>
                 </ul>
             </div>
         </section>
@@ -826,6 +525,7 @@
         updateFilters();
     </script>
 </body>
+
 </html>
 <!--
 HAP™ Educational Content © 2025 Cynthia Teeters. All rights reserved.

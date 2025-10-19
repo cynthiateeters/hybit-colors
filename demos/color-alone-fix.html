@@ -1,211 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fix HAP's Color-Only Indicators - Interactive Demo</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <!-- HAP Design System -->
+    <link rel="stylesheet" href="../css/style.css">
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            color: #2d2d2d;
-            background: #f5f5f5;
-            padding: 1rem;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        header {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #1a1a1a;
-        }
-
-        .intro {
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        .problem-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .problem-card h2 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-
-        .problem-example {
-            background: #fafafa;
-            padding: 1rem;
-            border-radius: 4px;
-            border: 2px solid #e0e0e0;
-            margin-bottom: 1rem;
-        }
-
-        .problem-example.fixed {
-            border-color: #4caf50;
-            background: #f1f8f4;
-        }
-
-        /* Demo-specific styles */
-        .error-text {
-            color: #d32f2f;
-        }
-
-        .success-text {
-            color: #388e3c;
-        }
-
-        .link-example {
-            color: #1976d2;
-            cursor: pointer;
-        }
-
-        .link-example.fixed {
-            text-decoration: underline;
-        }
-
-        .link-example.fixed:visited {
-            color: #124b86;
-        }
-
-        .required-field label {
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .required-asterisk {
-            color: #d32f2f;
-        }
-
-        .required-field input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .fix-controls {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .fix-controls h3 {
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            color: #555;
-        }
-
-        .fix-option {
-            display: block;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .fix-option input[type="checkbox"] {
-            margin-right: 0.5rem;
-        }
-
-        .feedback {
-            margin-top: 0.75rem;
-            padding: 0.75rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            display: none;
-        }
-
-        .feedback.show {
-            display: block;
-        }
-
-        .feedback.success {
-            background: #e8f5e9;
-            color: #2e7d32;
-            border-left: 4px solid #4caf50;
-        }
-
-        .feedback.partial {
-            background: #fff3e0;
-            color: #e65100;
-            border-left: 4px solid #ff9800;
-        }
-
-        .icon-before::before {
-            margin-right: 0.25rem;
-            font-weight: bold;
-        }
-
-        .error-icon::before {
-            content: "✕ ";
-        }
-
-        .success-icon::before {
-            content: "✓ ";
-        }
-
-        .required-text {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 0.25rem;
-        }
-
-        /* Keyboard focus visibility */
-        :where(a, button, input, select, textarea, [tabindex]):focus-visible {
-            outline: 2px solid #1976d2;
-            outline-offset: 2px;
-        }
-
-        input[type="checkbox"]:focus-visible {
-            outline: 2px solid #1976d2;
-            outline-offset: 2px;
-        }
-
-        @media (min-width: 768px) {
-            body {
-                padding: 2rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .problem-card h2 {
-                font-size: 1.25rem;
-            }
-        }
-    </style>
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
-<body>
-    <div class="container">
+
+<body class="color-alone-demo">
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <div class="container" id="main-content">
         <header>
             <h1>Fix HAP's Color-Only Indicators</h1>
-            <p class="intro">HAP used to rely only on color to communicate meaning. Help fix these examples by adding icons, underlines, or text labels so everyone can understand them! Remember: icons supplement text—don't use icons or color alone.</p>
+            <p class="intro">HAP used to rely only on color to communicate meaning. Help fix these examples by adding
+                icons, underlines, or text labels so everyone can understand them! Remember: icons supplement text—don't
+                use icons or color alone.</p>
         </header>
 
         <!-- Problem 1: Error Message -->
@@ -293,6 +108,12 @@
 
             <div class="feedback" id="required-feedback"></div>
         </div>
+
+        <!-- Page Navigation -->
+        <nav class="page-navigation" aria-label="Demo navigation">
+            <a href="../stations/station4.html">← Back to Station 4</a>
+            <a href="../index.html">Return to Hub →</a>
+        </nav>
     </div>
 
     <script>
@@ -411,4 +232,5 @@
         }
     </script>
 </body>
+
 </html>

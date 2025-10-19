@@ -1,281 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive demo teaching WCAG color contrast standards. Adjust text lightness to fix HAP's contrast mistake and learn about AA and AAA accessibility requirements.">
     <title>Fix HAP's Contrast Problem - Interactive Demo</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <!-- HAP Design System -->
+    <link rel="stylesheet" href="../css/style.css">
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            color: #2d2d2d;
-            background: #f5f5f5;
-            padding: 1rem;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        header {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #1a1a1a;
-        }
-
-        .intro {
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        .demo-section {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .demo-section h2 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-
-        .text-preview {
-            background: white;
-            padding: 2rem 1.5rem;
-            border-radius: 4px;
-            border: 2px solid #e0e0e0;
-            margin-bottom: 1.5rem;
-            min-height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .preview-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .preview-text-large {
-            font-size: 1.5rem;
-            font-weight: bold;
-            line-height: 1.4;
-        }
-
-        .controls {
-            margin-bottom: 1.5rem;
-        }
-
-        .control-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .control-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .slider-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        input[type="range"] {
-            flex: 1;
-            height: 8px;
-            border-radius: 4px;
-            background: #e0e0e0;
-            outline: none;
-            -webkit-appearance: none;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #1976d2;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        input[type="range"]::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #1976d2;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .slider-value {
-            min-width: 50px;
-            font-weight: 600;
-            color: #1976d2;
-            font-size: 0.95rem;
-        }
-
-        .ratio-display {
-            background: #fafafa;
-            padding: 1.25rem;
-            border-radius: 4px;
-            border-left: 4px solid #999;
-            margin-bottom: 1rem;
-        }
-
-        .ratio-display.pass-aa {
-            background: #fff9e6;
-            border-color: #ff9800;
-        }
-
-        .ratio-display.pass-aaa {
-            background: #e8f5e9;
-            border-color: #4caf50;
-        }
-
-        .ratio-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #1a1a1a;
-            margin-bottom: 0.25rem;
-        }
-
-        .ratio-label {
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 0.75rem;
-        }
-
-        .wcag-status {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
-            margin-top: 0.75rem;
-        }
-
-        .status-badge {
-            padding: 0.5rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .status-badge.fail {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-        .status-badge.pass {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .color-values {
-            background: #fafafa;
-            padding: 1rem;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-        }
-
-        .color-values div {
-            margin-bottom: 0.5rem;
-        }
-
-        .color-values div:last-child {
-            margin-bottom: 0;
-        }
-
-        .color-label {
-            color: #666;
-            display: inline-block;
-            min-width: 80px;
-        }
-
-        .color-value {
-            color: #1976d2;
-            font-weight: 600;
-        }
-
-        .reset-button {
-            background: #1976d2;
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .reset-button:hover {
-            background: #1565c0;
-        }
-
-        .reset-button:active {
-            background: #0d47a1;
-        }
-
-        @media (min-width: 768px) {
-            body {
-                padding: 2rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .demo-section h2 {
-                font-size: 1.25rem;
-            }
-
-            .reset-button {
-                width: auto;
-            }
-        }
-    </style>
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
-<body>
-    <div class="container">
+
+<body class="contrast-fixer-demo">
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <div class="container" id="main-content">
         <header>
             <h1>Fix HAP's Contrast Problem</h1>
-            <p class="intro">HAP used light gray text (#cccccc) on white because it looked "modern." But the contrast ratio was only 1.6:1 - way below WCAG standards! Adjust the lightness slider to fix it.</p>
+            <p class="intro">HAP used light gray text (#cccccc) on white because it looked "modern." But the contrast
+                ratio was only 1.6:1 - way below WCAG standards! Adjust the lightness slider to fix it.</p>
         </header>
 
         <div class="demo-section">
             <h2>Text preview</h2>
             <div class="text-preview">
                 <p class="preview-text" id="normal-text">
-                    This is normal body text (16px). It needs a contrast ratio of at least 4.5:1 to meet WCAG AA standards. Can you adjust the color to make it pass?
+                    This is normal body text (16px). It needs a contrast ratio of at least 4.5:1 to meet WCAG AA
+                    standards. Can you adjust the color to make it pass?
                 </p>
                 <p class="preview-text-large" id="large-text">
                     This is large text (24px, bold)
@@ -288,15 +41,9 @@
                         Lightness (L in HSL)
                     </label>
                     <div class="slider-container">
-                        <input
-                            type="range"
-                            id="lightness-slider"
-                            min="0"
-                            max="100"
-                            value="80"
-                            oninput="updateContrast()"
-                        >
-                        <span class="slider-value" id="lightness-value">80%</span>
+                        <input type="range" id="lightness-slider" min="0" max="100" value="25"
+                            oninput="updateContrast()">
+                        <span class="slider-value" id="lightness-value">25%</span>
                     </div>
                 </div>
                 <button class="reset-button" onclick="setToPass()">
@@ -343,6 +90,12 @@
                 Reset to HAP's Original Mistake
             </button>
         </div>
+
+        <!-- Page Navigation -->
+        <nav class="page-navigation" aria-label="Demo navigation">
+            <a href="../stations/station4.html">← Back to Station 4</a>
+            <a href="../index.html">Return to Hub →</a>
+        </nav>
     </div>
 
     <script>
@@ -465,4 +218,5 @@
         updateContrast();
     </script>
 </body>
+
 </html>
