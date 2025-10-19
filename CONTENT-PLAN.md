@@ -25,7 +25,7 @@ Join HAP's journey from messy hex codes to mastering color systems, accessibilit
 **List the main topics** (this appears on the hub page):
 
 ```
-Color formats beyond hex, building reusable color systems with CSS variables, color harmony and meaning, accessibility and contrast ratios, modern CSS color features, and AI assistance for color design
+Color formats beyond hex, building reusable color systems with CSS custom properties, color harmony and meaning, accessibility and contrast ratios, modern CSS color features, and AI assistance for color design
 ```
 
 ### Target audience
@@ -144,7 +144,7 @@ This is where everything clicked! HSL is how humans think about color. Hue is th
 
 ### Resources
 
-- MDN Color Values: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+- MDN Color Values: <https://developer.mozilla.org/en-US/docs/Web/CSS/color_value>
 - Color format converter tool
 - Browser DevTools color picker guide
 
@@ -167,7 +167,7 @@ Creating organized, reusable color palettes
 ### HAP's introduction
 
 ```
-My old stylesheets were basically hex code soup. I'd have #3366cc in my header, #3367cc in my footer (yes, they're different!), and couldn't remember which was which. Copy-paste was my strategy - find a color I used before, copy it, hope it was the right shade! Then Prof. Teeters introduced me to CSS variables and systematic color naming. Now I change colors in ONE place! Let me show you this sanity-saving system!
+My old stylesheets were basically hex code soup. I'd have #3366cc in my header, #3367cc in my footer (yes, they're different!), and couldn't remember which was which. Copy-paste was my strategy - find a color I used before, copy it, hope it was the right shade! Then Prof. Teeters introduced me to CSS custom properties and systematic color naming. Now I change colors in ONE place! Let me show you this sanity-saving system!
 ```
 
 ### HAP's specific struggles
@@ -184,9 +184,9 @@ My old stylesheets were basically hex code soup. I'd have #3366cc in my header, 
 
 **Insight 1:**
 
-- Title: Variables save sanity
+- Title: custom properties save sanity
 - Content: Define once, use everywhere, change in one place
-- HAP's take: I went from 50 hex codes to 8 variables. EIGHT!
+- HAP's take: I went from 50 hex codes to 8 custom properties. EIGHT!
 
 **Insight 2:**
 
@@ -211,32 +211,32 @@ Prof. Teeters asked me to count my colors once. I had 73 different color values 
 **Section 2: CSS Custom Properties Revolution**
 
 ```
-Then she showed me CSS custom properties (variables). Instead of #3366cc everywhere, I now had --brand-primary. Want to change it? Update ONE line! But the real magic was creating a system: --gray-100 through --gray-900 for consistent grays. It's like having a design system built into your CSS!
+Then she showed me CSS custom properties (custom properties). Instead of #3366cc everywhere, I now had --brand-primary. Want to change it? Update ONE line! But the real magic was creating a system: --gray-100 through --gray-900 for consistent grays. It's like having a design system built into your CSS!
 ```
 
 **Section 3: Semantic Color Names**
 
 ```
-The final piece was semantic naming. Instead of --blue or --red, Prof. Teeters taught me to use --primary, --secondary, --success, --warning, --error. Why? Because when the client says "make the blue purple," you just change --primary and you're done. No lying variable names!
+The final piece was semantic naming. Instead of --blue or --red, Prof. Teeters taught me to use --primary, --secondary, --success, --warning, --error. Why? Because when the client says "make the blue purple," you just change --primary and you're done. No lying custom property names!
 ```
 
 ### Interactive demos
 
 1. **Palette Builder Tool**: Start with one color, generate tints and shades
-2. **"HAP's Hex Chaos Refactor"**: Interactive refactoring showing 50 colors becoming 8 variables
+2. **"HAP's Hex Chaos Refactor"**: Interactive refactoring showing 50 colors becoming 8 custom properties
 3. **60-30-10 Rule Visualizer**: Adjust percentages and see the visual impact
 
 ### Code examples
 
 ```css
 /* HAP's Old Way (Hex Soup - 50+ colors!) */
-.header { background: #3366cc; color: white; }
+.header { background: #3366cc; color: hsl(0, 0%, 100%) ; }
 .nav { background: #3367cc; color: #ffffff; }
 .button { background: #3366CC; color: #FFF; }
 .card { border: 1px solid #3366cd; }
 /* ... and 46 more slight variations ... */
 
-/* What I Learned (8 variables!) */
+/* What I Learned (8 custom properties!) */
 :root {
   --primary: hsl(210, 50%, 50%);
   --primary-dark: hsl(210, 50%, 40%);
@@ -280,7 +280,7 @@ Picking colors? I used to just guess! I'd think 'this green looks nice' (#00ff00
 ### HAP's specific struggles
 
 ```
-- Used pure red (#ff0000) with pure green (#00ff00) 
+- Used pure red (#ff0000) with pure green (#00ff00)
 - "Skittles syndrome" - every color was max brightness
 - No understanding of color temperature
 - Picked colors randomly with no relationship
@@ -349,7 +349,7 @@ Then came the psychology lesson. Red doesn't just mean "stop" - it triggers urge
   --primary: hsl(210, 70%, 50%);      /* Blue */
   --secondary: hsl(190, 60%, 45%);    /* Blue-green */
   --accent: hsl(230, 65%, 55%);       /* Blue-purple */
-  
+
   /* Neutrals for balance */
   --text: hsl(0, 0%, 20%);
   --background: hsl(0, 0%, 98%);
@@ -672,8 +672,8 @@ The breakthrough was treating AI as my assistant, not my designer. I describe th
 }
 
 /* Good AI Prompt Result */
-/* Prompt: "SaaS dashboard, professional, blue-based, 
-   need primary/secondary/success/warning/error, 
+/* Prompt: "SaaS dashboard, professional, blue-based,
+   need primary/secondary/success/warning/error,
    must pass WCAG AA, include hover states" */
 :root {
   --primary: hsl(211, 100%, 50%);
@@ -699,36 +699,43 @@ The breakthrough was treating AI as my assistant, not my designer. I describe th
 ### Page-specific help messages
 
 **Hub page help:**
+
 ```
 Welcome to my color journey! I started with hex chaos and now I actually understand color systems! Try ?hybit=journey to see my complete transformation story!
 ```
 
 **Station 1 help:**
+
 ```
 This is where I learned there's more than hex! Try ?hybit=formats to see my quick conversion cheat sheet!
 ```
 
 **Station 2 help:**
+
 ```
-CSS variables saved my sanity! Check out ?hybit=variables to see how I went from 73 colors to 8!
+CSS custom properties saved my sanity! Check out ?hybit=custom properties to see how I went from 73 colors to 8!
 ```
 
 **Station 3 help:**
+
 ```
 Color harmony isn't magic, it's math! Try ?hybit=wheel to see the relationships I use every day!
 ```
 
 **Station 4 help:**
+
 ```
 Accessibility matters to millions! Use ?hybit=contrast for my quick reference guide!
 ```
 
 **Station 5 help:**
+
 ```
 Modern CSS is amazing! Try ?hybit=gradients to see my favorite gradient techniques!
 ```
 
 **Station 6 help:**
+
 ```
 AI helps, but verify everything! Check ?hybit=prompts for my prompt templates!
 ```
@@ -736,16 +743,19 @@ AI helps, but verify everything! Check ?hybit=prompts for my prompt templates!
 ### Custom insight messages
 
 **Custom insight 1:**
+
 - Parameter: journey
 - Title: 🎨 HAP's Color Evolution
-- Content: Started: 73 different hex codes, no system, copy-paste chaos. Now: 8 CSS variables, semantic naming, accessible contrasts, systematic scales. The journey from #bada55 jokes to professional color systems was wild but SO worth it!
+- Content: Started: 73 different hex codes, no system, copy-paste chaos. Now: 8 CSS custom properties, semantic naming, accessible contrasts, systematic scales. The journey from #bada55 jokes to professional color systems was wild but SO worth it!
 
 **Custom insight 2:**
-- Parameter: variables
+
+- Parameter: custom properties
 - Title: 🔄 From Chaos to Order
-- Content: My transformation: 73 hex values → 8 CSS variables. Secret? Start with --primary, --secondary, --text, --background. Generate shades systematically. Use semantic names. Change once, update everywhere. Prof. Teeters called it "the sanity saver"!
+- Content: My transformation: 73 hex values → 8 CSS custom properties. Secret? Start with --primary, --secondary, --text, --background. Generate shades systematically. Use semantic names. Change once, update everywhere. Prof. Teeters called it "the sanity saver"!
 
 **Custom insight 3:**
+
 - Parameter: wheel
 - Title: 🎡 Color Wheel Magic
 - Content: Complementary = hue + 180°. Analogous = hue ± 30°. Triadic = hue + 120° and hue + 240°. Split-complementary = hue + 150° and hue + 210°. It's literally just math with HSL! No more guessing!
@@ -757,11 +767,13 @@ AI helps, but verify everything! Check ?hybit=prompts for my prompt templates!
 ### Step 1: Content draft (markdown)
 
 **Request format**:
+
 ```
 Draft Station [N] content in markdown using CONTENT-PLAN.md
 ```
 
 **Claude creates**: `reports/station-[N]-draft.md` containing:
+
 - All section content written in HAP's voice
 - Code examples (Old Way vs What I Learned)
 - Component suggestions (which HAP components to use where)
@@ -769,6 +781,7 @@ Draft Station [N] content in markdown using CONTENT-PLAN.md
 - Any questions or clarifications needed
 
 **Draft should include**:
+
 - Header introduction (HAP's first-person narrative)
 - All main content sections
 - Code examples with comments
@@ -779,6 +792,7 @@ Draft Station [N] content in markdown using CONTENT-PLAN.md
 ### Step 2: Content review and approval
 
 **You review the markdown draft and provide**:
+
 - Approval: "Looks good, implement it"
 - Specific changes: "Change [section] to say [this]"
 - Major revision: "Revise the draft with these changes..."
@@ -788,11 +802,13 @@ Draft Station [N] content in markdown using CONTENT-PLAN.md
 ### Step 3: HTML implementation
 
 **Request format** (after approval):
+
 ```
 Implement Station [N] using the approved draft
 ```
 
 **Claude will**:
+
 - Read the approved draft from `reports/station-[N]-draft.md`
 - Implement in `stations/station[N].html`
 - Apply all best practices (accessibility, components, voice)
@@ -813,12 +829,14 @@ Implement Station [N] using the approved draft
 ### Accessibility requirements
 
 **ARIA and screen readers**:
+
 - Include `aria-live="polite"` regions for dynamic announcements (copy buttons, form feedback)
 - Use `.sr-only` class for visually hidden screen reader content
 - Add descriptive `aria-label` attributes to interactive elements
 - Place aria-live regions near relevant interactive elements
 
 **HAP image alt text**:
+
 - ALWAYS start with "Illustration of HAP" to clarify it's not a photograph
 - Be descriptive about HAP's activity or expression
 - Examples:
@@ -827,6 +845,7 @@ Implement Station [N] using the approved draft
   - ❌ "HAP looking confused" (missing "Illustration of" prefix)
 
 **WCAG contrast standards**:
+
 - Always include specific ratios: "≥ 4.5:1 for body text (≥ 3:1 for large text)"
 - Add warning boxes when discussing color choices that could fail contrast
 - Remind students to recheck contrast when modifying colors
@@ -835,18 +854,21 @@ Implement Station [N] using the approved draft
 ### Component usage patterns
 
 **Warning boxes** (`.warning-box`):
+
 - Use for critical accessibility reminders
 - Place immediately after code examples that could go wrong
 - Include specific guidance on what to check
 - Example: Contrast ratio warnings when swapping color temperatures
 
 **HAP note callouts** (`.hap-note-callout`):
+
 - For HAP's personal tips and insights
 - Keep them conversational and first-person
 - Reference Prof. Teeters or HAP's mistakes
 - Place near related content sections
 
 **Code examples**:
+
 - Always structure as "Old Way" vs "What I Learned"
 - Include helpful CSS comments explaining the logic
 - Add educational notes after code blocks (using `.code-comment`)
@@ -854,6 +876,7 @@ Implement Station [N] using the approved draft
 - Include modulo wrap explanations where relevant
 
 **Interactive elements**:
+
 - Copy buttons with screen reader announcements
 - Clear aria-labels for demo links
 - Descriptive button text ("Copy" → "Copied" transition)
@@ -862,6 +885,7 @@ Implement Station [N] using the approved draft
 ### Code structure standards
 
 **CSS code examples**:
+
 ```css
 /* HAP's Old Way (Descriptive Problem) */
 /* Show actual problematic code */
@@ -873,6 +897,7 @@ Implement Station [N] using the approved draft
 ```
 
 **Educational comments**:
+
 - Use `<p class="code-comment">` after code blocks
 - Explain the "why" not just the "what"
 - Reference HAP's learning moments
@@ -881,16 +906,19 @@ Implement Station [N] using the approved draft
 ### HAP's voice consistency
 
 **First-person narrative**:
+
 - "I used to..." not "You might..."
 - "Prof. Teeters taught me..." not "Experts recommend..."
 - "This was confusing for me too!" not "This is confusing!"
 
 **Specific struggles**:
+
 - Reference actual mistakes from CONTENT-PLAN.md
 - Show vulnerability and learning
 - Make it relatable to student experience
 
 **Enthusiasm balanced with humility**:
+
 - Excited about discoveries but acknowledges difficulty
 - Credits Prof. Teeters for teaching
 - Shares "aha moments" genuinely
@@ -898,12 +926,14 @@ Implement Station [N] using the approved draft
 ### Navigation standards
 
 **Top navigation** (`.page-navigation`):
+
 - Previous station link (left)
 - Station title and number (center)
 - Next station link (right)
 - Use semantic markup with `<nav>` element
 
 **Bottom navigation**:
+
 - Clear "Next up" indicator
 - Link to next station with descriptive text
 - Encouraging message from HAP
@@ -912,6 +942,7 @@ Implement Station [N] using the approved draft
 ### Image optimization
 
 **HAP images**:
+
 - Use Cloudinary CDN with optimization parameters
 - Header avatar: `fetchpriority="high"` (LCP image)
 - Below-fold images: `loading="lazy"`
@@ -919,6 +950,7 @@ Implement Station [N] using the approved draft
 - Use `decoding="async"` for better performance
 
 **Alt text formula**:
+
 ```html
 <img src="[cloudinary-url]"
      alt="Illustration of HAP [doing activity/showing emotion]"

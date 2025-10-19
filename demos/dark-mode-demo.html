@@ -100,7 +100,7 @@
                 <table class="comparison-table">
                     <thead>
                         <tr>
-                            <th scope="col">Property</th>
+                            <th scope="col">Element</th>
                             <th scope="col">Light Mode</th>
                             <th scope="col">Dark Mode</th>
                         </tr>
@@ -108,23 +108,43 @@
                     <tbody>
                         <tr>
                             <td><strong>Background</strong></td>
-                            <td><code>hsl(0 0% 100%)</code></td>
-                            <td><code>hsl(0 0% 10%)</code></td>
+                            <td><code>hsl(0, 0%, 100%)</code></td>
+                            <td><code>hsl(0, 0%, 10%)</code></td>
                         </tr>
                         <tr>
                             <td><strong>Text</strong></td>
-                            <td><code>hsl(0 0% 10%)</code></td>
-                            <td><code>hsl(0 0% 90%)</code></td>
+                            <td><code>hsl(0, 0%, 10%)</code></td>
+                            <td><code>hsl(0, 0%, 90%)</code></td>
                         </tr>
                         <tr>
                             <td><strong>Border</strong></td>
-                            <td><code>hsl(0 0% 85%)</code></td>
-                            <td><code>hsl(0 0% 25%)</code></td>
+                            <td><code>hsl(0, 0%, 85%)</code></td>
+                            <td><code>hsl(0, 0%, 25%)</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Links (blue)</strong></td>
+                            <td><code>hsl(210, 100%, 30%)</code></td>
+                            <td><code>hsl(210, 100%, 70%)</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Success (green)</strong></td>
+                            <td><code>hsl(142, 70%, 30%)</code></td>
+                            <td><code>hsl(142, 70%, 60%)</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Warning (gold)</strong></td>
+                            <td><code>hsl(45, 100%, 25%)</code></td>
+                            <td><code>hsl(45, 100%, 65%)</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Error (red)</strong></td>
+                            <td><code>hsl(0, 75%, 40%)</code></td>
+                            <td><code>hsl(0, 75%, 65%)</code></td>
                         </tr>
                     </tbody>
                 </table>
                 <p class="stayed-same">
-                    ✅ <strong>Stayed the same:</strong> Accent colors (blue), status colors (success/warning/error)
+                    ✅ <strong>The pattern:</strong> Hue and saturation stay consistent. Only lightness values flip (30-40% → 60-70%) for proper contrast on both backgrounds.
                 </p>
             </section>
 
@@ -132,7 +152,7 @@
             <section class="output-section" aria-labelledby="css-heading">
                 <h3 id="css-heading">Generated CSS Code</h3>
                 <pre><code id="css-output" class="language-css"></code></pre>
-                <button id="copy-btn" aria-label="Copy CSS code to clipboard">Copy CSS</button>
+                <button id="copy-btn" class="demo-copy-btn" aria-label="Copy CSS code to clipboard">Copy CSS</button>
             </section>
 
             <!-- HAP's Tips -->
@@ -200,31 +220,47 @@
         // ============================================
 
         function generateCSSCode() {
-            const code = `:root {
-  /* Light mode (default) */
-  --bg: hsl(0 0% 100%);
-  --text: hsl(0 0% 10%);
-  --border: hsl(0 0% 85%);
-  --accent: hsl(210 70% 50%);
-
-  /* Tell browser to use native dark mode for controls */
-  color-scheme: light dark;
+            const code = `/* Force light mode - dark colors for contrast on white */
+.force-light {
+  background: hsl(0, 0%, 100%);
+  color: hsl(0, 0%, 10%);
+  border: 2px solid hsl(0, 0%, 85%);
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  border: 1px solid var(--border);
+.force-light a {
+  color: hsl(210, 100%, 30%); /* Dark blue */
 }
 
-/* Automatic dark mode */
+.force-light .success { color: hsl(142, 70%, 30%); }
+.force-light .warning { color: hsl(45, 100%, 25%); }
+.force-light .error { color: hsl(0, 75%, 40%); }
+
+/* Force dark mode - light colors for contrast on dark */
+.force-dark {
+  background: hsl(0, 0%, 10%);
+  color: hsl(0, 0%, 90%);
+  border: 2px solid hsl(0, 0%, 25%);
+}
+
+.force-dark a {
+  color: hsl(210, 100%, 70%); /* Light blue */
+}
+
+.force-dark .success { color: hsl(142, 70%, 60%); }
+.force-dark .warning { color: hsl(45, 100%, 65%); }
+.force-dark .error { color: hsl(0, 75%, 65%); }
+
+/* Automatic dark mode using media query */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: hsl(0 0% 10%);
-    --text: hsl(0 0% 90%);
-    --border: hsl(0 0% 25%);
-    /* --accent stays the same! */
+  body {
+    background: hsl(0, 0%, 10%);
+    color: hsl(0, 0%, 90%);
   }
+
+  a { color: hsl(210, 100%, 70%); }
+  .success { color: hsl(142, 70%, 60%); }
+  .warning { color: hsl(45, 100%, 65%); }
+  .error { color: hsl(0, 75%, 65%); }
 }`;
 
             document.getElementById('css-output').textContent = code;
