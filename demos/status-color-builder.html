@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body class="status-color-builder">
     <div id="copy-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
     <div class="container">
         <header>
@@ -19,16 +19,15 @@
                 contrast). Toggle between light and dark backgrounds to see how your colors perform! Adjust the HSL
                 sliders and watch the contrast ratios update in real-time. Tip: use ←/→ for fine adjustments; Shift+←/→
                 for larger steps (if supported).</p>
-            <div style="margin-top: 1rem; padding: 0.75rem; background: #f0f0f0; border-radius: 4px;">
-                <label style="font-weight: 600; margin-right: 1rem;">Test background:</label>
-                <label style="margin-right: 1rem;">
+            <div class="bg-toggle-controls">
+                <label>Test background:</label>
+                <label>
                     <input type="radio" name="bg-mode" value="light" checked> Light (white)
                 </label>
                 <label>
                     <input type="radio" name="bg-mode" value="dark"> Dark (near-black)
                 </label>
-                <span style="margin-left: 1rem; font-size: 0.9rem; color: #666;">← This changes the preview section
-                    background below</span>
+                <span>← This changes the preview section background below</span>
             </div>
         </header>
 
@@ -65,7 +64,7 @@
                         <span>Contrast ratio:</span>
                         <span class="ratio-number" id="error-ratio">3.9:1</span>
                     </div>
-                    <div class="suggestion" id="error-suggestion" style="display: none;"></div>
+                    <div class="suggestion" id="error-suggestion"></div>
                 </div>
 
                 <!-- Success Color -->
@@ -99,7 +98,7 @@
                         <span>Contrast ratio:</span>
                         <span class="ratio-number" id="success-ratio">4.2:1</span>
                     </div>
-                    <div class="suggestion" id="success-suggestion" style="display: none;"></div>
+                    <div class="suggestion" id="success-suggestion"></div>
                 </div>
 
                 <!-- Warning Color -->
@@ -133,7 +132,7 @@
                         <span>Contrast ratio:</span>
                         <span class="ratio-number" id="warning-ratio">1.6:1</span>
                     </div>
-                    <div class="suggestion" id="warning-suggestion" style="display: none;"></div>
+                    <div class="suggestion" id="warning-suggestion"></div>
                 </div>
 
                 <!-- Info Color -->
@@ -164,15 +163,14 @@
                         <span>Contrast ratio:</span>
                         <span class="ratio-number" id="info-ratio">4.3:1</span>
                     </div>
-                    <div class="suggestion" id="info-suggestion" style="display: none;"></div>
+                    <div class="suggestion" id="info-suggestion"></div>
                 </div>
             </div>
         </div>
 
         <div class="preview-section">
             <h2>Live preview</h2>
-            <p style="margin-bottom: 1rem; font-size: 0.95rem; color: #555;">These sample messages show how your colors
-                look on the selected background. Toggle between light and dark to test readability.</p>
+            <p class="preview-intro">These sample messages show how your colors look on the selected background. Toggle between light and dark to test readability.</p>
             <div class="preview-samples">
                 <div class="preview-grid">
                     <div class="message-preview" id="error-message">
@@ -195,7 +193,7 @@
                 <div class="code-block-wrapper">
                     <pre><code class="language-css" id="css-output">/* Adjust the sliders to see your CSS code here */</code></pre>
                 </div>
-                <button class="copy-button" id="copy-button" onclick="copyCSSCode()">Copy CSS Code</button>
+                <button type="button" class="copy-button" id="copy-button" onclick="copyCSSCode()">Copy CSS Code</button>
             </div>
         </div>
     </div>

@@ -362,6 +362,56 @@
   /* Spinner code background */
   --demo-gb-spinner-code-bg: hsl(0, 0%, 98%);
   /* Very light gray #f9f9f9 */
+
+  /* Station 6 Demo: Status Color Builder - Custom properties */
+
+  /* Container and text colors */
+  --demo-scb-body-text: hsl(0, 0%, 18%);
+  --demo-scb-heading: hsl(0, 0%, 10%);
+  --demo-scb-text-muted: hsl(0, 0%, 40%);
+  --demo-scb-intro-text: hsl(0, 0%, 33%);
+
+  /* Background colors */
+  --demo-scb-body-bg: hsl(0, 0%, 96%);
+  --demo-scb-card-bg: hsl(0, 0%, 100%);
+  --demo-scb-light-bg: hsl(0, 0%, 98%);
+  --demo-scb-toggle-bg: hsl(0, 0%, 94%);
+
+  /* Border colors */
+  --demo-scb-border-default: hsl(0, 0%, 88%);
+  --demo-scb-border-light: hsl(0, 0%, 85%);
+
+  /* Status - Pass (green) */
+  --demo-scb-pass-border: hsl(122, 39%, 49%);
+  --demo-scb-pass-text: hsl(123, 46%, 34%);
+  --demo-scb-pass-bg: hsl(120, 38%, 93%);
+
+  /* Status - Fail (red) */
+  --demo-scb-fail-border: hsl(4, 90%, 58%);
+  --demo-scb-fail-text: hsl(0, 69%, 46%);
+  --demo-scb-fail-bg: hsl(0, 100%, 96%);
+
+  /* Interactive (blue) */
+  --demo-scb-interactive: hsl(207, 77%, 47%);
+  --demo-scb-interactive-hover: hsl(207, 77%, 42%);
+
+  /* Suggestion (orange) */
+  --demo-scb-suggestion-border: hsl(36, 100%, 50%);
+  --demo-scb-suggestion-text: hsl(18, 100%, 45%);
+  --demo-scb-suggestion-bg: hsl(37, 100%, 94%);
+
+  /* Button success state (FIXED for contrast) */
+  --demo-scb-copied-bg: hsl(123, 46%, 34%);
+
+  /* Dark mode */
+  --demo-scb-dark-bg: hsl(0, 0%, 10%);
+  --demo-scb-dark-text: hsl(0, 0%, 95%);
+  --demo-scb-dark-surface: hsl(0, 0%, 12%);
+  --demo-scb-dark-border: hsl(0, 0%, 25%);
+
+  /* Shadows */
+  --demo-scb-shadow: hsl(0, 0%, 0%, 0.1);
+  --demo-scb-shadow-thumb: hsl(0, 0%, 0%, 0.2);
 }
 
 /* Temporary accessibility styles (will be moved to proper section later) */
@@ -409,6 +459,40 @@
 
 .gradient-builder .color-input-group {
   margin: 0.5rem 0;
+}
+
+/* Status Color Builder - Temporary styles for inline replacement */
+.status-color-builder .bg-toggle-controls {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: var(--demo-scb-toggle-bg);
+  border-radius: 4px;
+}
+
+.status-color-builder .bg-toggle-controls > label:first-of-type {
+  font-weight: 600;
+  margin-right: 1rem;
+}
+
+.status-color-builder .bg-toggle-controls > label:nth-of-type(2) {
+  margin-right: 1rem;
+}
+
+.status-color-builder .bg-toggle-controls > span {
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: var(--demo-scb-text-muted);
+}
+
+.status-color-builder .preview-intro {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--demo-scb-intro-text);
+}
+
+.status-color-builder .suggestion {
+  display: none;
+  /* Hidden by default, JavaScript will show */
 }
 
 * {
@@ -5014,6 +5098,178 @@ pre {
   .gradient-builder .speed-control input[type="range"] {
     width: 150px;
   }
+}
+
+/* ============================================
+   Station 6 Demo: Status Color Builder
+   ============================================ */
+
+/* Universal reset scoped to demo */
+.status-color-builder * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body equivalent - affects demo wrapper */
+.status-color-builder {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--demo-scb-body-text);
+  background: var(--demo-scb-body-bg);
+  padding: 1rem;
+}
+
+.status-color-builder .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.status-color-builder header {
+  background: var(--demo-scb-card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px var(--demo-scb-shadow);
+}
+
+.status-color-builder h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--demo-scb-heading);
+}
+
+.status-color-builder .intro {
+  color: var(--demo-scb-intro-text);
+  font-size: 0.95rem;
+}
+
+/* Color picker section and controls grid */
+.status-color-builder .color-picker-section {
+  background: var(--demo-scb-card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px var(--demo-scb-shadow);
+}
+
+.status-color-builder .color-picker-section h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--demo-scb-heading);
+}
+
+.status-color-builder .color-controls {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Color control cards and status indicators */
+.status-color-builder .color-control {
+  border: 2px solid var(--demo-scb-border-default);
+  border-radius: 8px;
+  padding: 1rem;
+  background: var(--demo-scb-card-bg);
+}
+
+.status-color-builder .color-control.pass {
+  border-color: var(--demo-scb-pass-border);
+  border-width: 3px;
+}
+
+.status-color-builder .color-control.fail {
+  border-color: var(--demo-scb-fail-border);
+  border-width: 3px;
+}
+
+.status-color-builder .color-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.status-color-builder .color-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.status-color-builder .status-indicator {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-color-builder .status-indicator.pass {
+  background: var(--demo-scb-pass-bg);
+  color: var(--demo-scb-pass-text);
+}
+
+.status-color-builder .status-indicator.fail {
+  background: var(--demo-scb-fail-bg);
+  color: var(--demo-scb-fail-text);
+}
+
+/* Slider controls and range input styling */
+.status-color-builder .sliders {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.status-color-builder .slider-group {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status-color-builder .slider-label {
+  font-size: 0.85rem;
+  color: var(--demo-scb-text-muted);
+  font-weight: 600;
+}
+
+.status-color-builder input[type="range"] {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--demo-scb-border-default);
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.status-color-builder input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--demo-scb-interactive);
+  cursor: pointer;
+  border: 2px solid var(--demo-scb-card-bg);
+  box-shadow: 0 2px 4px var(--demo-scb-shadow-thumb);
+}
+
+.status-color-builder input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--demo-scb-interactive);
+  cursor: pointer;
+  border: 2px solid var(--demo-scb-card-bg);
+  box-shadow: 0 2px 4px var(--demo-scb-shadow-thumb);
+}
+
+.status-color-builder .slider-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--demo-scb-interactive);
+  text-align: right;
 }
 
 /*
