@@ -272,6 +272,143 @@
   /* Copied state (green) #2D7A2D */
   --demo-fe-copy-btn-text: hsl(0, 0%, 100%);
   /* White text */
+
+  /* Station 5 Demo: Gradient Builder - Custom properties */
+
+  /* Container backgrounds and borders */
+  --demo-gb-cream-bg: var(--cream-white);
+  /* Background cards #FFF8F0 */
+  --demo-gb-white-bg: hsl(0, 0%, 100%);
+  /* White backgrounds */
+  --demo-gb-orange-border: var(--warm-orange);
+  /* All orange borders #E8A557 */
+  --demo-gb-gray-border: hsl(0, 0%, 88%);
+  /* Light gray borders #e0e0e0 */
+
+  /* Text colors */
+  --demo-gb-heading: var(--dark-brown);
+  /* Headings #3D2817 */
+  --demo-gb-body-muted: hsl(0, 0%, 40%);
+  /* Muted description text #666 */
+  --demo-gb-white-text: hsl(0, 0%, 100%);
+  /* White text */
+
+  /* Tab colors */
+  --demo-gb-tab-bg: hsl(0, 0%, 100%);
+  /* Default tab background */
+  --demo-gb-tab-text: var(--warm-orange);
+  /* Inactive tab text #E8A557 */
+  --demo-gb-tab-hover-bg: var(--peach-background);
+  /* Tab hover background #F4E8D8 */
+  --demo-gb-tab-active-bg: hsl(36, 64%, 35%);
+  /* Active tab background - darker orange for better contrast with white */
+  --demo-gb-tab-active-text: hsl(0, 0%, 100%);
+  /* Active tab text white */
+
+  /* Button colors */
+  --demo-gb-btn-primary-bg: hsl(36, 64%, 35%);
+  /* Primary button background - darker orange for better contrast with white */
+  --demo-gb-btn-primary-hover: hsl(36, 64%, 30%);
+  /* Primary button hover - even darker */
+  --demo-gb-btn-secondary-bg: var(--teal-darker);
+  /* Secondary button background #3A7A70 */
+  --demo-gb-btn-secondary-hover: hsl(166, 34%, 28%);
+  /* Secondary button hover #2f6157 */
+  --demo-gb-btn-remove-bg: hsl(6, 78%, 57%);
+  /* Remove button red #e74c3c */
+  --demo-gb-btn-remove-hover: hsl(6, 63%, 45%);
+  /* Remove button hover #c0392b */
+
+  /* Shadows */
+  --demo-gb-shadow-medium: hsl(0, 0%, 0%, 0.15);
+  /* Box shadows rgba(0,0,0,0.15) */
+
+  /* Code block colors (same as filter-effects) */
+  --demo-gb-code-bg: hsl(0, 0%, 18%);
+  /* Dark gray #2d2d2d */
+  --demo-gb-code-text: hsl(60, 30%, 96%);
+  /* Light text #f8f8f2 */
+  --demo-gb-code-tag: var(--warm-orange);
+  /* Orange tags #E8A557 */
+  --demo-gb-code-attr: hsl(172, 30%, 51%);
+  /* Teal attributes #5BA69C */
+  --demo-gb-code-value: hsl(27, 100%, 70%);
+  /* Peach values #FFB366 */
+  --demo-gb-code-comment: hsl(30, 20%, 72%);
+  /* Beige comments #C8B8A8 */
+
+  /* Copy button states */
+  --demo-gb-copy-btn-bg: var(--warm-orange);
+  /* Default orange #E8A557 */
+  --demo-gb-copy-btn-hover: hsl(36, 60%, 56%);
+  /* Hover darker orange #d49547 */
+  --demo-gb-copy-btn-copied: hsl(145, 63%, 42%);
+  /* Copied state green #27ae60 */
+
+  /* Tips box colors */
+  --demo-gb-tips-bg: hsl(37, 100%, 94%);
+  /* Light peach background #fff3e0 */
+  --demo-gb-tips-border: var(--warm-orange);
+  /* Orange left border */
+
+  /* Warning colors */
+  --demo-gb-warning-bg: hsl(48, 100%, 90%);
+  /* Light yellow #fff3cd */
+  --demo-gb-warning-border: hsl(45, 100%, 51%);
+  /* Amber border #ffc107 */
+  --demo-gb-warning-text: hsl(45, 95%, 27%);
+  /* Dark gold text #856404 */
+
+  /* Spinner code background */
+  --demo-gb-spinner-code-bg: hsl(0, 0%, 98%);
+  /* Very light gray #f9f9f9 */
+}
+
+/* Temporary accessibility styles (will be moved to proper section later) */
+.gradient-builder .radio-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.gradient-builder .radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  min-height: 44px;
+}
+
+.gradient-builder .radio-label input[type="radio"] {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+/* Touch target sizes - WCAG 2.5.5 (AAA) requires 44x44px minimum */
+.gradient-builder input[type="range"] {
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.gradient-builder .hsl-input {
+  min-height: 44px;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.gradient-builder .color-picker {
+  min-width: 60px;
+  min-height: 60px;
+}
+
+.gradient-builder .slider-control {
+  margin: 0.5rem 0;
+}
+
+.gradient-builder .color-input-group {
+  margin: 0.5rem 0;
 }
 
 * {
@@ -4364,6 +4501,518 @@ pre {
 
   .filter-playground #filter-target {
     transition: none !important;
+  }
+}
+
+/* ============================================================
+   STATION 5 DEMO: GRADIENT BUILDER
+   ============================================================ */
+
+/* Container and layout */
+.gradient-builder {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.gradient-builder .demo-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gradient-builder .demo-header h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--demo-gb-heading);
+  margin-bottom: 0.5rem;
+}
+
+.gradient-builder .demo-header p {
+  color: var(--demo-gb-body-muted);
+}
+
+/* Tab controls */
+.gradient-builder .tab-controls {
+  display: flex;
+  gap: 0;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--demo-gb-orange-border);
+}
+
+.gradient-builder .tab {
+  background: var(--demo-gb-tab-bg);
+  border: 2px solid var(--demo-gb-orange-border);
+  border-bottom: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--demo-gb-heading);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 8px 8px 0 0;
+  margin-right: -2px;
+}
+
+.gradient-builder .tab:hover {
+  background: var(--demo-gb-tab-hover-bg);
+}
+
+.gradient-builder .tab.active {
+  background: var(--demo-gb-tab-active-bg);
+  color: var(--demo-gb-tab-active-text);
+  position: relative;
+  z-index: 1;
+}
+
+/* Preview section */
+.gradient-builder .preview-section {
+  margin-bottom: 2rem;
+}
+
+.gradient-builder .preview-section h2 {
+  font-size: 1.25rem;
+  color: var(--demo-gb-heading);
+  margin-bottom: 1rem;
+}
+
+.gradient-builder .gradient-preview {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--demo-gb-shadow-medium);
+  border: 2px solid var(--demo-gb-orange-border);
+  background: linear-gradient(135deg, hsl(210 70% 50%), hsl(280 60% 55%));
+}
+
+/* Controls panel */
+.gradient-builder .controls-panel {
+  background: var(--demo-gb-cream-bg);
+  border: 2px solid var(--demo-gb-orange-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.gradient-builder .controls-panel.hidden {
+  display: none;
+}
+
+.gradient-builder .control-group {
+  margin-bottom: 1.5rem;
+}
+
+.gradient-builder .control-group:last-child {
+  margin-bottom: 0;
+}
+
+.gradient-builder .control-group label {
+  display: block;
+  font-weight: 600;
+  color: var(--demo-gb-heading);
+  margin-bottom: 0.5rem;
+}
+
+.gradient-builder .slider-control {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.gradient-builder .slider-control input[type="range"] {
+  width: 100%;
+}
+
+.gradient-builder .slider-control output {
+  font-weight: 600;
+  color: var(--demo-gb-heading);
+  min-width: 60px;
+  text-align: right;
+}
+
+/* Color stop controls */
+.gradient-builder .color-stops {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gradient-builder .color-stop {
+  background: var(--demo-gb-white-bg);
+  border: 2px solid var(--demo-gb-gray-border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.gradient-builder .color-stop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.gradient-builder .color-stop-label {
+  font-weight: 600;
+  color: var(--demo-gb-heading);
+}
+
+.gradient-builder .remove-stop {
+  background: var(--demo-gb-btn-remove-bg);
+  color: var(--demo-gb-white-text);
+  border: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.gradient-builder .remove-stop:hover {
+  background: var(--demo-gb-btn-remove-hover);
+}
+
+.gradient-builder .color-input-group {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.gradient-builder .color-input-group input[type="color"] {
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--demo-gb-gray-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.gradient-builder .color-input-group input[type="text"] {
+  padding: 0.5rem;
+  border: 2px solid var(--demo-gb-gray-border);
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* Action buttons */
+.gradient-builder .btn {
+  background: var(--demo-gb-btn-primary-bg);
+  color: var(--demo-gb-white-text);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.gradient-builder .btn:hover {
+  background: var(--demo-gb-btn-primary-hover);
+}
+
+.gradient-builder .btn-secondary {
+  background: var(--demo-gb-btn-secondary-bg);
+}
+
+.gradient-builder .btn-secondary:hover {
+  background: var(--demo-gb-btn-secondary-hover);
+}
+
+.gradient-builder .action-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+/* Preset dropdown */
+.gradient-builder select.preset-select {
+  padding: 0.75rem;
+  border: 2px solid var(--demo-gb-orange-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--demo-gb-white-bg);
+  cursor: pointer;
+}
+
+/* Output section */
+.gradient-builder .output-section {
+  background: var(--demo-gb-cream-bg);
+  border: 2px solid var(--demo-gb-orange-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.gradient-builder .output-section h2 {
+  font-size: 1.25rem;
+  color: var(--demo-gb-heading);
+  margin-bottom: 1rem;
+}
+
+.gradient-builder .output-section pre {
+  background: var(--demo-gb-code-bg);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  position: relative;
+  /* Prism theme variables for dark background */
+  --code-text: var(--demo-gb-code-text);
+  --code-tag: var(--demo-gb-code-tag);
+  --code-attr: var(--demo-gb-code-attr);
+  --code-value: var(--demo-gb-code-value);
+  --code-comment: var(--demo-gb-code-comment);
+  --code-punctuation: var(--demo-gb-code-comment);
+}
+
+.gradient-builder .output-section pre code {
+  color: var(--code-text);
+}
+
+/* Copy button */
+.gradient-builder .copy-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--demo-gb-copy-btn-bg);
+  color: var(--demo-gb-white-text);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.gradient-builder .copy-button:hover {
+  background: var(--demo-gb-copy-btn-hover);
+}
+
+.gradient-builder .copy-button.copied {
+  background: var(--demo-gb-copy-btn-copied);
+}
+
+/* Tips box */
+.gradient-builder .tips-box {
+  background: var(--demo-gb-tips-bg);
+  border-left: 4px solid var(--demo-gb-tips-border);
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+
+.gradient-builder .tips-box h3 {
+  color: var(--demo-gb-heading);
+  margin-bottom: 0.5rem;
+}
+
+.gradient-builder .tips-box ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.gradient-builder .tips-box li {
+  margin-bottom: 0.25rem;
+}
+
+/* Spinner demo section */
+.gradient-builder .spinner-demo {
+  background: var(--demo-gb-cream-bg);
+  border: 2px solid var(--demo-gb-orange-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.gradient-builder .spinner-demo h3 {
+  color: var(--demo-gb-heading);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.gradient-builder .spinner-demo-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.gradient-builder .spinner-preview {
+  --spinner-speed: 1s;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg at 50% 50%, hsl(210 70% 50%) 0%, hsl(210 70% 50% / 0) 50%);
+  animation: spin var(--spinner-speed) linear infinite;
+  position: relative;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gradient-builder .spinner-code {
+  background: var(--demo-gb-spinner-code-bg);
+  border-radius: 4px;
+  padding: 1rem;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.gradient-builder .spinner-code code {
+  color: var(--demo-gb-heading);
+}
+
+.gradient-builder .spinner-code strong {
+  color: var(--demo-gb-heading);
+}
+
+.gradient-builder .spinner-code-header {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--demo-gb-heading);
+}
+
+.gradient-builder .spinner-code-footer {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--demo-gb-body-muted);
+  line-height: 1.6;
+}
+
+.gradient-builder .spinner-controls {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.gradient-builder .spinner-controls label {
+  display: block;
+  font-weight: 600;
+  color: var(--demo-gb-heading);
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.gradient-builder .speed-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.gradient-builder .speed-control input[type="range"] {
+  width: 200px;
+}
+
+.gradient-builder .speed-control output {
+  font-weight: 600;
+  color: var(--demo-gb-heading);
+  min-width: 50px;
+}
+
+/* Contrast warning */
+.gradient-builder .contrast-warning {
+  background: var(--demo-gb-warning-bg);
+  border-left: 4px solid var(--demo-gb-warning-border);
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  display: none;
+}
+
+.gradient-builder .contrast-warning.show {
+  display: block;
+}
+
+.gradient-builder .contrast-warning p {
+  margin: 0;
+  color: var(--demo-gb-warning-text);
+  font-weight: 600;
+}
+
+/* Screen reader only */
+.gradient-builder .sr-only {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Accessibility: Respect user's contrast preference */
+@media (prefers-contrast: more) {
+  .gradient-builder .tab {
+    border-width: 3px;
+  }
+
+  .gradient-builder .gradient-preview {
+    border-width: 3px;
+  }
+
+  .gradient-builder .controls-panel,
+  .gradient-builder .output-section {
+    border-width: 3px;
+  }
+}
+
+/* Accessibility: Respect user's motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .gradient-builder * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .gradient-builder .spinner-preview {
+    animation: none !important;
+  }
+
+  .gradient-builder .spinner-preview::after {
+    content: '⏸';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: white;
+  }
+}
+
+/* Responsive: Mobile styles */
+@media (max-width: 768px) {
+  .gradient-builder .tab {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .gradient-builder .gradient-preview {
+    height: 300px;
+  }
+
+  .gradient-builder .color-input-group {
+    grid-template-columns: 1fr;
+  }
+
+  .gradient-builder .action-buttons {
+    flex-direction: column;
+  }
+
+  .gradient-builder .spinner-demo-content {
+    grid-template-columns: 1fr;
+  }
+
+  .gradient-builder .spinner-preview {
+    margin-bottom: 1rem;
+  }
+
+  .gradient-builder .speed-control input[type="range"] {
+    width: 150px;
   }
 }
 

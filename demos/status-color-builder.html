@@ -1,346 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Build Accessible Status Colors - Interactive Demo</title>
-    <link rel="stylesheet" href="../css/prism-hap-theme.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="../css/prism-hap-theme.css" rel="stylesheet">
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            color: #2d2d2d;
-            background: #f5f5f5;
-            padding: 1rem;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        header {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #1a1a1a;
-        }
-
-        .intro {
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        .color-picker-section {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .color-picker-section h2 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-
-        .color-controls {
-            display: grid;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .color-control {
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 1rem;
-            background: white;
-        }
-
-        .color-control.pass {
-            border-color: #4caf50;
-            border-width: 3px;
-        }
-
-        .color-control.fail {
-            border-color: #f44336;
-            border-width: 3px;
-        }
-
-        /* Dark mode only affects preview samples */
-        .preview-samples {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: background 0.3s ease;
-        }
-
-        .preview-samples.dark-bg {
-            background: hsl(0 0% 10%);          /* near-black */
-            color: hsl(0 0% 95%);               /* readable neutral text */
-        }
-
-        .preview-samples.dark-bg .message-preview {
-            background: hsl(0 0% 12%);          /* subtle card surface */
-            border-color: hsl(0 0% 25%);        /* faint divider */
-        }
-
-        .preview-samples:not(.dark-bg) .message-preview {
-            background: white;
-            border-color: hsl(0 0% 85%);
-        }
-
-        .mode-dark .color-preview {
-            background: hsl(0 0% 10%);
-            border-color: hsl(0 0% 25%);
-            color: hsl(0 0% 95%);
-        }
-
-        .color-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .color-name {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .status-indicator {
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .status-indicator.pass {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .status-indicator.fail {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-        .sliders {
-            display: grid;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .slider-group {
-            display: grid;
-            grid-template-columns: 60px 1fr 60px;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .slider-label {
-            font-size: 0.85rem;
-            color: #666;
-            font-weight: 600;
-        }
-
-        input[type="range"] {
-            width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: #e0e0e0;
-            outline: none;
-            -webkit-appearance: none;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #1976d2;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        input[type="range"]::-moz-range-thumb {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #1976d2;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .slider-value {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #1976d2;
-            text-align: right;
-        }
-
-        .color-preview {
-            padding: 0.75rem;
-            border-radius: 4px;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-            text-align: center;
-            background: #fafafa;
-            border: 1px solid #e0e0e0;
-        }
-
-        .ratio-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .ratio-number {
-            font-weight: 700;
-            color: #1a1a1a;
-            font-size: 1rem;
-        }
-
-        .suggestion {
-            background: #fff3e0;
-            border-left: 4px solid #ff9800;
-            padding: 0.75rem;
-            margin-top: 0.75rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: #e65100;
-        }
-
-        .preview-section {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .preview-section h2 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-
-        .preview-grid {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .message-preview {
-            padding: 1rem;
-            border-radius: 4px;
-            border-left: 4px solid;
-        }
-
-        .message-preview::before {
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        .summary {
-            background: #fafafa;
-            padding: 1.25rem;
-            border-radius: 4px;
-            margin-top: 1rem;
-        }
-
-        .summary h3 {
-            font-size: 0.95rem;
-            margin-bottom: 0.75rem;
-            color: #1a1a1a;
-        }
-
-        .code-block-wrapper {
-            position: relative;
-            margin-top: 0.75rem;
-        }
-
-        pre[class*="language-"] {
-            margin: 0;
-            border-radius: 4px;
-            font-size: 0.85rem;
-        }
-
-        code[class*="language-"] {
-            font-size: 0.85rem;
-        }
-
-        .copy-button {
-            background: #1976d2;
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 1rem;
-        }
-
-        .copy-button:hover {
-            background: #1565c0;
-        }
-
-        .copy-button.copied {
-            background: #4caf50;
-        }
-
-        .sr-only {
-            position: absolute;
-            left: -9999px;
-        }
-
-        @media (min-width: 768px) {
-            body {
-                padding: 2rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .color-picker-section h2,
-            .preview-section h2 {
-                font-size: 1.25rem;
-            }
-
-            .color-controls {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
 </head>
+
 <body>
     <div id="copy-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
     <div class="container">
         <header>
             <h1>Build Accessible Status Colors</h1>
-            <p class="intro">Create error, success, warning, and info colors that meet WCAG AA standards (4.5:1 contrast). Toggle between light and dark backgrounds to see how your colors perform! Adjust the HSL sliders and watch the contrast ratios update in real-time. Tip: use ←/→ for fine adjustments; Shift+←/→ for larger steps (if supported).</p>
+            <p class="intro">Create error, success, warning, and info colors that meet WCAG AA standards (4.5:1
+                contrast). Toggle between light and dark backgrounds to see how your colors perform! Adjust the HSL
+                sliders and watch the contrast ratios update in real-time. Tip: use ←/→ for fine adjustments; Shift+←/→
+                for larger steps (if supported).</p>
             <div style="margin-top: 1rem; padding: 0.75rem; background: #f0f0f0; border-radius: 4px;">
                 <label style="font-weight: 600; margin-right: 1rem;">Test background:</label>
                 <label style="margin-right: 1rem;">
@@ -349,7 +27,8 @@
                 <label>
                     <input type="radio" name="bg-mode" value="dark"> Dark (near-black)
                 </label>
-                <span style="margin-left: 1rem; font-size: 0.9rem; color: #666;">← This changes the preview section background below</span>
+                <span style="margin-left: 1rem; font-size: 0.9rem; color: #666;">← This changes the preview section
+                    background below</span>
             </div>
         </header>
 
@@ -370,12 +49,14 @@
                         </div>
                         <div class="slider-group">
                             <label class="slider-label" for="error-s">Sat</label>
-                            <input type="range" id="error-s" min="0" max="100" value="100" oninput="updateColor('error')">
+                            <input type="range" id="error-s" min="0" max="100" value="100"
+                                oninput="updateColor('error')">
                             <span class="slider-value" id="error-s-val">100%</span>
                         </div>
                         <div class="slider-group">
                             <label class="slider-label" for="error-l">Light</label>
-                            <input type="range" id="error-l" min="0" max="100" value="50" oninput="updateColor('error')">
+                            <input type="range" id="error-l" min="0" max="100" value="50"
+                                oninput="updateColor('error')">
                             <span class="slider-value" id="error-l-val">50%</span>
                         </div>
                     </div>
@@ -396,17 +77,20 @@
                     <div class="sliders">
                         <div class="slider-group">
                             <label class="slider-label" for="success-h">Hue</label>
-                            <input type="range" id="success-h" min="0" max="360" value="120" oninput="updateColor('success')">
+                            <input type="range" id="success-h" min="0" max="360" value="120"
+                                oninput="updateColor('success')">
                             <span class="slider-value" id="success-h-val">120°</span>
                         </div>
                         <div class="slider-group">
                             <label class="slider-label" for="success-s">Sat</label>
-                            <input type="range" id="success-s" min="0" max="100" value="100" oninput="updateColor('success')">
+                            <input type="range" id="success-s" min="0" max="100" value="100"
+                                oninput="updateColor('success')">
                             <span class="slider-value" id="success-s-val">100%</span>
                         </div>
                         <div class="slider-group">
                             <label class="slider-label" for="success-l">Light</label>
-                            <input type="range" id="success-l" min="0" max="100" value="50" oninput="updateColor('success')">
+                            <input type="range" id="success-l" min="0" max="100" value="50"
+                                oninput="updateColor('success')">
                             <span class="slider-value" id="success-l-val">50%</span>
                         </div>
                     </div>
@@ -427,17 +111,20 @@
                     <div class="sliders">
                         <div class="slider-group">
                             <label class="slider-label" for="warning-h">Hue</label>
-                            <input type="range" id="warning-h" min="0" max="360" value="45" oninput="updateColor('warning')">
+                            <input type="range" id="warning-h" min="0" max="360" value="45"
+                                oninput="updateColor('warning')">
                             <span class="slider-value" id="warning-h-val">45°</span>
                         </div>
                         <div class="slider-group">
                             <label class="slider-label" for="warning-s">Sat</label>
-                            <input type="range" id="warning-s" min="0" max="100" value="100" oninput="updateColor('warning')">
+                            <input type="range" id="warning-s" min="0" max="100" value="100"
+                                oninput="updateColor('warning')">
                             <span class="slider-value" id="warning-s-val">100%</span>
                         </div>
                         <div class="slider-group">
                             <label class="slider-label" for="warning-l">Light</label>
-                            <input type="range" id="warning-l" min="0" max="100" value="34" oninput="updateColor('warning')">
+                            <input type="range" id="warning-l" min="0" max="100" value="34"
+                                oninput="updateColor('warning')">
                             <span class="slider-value" id="warning-l-val">34%</span>
                         </div>
                     </div>
@@ -484,7 +171,8 @@
 
         <div class="preview-section">
             <h2>Live preview</h2>
-            <p style="margin-bottom: 1rem; font-size: 0.95rem; color: #555;">These sample messages show how your colors look on the selected background. Toggle between light and dark to test readability.</p>
+            <p style="margin-bottom: 1rem; font-size: 0.95rem; color: #555;">These sample messages show how your colors
+                look on the selected background. Toggle between light and dark to test readability.</p>
             <div class="preview-samples">
                 <div class="preview-grid">
                     <div class="message-preview" id="error-message">
@@ -674,4 +362,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
 </body>
+
 </html>
