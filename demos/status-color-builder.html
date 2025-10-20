@@ -54,9 +54,9 @@
                         </div>
                         <div class="slider-group">
                             <label class="slider-label" for="error-l">Light</label>
-                            <input type="range" id="error-l" min="0" max="100" value="50"
+                            <input type="range" id="error-l" min="0" max="100" value="40"
                                 oninput="updateColor('error')">
-                            <span class="slider-value" id="error-l-val">50%</span>
+                            <span class="slider-value" id="error-l-val">40%</span>
                         </div>
                     </div>
                     <div class="color-preview" id="error-preview">Error Message</div>
@@ -88,9 +88,9 @@
                         </div>
                         <div class="slider-group">
                             <label class="slider-label" for="success-l">Light</label>
-                            <input type="range" id="success-l" min="0" max="100" value="50"
+                            <input type="range" id="success-l" min="0" max="100" value="25"
                                 oninput="updateColor('success')">
-                            <span class="slider-value" id="success-l-val">50%</span>
+                            <span class="slider-value" id="success-l-val">25%</span>
                         </div>
                     </div>
                     <div class="color-preview" id="success-preview">Success Message</div>
@@ -122,9 +122,9 @@
                         </div>
                         <div class="slider-group">
                             <label class="slider-label" for="warning-l">Light</label>
-                            <input type="range" id="warning-l" min="0" max="100" value="34"
+                            <input type="range" id="warning-l" min="0" max="100" value="28"
                                 oninput="updateColor('warning')">
-                            <span class="slider-value" id="warning-l-val">34%</span>
+                            <span class="slider-value" id="warning-l-val">28%</span>
                         </div>
                     </div>
                     <div class="color-preview" id="warning-preview">Warning Message</div>
@@ -154,8 +154,8 @@
                         </div>
                         <div class="slider-group">
                             <label class="slider-label" for="info-l">Light</label>
-                            <input type="range" id="info-l" min="0" max="100" value="50" oninput="updateColor('info')">
-                            <span class="slider-value" id="info-l-val">50%</span>
+                            <input type="range" id="info-l" min="0" max="100" value="40" oninput="updateColor('info')">
+                            <span class="slider-value" id="info-l-val">40%</span>
                         </div>
                     </div>
                     <div class="color-preview" id="info-preview">Info Message</div>
@@ -165,6 +165,11 @@
                     </div>
                     <div class="suggestion" id="info-suggestion"></div>
                 </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" class="btn btn-primary" onclick="showCommonMistakes()">Show Common Mistakes</button>
+                <button type="button" class="btn btn-secondary" onclick="resetToSafeColors()">Reset to Safe Colors</button>
             </div>
         </div>
 
@@ -353,6 +358,75 @@
                 ['error', 'success', 'warning', 'info'].forEach(type => updateColor(type));
             });
         });
+
+        // Show common mistakes - educational failing values
+        function showCommonMistakes() {
+            // Error: too light (fails contrast)
+            document.getElementById('error-h').value = 0;
+            document.getElementById('error-s').value = 100;
+            document.getElementById('error-l').value = 50;
+
+            // Success: too light (fails contrast)
+            document.getElementById('success-h').value = 120;
+            document.getElementById('success-s').value = 100;
+            document.getElementById('success-l').value = 50;
+
+            // Warning: way too light (common mistake with yellow/orange)
+            document.getElementById('warning-h').value = 45;
+            document.getElementById('warning-s').value = 100;
+            document.getElementById('warning-l').value = 50;
+
+            // Info: too light (fails contrast)
+            document.getElementById('info-h').value = 210;
+            document.getElementById('info-s').value = 80;
+            document.getElementById('info-l').value = 50;
+
+            // Update all colors
+            ['error', 'success', 'warning', 'info'].forEach(type => updateColor(type));
+
+            announce('Common mistakes loaded. All colors now fail WCAG AA. Adjust sliders to fix!');
+        }
+
+        // Reset to safe accessible colors
+        function resetToSafeColors() {
+            // Error: darkened red (passes contrast on white)
+            document.getElementById('error-h').value = 0;
+            document.getElementById('error-s').value = 100;
+            document.getElementById('error-l').value = 40;
+
+            // Success: very dark green (passes contrast on white - green needs to be darker!)
+            document.getElementById('success-h').value = 120;
+            document.getElementById('success-s').value = 100;
+            document.getElementById('success-l').value = 25;
+
+            // Warning: very dark gold (passes contrast on white - yellow/orange needs to be very dark!)
+            document.getElementById('warning-h').value = 45;
+            document.getElementById('warning-s').value = 100;
+            document.getElementById('warning-l').value = 28;
+
+            // Info: darkened blue (passes contrast on white)
+            document.getElementById('info-h').value = 210;
+            document.getElementById('info-s').value = 80;
+            document.getElementById('info-l').value = 40;
+
+            // Update all colors
+            ['error', 'success', 'warning', 'info'].forEach(type => updateColor(type));
+
+            announce('Reset to safe colors. All colors now pass WCAG AA!');
+        }
+
+        // Initialize dark mode based on checked radio button
+        function initializeDarkMode() {
+            const darkRadio = document.querySelector('input[name="bg-mode"][value="dark"]');
+            if (darkRadio && darkRadio.checked) {
+                const previewSamples = document.querySelector('.preview-samples');
+                previewSamples.classList.add('dark-bg');
+                document.documentElement.classList.add('mode-dark');
+            }
+        }
+
+        // Initialize dark mode on page load
+        initializeDarkMode();
 
         // Initialize all colors
         ['error', 'success', 'warning', 'info'].forEach(type => updateColor(type));

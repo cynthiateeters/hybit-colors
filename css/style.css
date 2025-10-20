@@ -383,7 +383,8 @@
 
   /* Status - Pass (green) */
   --demo-scb-pass-border: hsl(122, 39%, 49%);
-  --demo-scb-pass-text: hsl(123, 46%, 34%);
+  --demo-scb-pass-text: hsl(123, 46%, 30%);
+  /* Darkened from 34% to 30% for better contrast */
   --demo-scb-pass-bg: hsl(120, 38%, 93%);
 
   /* Status - Fail (red) */
@@ -392,8 +393,9 @@
   --demo-scb-fail-bg: hsl(0, 100%, 96%);
 
   /* Interactive (blue) */
-  --demo-scb-interactive: hsl(207, 77%, 47%);
-  --demo-scb-interactive-hover: hsl(207, 77%, 42%);
+  --demo-scb-interactive: hsl(207, 77%, 40%);
+  /* Darkened from 47% to 40% for better contrast */
+  --demo-scb-interactive-hover: hsl(207, 77%, 35%);
 
   /* Suggestion (orange) */
   --demo-scb-suggestion-border: hsl(36, 100%, 50%);
@@ -5270,6 +5272,216 @@ pre {
   font-weight: 600;
   color: var(--demo-scb-interactive);
   text-align: right;
+}
+
+/* Action buttons */
+.status-color-builder .action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.status-color-builder .btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.status-color-builder .btn-primary {
+  background: var(--demo-scb-interactive);
+  color: var(--demo-scb-card-bg);
+}
+
+.status-color-builder .btn-primary:hover {
+  background: var(--demo-scb-interactive-hover);
+}
+
+.status-color-builder .btn-secondary {
+  background: var(--demo-scb-border-default);
+  color: var(--demo-scb-heading);
+}
+
+.status-color-builder .btn-secondary:hover {
+  background: var(--demo-scb-text-muted);
+  color: var(--demo-scb-card-bg);
+}
+
+/* Color preview boxes and ratio display */
+.status-color-builder .color-preview {
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  background: var(--demo-scb-light-bg);
+  border: 1px solid var(--demo-scb-border-default);
+}
+
+.status-color-builder .ratio-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--demo-scb-text-muted);
+}
+
+.status-color-builder .ratio-number {
+  font-weight: 700;
+  color: var(--demo-scb-heading);
+  font-size: 1rem;
+}
+
+/* Suggestion boxes */
+.status-color-builder .suggestion {
+  background: var(--demo-scb-suggestion-bg);
+  border-left: 4px solid var(--demo-scb-suggestion-border);
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--demo-scb-suggestion-text);
+  display: none;
+}
+
+/* Preview section and dark mode support */
+.status-color-builder .preview-section {
+  background: var(--demo-scb-card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px var(--demo-scb-shadow);
+}
+
+.status-color-builder .preview-section h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--demo-scb-heading);
+}
+
+.status-color-builder .preview-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.status-color-builder .message-preview {
+  padding: 1rem;
+  border-radius: 4px;
+  border-left: 4px solid;
+}
+
+.status-color-builder .message-preview::before {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+/* Dark mode support - only affects preview samples */
+.status-color-builder .preview-samples {
+  background: var(--demo-scb-card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.status-color-builder .preview-samples.dark-bg {
+  background: var(--demo-scb-dark-bg);
+  color: var(--demo-scb-dark-text);
+}
+
+.status-color-builder .preview-samples.dark-bg .message-preview {
+  background: var(--demo-scb-dark-surface);
+  border-color: var(--demo-scb-dark-border);
+}
+
+.status-color-builder .preview-samples:not(.dark-bg) .message-preview {
+  background: var(--demo-scb-card-bg);
+  border-color: var(--demo-scb-border-light);
+}
+
+/* Dark mode for color preview boxes (global class set by JavaScript) */
+.mode-dark .status-color-builder .color-preview {
+  background: var(--demo-scb-dark-bg);
+  border-color: var(--demo-scb-dark-border);
+  color: var(--demo-scb-dark-text);
+}
+
+/* Summary, code block, and copy button */
+.status-color-builder .summary {
+  background: var(--demo-scb-light-bg);
+  padding: 1.25rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.status-color-builder .summary h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  color: var(--demo-scb-heading);
+}
+
+.status-color-builder .code-block-wrapper {
+  position: relative;
+  margin-top: 0.75rem;
+}
+
+.status-color-builder pre[class*="language-"] {
+  margin: 0;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.status-color-builder code[class*="language-"] {
+  font-size: 0.85rem;
+}
+
+.status-color-builder .copy-button {
+  background: var(--demo-scb-interactive);
+  color: var(--demo-scb-card-bg);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.status-color-builder .copy-button:hover {
+  background: var(--demo-scb-interactive-hover);
+}
+
+.status-color-builder .copy-button.copied {
+  background: var(--demo-scb-copied-bg);
+}
+
+/* Screen reader only */
+.status-color-builder .sr-only {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Responsive: Desktop styles */
+@media (min-width: 768px) {
+  .status-color-builder {
+    padding: 2rem;
+  }
+
+  .status-color-builder h1 {
+    font-size: 2rem;
+  }
+
+  .status-color-builder .color-picker-section h2,
+  .status-color-builder .preview-section h2 {
+    font-size: 1.25rem;
+  }
+
+  .status-color-builder .color-controls {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /*
