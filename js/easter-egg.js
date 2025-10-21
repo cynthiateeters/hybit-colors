@@ -2,7 +2,7 @@
  * HAP's Learning Lab - HyBit Insights Easter Egg
  *
  * Displays educational insights when ?hybit parameter is present in URL
- * Content is loaded from data/hybit-insights.jsonc for easy maintenance
+ * Content is loaded from data/hybit-insights.json for easy maintenance
  *
  * Security: Uses whitelist validation and pre-defined messages only.
  * Never uses user input directly in innerHTML to prevent XSS attacks.
@@ -16,23 +16,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (hybitParam !== null) {
         // Determine base path - go up one level from stations/ to reach data/
         const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-        const jsonPath = basePath + '../data/hybit-insights.jsonc';
+        const jsonPath = basePath + '../data/hybit-insights.json';
 
-        // Load insights data from JSONC (JSON with Comments)
+        // Load insights data from JSON
         fetch(jsonPath)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to load insights data');
                 }
-                return response.text();
-            })
-            .then(text => {
-                // Strip comments from JSONC before parsing
-                // Removes: // single-line comments and /* multi-line comments */
-                const jsonText = text
-                    .replace(/\/\*[\s\S]*?\*\//g, '')  // Remove /* ... */ comments
-                    .replace(/\/\/.*/g, '');            // Remove // comments
-                return JSON.parse(jsonText);
+                return response.json();
             })
             .then(data => {
                 initializeEasterEgg(data, hybitParam);

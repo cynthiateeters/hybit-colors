@@ -1,21 +1,56 @@
-# HAP's Learning Lab Template
+# HAP's Learning Lab: Web Colors
 
-**Create Your Own 6-Station Educational Website**
+**A 6-Station Interactive Course on Modern Web Color Theory**
 
-This is a customizable template for creating HAP Learning Lab educational websites. Build your own interactive learning experience with 6 stations covering any web development topic. HAP (HyBit A. ProtoBot™), Prof. Teeters' apprentice, will guide students through your stations with his friendly first-person narrative.
+Learn modern web color techniques through HAP (HyBit A. ProtoBot™), Prof. Teeters' apprentice, as he shares his journey from hex codes to HSL mastery. Explore color formats, design systems, harmony theory, accessibility, modern CSS features, and AI-assisted color design through hands-on examples and interactive demos.
 
 ## Overview
 
-This template provides a complete foundation for building HAP Learning Labs - collections of 6 interactive learning stations that teach web development concepts through hands-on examples. The template includes:
+This educational website teaches web color theory and implementation through 6 progressive learning stations. Each station combines HAP's friendly first-person narrative with interactive demos, real code examples, and accessibility-focused best practices. Students learn by following HAP's apprentice journey from confusion to mastery.
 
-- 6 pre-built station HTML files (`station1.html` through `station6.html`) with placeholder content
-- Complete HAP branding and character integration
-- Easter egg system for contextual learning tips
-- Production-tested CSS, JavaScript, and configuration files
-- Lighthouse testing infrastructure
-- Zero dependencies - pure HTML/CSS/JavaScript
+## What you'll learn
 
-Simply customize the placeholder content with your educational material, and you'll have a professional learning lab ready to deploy.
+### Station 1: Beyond hex codes
+
+- Understanding hex shorthand (#RGB vs #RRGGBB)
+- Why HSL is superior for systematic color work
+- How RGB relates to how screens actually work
+- Converting between color formats
+
+### Station 2: Building color systems
+
+- Semantic naming (--primary vs --blue)
+- Creating systematic gray scales
+- The 60-30-10 distribution rule
+- Organizing colors with CSS custom properties
+
+### Station 3: Color harmony and meaning
+
+- The color wheel as degrees (0-360°)
+- Complementary colors (180° apart)
+- Analogous harmony (neighbors on wheel)
+- Color psychology and temperature
+
+### Station 4: Accessibility and contrast
+
+- WCAG 2.2 Level AA requirements (4.5:1 ratio)
+- Understanding relative luminance
+- Testing for color-vision deficiency
+- Never using color alone as an indicator
+
+### Station 5: Modern CSS features
+
+- CSS gradients vs image files
+- color-mix() for perfect hover states
+- Automatic dark mode with prefers-color-scheme
+- CSS custom properties best practices
+
+### Station 6: AI-assisted color design
+
+- Avoiding "vibe coding" pitfalls
+- Managing AI drift in long sessions
+- Correct terminology (custom properties not "variables")
+- Prompt engineering for color palettes
 
 ## Quick start
 
@@ -23,157 +58,174 @@ Simply customize the placeholder content with your educational material, and you
 
 This is a static HTML site with no build process required.
 
-**Option 1: Using a local server (recommended)**
+**Using live-server (recommended)**:
 
 ```bash
-# Using Python 3
-python3 -m http.server 8000
+# If installed globally
+live-server --port=5500
 
-# Using Node.js
-npx http-server
-
-# Using PHP
-php -S localhost:8000
+# Or using npx
+npx live-server --port=5500
 ```
 
-Then open `http://localhost:8000` in your browser.
+**Using Python**:
 
-**Option 2: Direct file opening**
+```bash
+python3 -m http.server 5500
+```
 
-Open `index.html` directly in your browser. Note: Some features (like JSON loading) may not work with `file://` protocol.
+**Using Node.js**:
 
-### Project structure
+```bash
+npx http-server -p 5500
+```
+
+Then open `http://localhost:5500` in your browser.
+
+**Important**: A local server is required for the easter egg feature to load JSON data (file:// protocol has CORS restrictions).
+
+### Interactive demos
+
+The project includes 6 interactive demos in the `demos/` directory:
+
+1. **Color Alone Fix** - Accessibility demonstration
+2. **Contrast Fixer** - WCAG contrast ratio calculator
+3. **Dark Mode Demo** - Automatic dark mode implementation
+4. **Filter Effects** - CSS filter demonstrations
+5. **Gradient Builder** - Interactive gradient generator
+6. **Status Color Builder** - Accessible status colors (error, success, warning, info)
+
+Visit demos directly: `http://localhost:5500/demos/dark-mode-demo.html`
+
+## Project structure
 
 ```
-hap-template/
-├── index.html              # Hub page (customize with your stations)
+hybit-colors/
+├── index.html                    # Hub page linking to 6 stations
 ├── stations/
-│   ├── station1.html       # Template for Station 1
-│   ├── station2.html       # Template for Station 2
-│   ├── station3.html       # Template for Station 3
-│   ├── station4.html       # Template for Station 4
-│   ├── station5.html       # Template for Station 5
-│   └── station6.html       # Template for Station 6
+│   ├── _template-station.html    # Template for future stations
+│   ├── station1.html             # Beyond Hex (completed)
+│   ├── station2.html             # Building Color Systems (completed)
+│   ├── station3.html             # Color Harmony & Meaning (completed)
+│   ├── station4.html             # Accessibility (in progress)
+│   ├── station5.html             # Modern CSS (in progress)
+│   └── station6.html             # AI Assistance (in progress)
+├── demos/
+│   ├── color-alone-fix.html      # Accessibility demonstration
+│   ├── contrast-fixer.html       # Contrast ratio calculator
+│   ├── dark-mode-demo.html       # Dark mode implementation
+│   ├── filter-effects.html       # CSS filter examples
+│   ├── gradient-builder.html    # Interactive gradient tool
+│   └── status-color-builder.html # Accessible status colors
 ├── css/
-│   ├── style.css           # Production-tested HAP styles
-│   └── prism-hap-theme.css # Syntax highlighting theme
+│   ├── style.css                 # HAP design system (~2900 lines)
+│   └── prism-hap-theme.css       # Syntax highlighting theme
 ├── js/
-│   └── easter-egg.js       # HAP Insights easter egg system
+│   └── easter-egg.js             # HAP Insights easter egg system
 ├── data/
-│   ├── hybit-insights.jsonc  # Easter egg content (customize)
-│   └── README.md           # Easter egg documentation
+│   ├── hybit-insights.json       # Easter egg content (22 insights)
+│   └── README.md                 # Easter egg documentation
 ├── docs/
-│   ├── style-guide.md      # HAP style guide
-│   └── lighthouse-tutorial.md  # Testing guide
-├── reports/                # Generated Lighthouse reports
-├── package.json            # Lighthouse testing scripts
-├── lighthouserc.json       # Lighthouse CI configuration
-├── LICENSE                 # MIT License (code)
-├── TRADEMARK.md            # HAP™ character rights
-└── CONTENT-LICENSE.md      # Educational content license
+│   ├── style-guide.md            # Complete HAP style guide (v1.4)
+│   ├── quick-start.md            # Getting started guide
+│   ├── lighthouse-tutorial.md   # Performance testing
+│   ├── claude-code-tutorial.md  # AI development workflow
+│   ├── hap-design.md             # Color design decisions
+│   ├── javascript-security-audit.md  # Security analysis
+│   └── easter-egg-test-checklist.md  # Easter egg testing
+├── reports/                      # Generated reports (gitignored)
+├── CONTENT-PLAN.md               # 6-station curriculum design
+├── package.json                  # Lighthouse testing only
+├── lighthouserc.json             # Lighthouse CI config
+└── LICENSE                       # MIT License (code)
 ```
 
-## Customizing your learning lab
+## HAP Insights easter egg
 
-### Step 1: Define your 6 stations
-
-Decide what 6 web development topics you want to teach. Each station should focus on a specific concept with hands-on examples.
-
-**Example topics:**
-
-- Web fonts and typography
-- CSS Grid layouts
-- JavaScript APIs
-- Accessibility testing
-- Performance optimization
-- Modern CSS features
-
-### Step 2: Customize station files
-
-Each `station1.html` through `station6.html` file contains placeholders like:
-
-- `[STATION_TITLE]` - Your station's title
-- `[SUBTITLE]` - Brief description
-- `[BRIEF_DESCRIPTION]` - For meta description
-- `[HAP's apprentice voice introduction]` - HAP's first-person narrative
-- `[SECTION_HEADING]` - Main section titles
-- `[Content sections]` - Your educational content
-
-**Search and replace these placeholders** with your content while maintaining HAP's apprentice voice.
-
-### Step 3: Update the hub page
-
-Edit `index.html` to:
-
-- Update the hub introduction with your learning lab's theme
-- Add descriptions for your 6 stations
-- Update navigation links if you rename station files
-
-### Step 4: Customize HAP Insights
-
-Edit `data/hybit-insights.jsonc` to add contextual learning tips for your topics. See `data/README.md` for detailed instructions.
-
-### Step 5: Test with Lighthouse
-
-```bash
-npm install
-npm run lh:ci
-```
-
-This runs automated testing on all 6 stations plus the hub page.
-
-## Easter egg feature
-
-The site includes an educational easter egg system called "HAP Insights" that provides contextual learning tips when students add URL parameters. HAP shares additional insights he learned from Prof. Teeters in his friendly apprentice voice.
+The site includes an educational easter egg system that provides contextual learning tips when students add URL parameters.
 
 ### How to use
 
 Add `?hybit` to any page URL:
 
 ```
-index.html?hybit              # Shows page-specific suggestions
-index.html?hybit=detail       # Shows Lighthouse score
-responsive-images.html?hybit=srcset  # Shows srcset explanation
+stations/station3.html?hybit                    # Shows page-specific suggestions
+stations/station3.html?hybit=color-wheel        # Shows color wheel insight
+stations/station1.html?hybit=hsl-advantage      # Shows HSL benefits
+index.html?hybit=detail                         # Shows Lighthouse score
 ```
 
-### Available parameters (customize these!)
+### Available insights (22 total)
 
-The template includes example parameters you should customize for your learning lab:
+**General**:
 
-| Parameter | Shows | Example Use |
-|-----------|-------|-------------|
-| `detail` | Lighthouse Score: 98%-100% | Any page |
-| `stations` | Learning stations overview | Hub |
-| `example1` | Your topic 1 insight | Station 1 |
-| `example2` | Your topic 2 insight | Station 2 |
+- `detail` - Lighthouse performance score
+- `stations` - Learning lab overview
 
-**To customize:** Edit `data/hybit-insights.jsonc` and replace example parameters with ones relevant to your stations.
+**Station 1: Beyond Hex**:
 
-### For instructors
+- `hex-shorthand` - #RGB vs #RRGGBB explanation
+- `hsl-advantage` - Why HSL is superior
+- `rgb-screens` - How screens work with RGB
 
-See `data/README.md` for complete documentation on adding new insights and customizing messages.
+**Station 2: Building Color Systems**:
+
+- `semantic-naming` - --primary vs --blue
+- `60-30-10` - Distribution rule
+- `gray-scales` - Creating systematic grays
+
+**Station 3: Color Harmony**:
+
+- `color-wheel` - The color wheel as degrees
+- `complementary` - 180° apart colors
+- `analogous` - Neighbor harmony
+
+**Station 4: Accessibility**:
+
+- `wcag-aa` - Level AA requirements
+- `contrast-ratio` - Understanding 4.5:1
+- `cvd-testing` - Color-vision deficiency testing
+
+**Station 5: Modern CSS**:
+
+- `gradients` - CSS vs images
+- `color-mix` - Perfect hover colors
+- `dark-mode` - Automatic dark mode
+
+**Station 6: AI Assistance**:
+
+- `vibe-coding` - Why it fails
+- `drift` - AI context loss
+- `terminology` - Custom properties vs "variables"
+- `verify` - Trust but verify AI claims
+- `prompt-formula` - Context + mood + constraints
+
+For complete documentation, see `data/README.md`.
 
 ## Technologies used
 
-- **Pure HTML/CSS/JavaScript** - No frameworks or build tools
+- **Pure HTML/CSS/JavaScript** - Zero frameworks, zero build process
 - **Native `<dialog>` element** - Modern modal UI
-- **Cloudinary CDN** - Image optimization and delivery
-- **JSONC data format** - Separated content from code
-- **Responsive design** - Mobile-first approach
-- **Semantic HTML** - Accessibility-focused markup
+- **Cloudinary CDN** - Optimized image delivery
+- **CSS Custom Properties** - Systematic color management
+- **HSL Color Format** - All colors use HSL for easy manipulation
+- **Prism.js** - Syntax highlighting for code examples
 
 ## Key features
 
 ### Performance optimized
 
-- ✅ Lighthouse score: 98%-100%
-- ✅ Optimized image delivery via Cloudinary
-- ✅ Lazy loading for images
+- ✅ Lighthouse scores: 99-100/100 (all categories)
+- ✅ Cloudinary auto-optimization (WebP/AVIF)
+- ✅ Lazy loading for below-fold images
 - ✅ Deferred script loading
-- ✅ Minimal CSS and JavaScript
+- ✅ ~13KB JSON data file
+- ✅ Minimal JavaScript (~177 lines)
 
 ### Accessibility
 
+- ✅ WCAG 2.2 Level AA compliant
+- ✅ All text meets 4.5:1 contrast ratio
 - ✅ Semantic HTML landmarks
 - ✅ Skip to main content link
 - ✅ ARIA labels on interactive elements
@@ -182,183 +234,179 @@ See `data/README.md` for complete documentation on adding new insights and custo
 
 ### Educational design
 
-- ✅ Apprentice narrative with HAP's friendly voice
-- ✅ Real-world examples with actual file sizes
-- ✅ Visual comparisons and demos
+- ✅ Apprentice narrative (HAP's friendly first-person voice)
+- ✅ Real-world examples with actual metrics
+- ✅ Interactive demos for hands-on learning
 - ✅ Copy-paste ready code snippets
-- ✅ Contextual learning with HAP Insights
-- ✅ Hands-on exploration encouraged
+- ✅ Contextual learning with easter egg insights
+- ✅ Before/after comparisons
+- ✅ HAP's mistakes demonstrate common pitfalls
 
-## Content guidelines
+## HAP's apprentice voice
 
-### Images
+HAP speaks in first-person, sharing his learning journey:
 
-All images are served through Cloudinary with automatic optimization:
+✅ **Good**: "I used to pick colors by guessing — pure red with pure green — and wondered why it felt like a warning sign."
 
-```html
-<img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_600/image.jpg"
-     alt="Descriptive text">
+❌ **Wrong**: "You should avoid using pure colors together."
+
+✅ **Good**: "Prof. Teeters showed me the color wheel and my mind exploded!"
+
+❌ **Wrong**: "This tutorial will teach you about the color wheel."
+
+HAP is enthusiastic but humble, references Prof. Teeters as his mentor, and shares his mistakes to make learning relatable.
+
+## Color design principles
+
+This learning lab follows strict color accessibility standards:
+
+### All colors use HSL format
+
+```css
+:root {
+  /* Brand colors */
+  --warm-orange: hsl(32, 62%, 47%);      /* HAP's primary */
+  --peach-background: hsl(33, 51%, 90%); /* Page background */
+  --cream-white: hsl(39, 100%, 97%);     /* Content cards */
+
+  /* Text colors (WCAG AA compliant) */
+  --dark-brown: hsl(30, 38%, 16%);       /* Primary text */
+  --teal-darker: hsl(171, 35%, 34%);     /* Links (4.5:1) */
+  --orange-darkest: hsl(32, 65%, 33%);   /* Stats (4.5:1) */
+}
 ```
 
-Parameters used:
+### Why HSL everywhere?
 
-- `f_auto` - Automatic format (WebP/AVIF when supported)
-- `q_auto` - Automatic quality optimization
-- `w_600` - Width constraint (responsive)
+- Systematic color variations (keep H and S, adjust L)
+- Easy to calculate complementary colors (±180°)
+- Predictable darkening/lightening
+- Better for teaching color theory
+- Easier to maintain and modify
 
-### Renaming station files (optional)
+For complete design decisions, see `docs/hap-design.md`.
 
-You can keep the numbered naming (`station1.html`) or rename to descriptive names:
+## Testing
 
-**Option A: Keep numbered** (recommended for easier template updates)
-
-```
-station1.html, station2.html, etc.
-```
-
-**Option B: Rename to descriptive**
+### Lighthouse CI
 
 ```bash
-mv stations/station1.html stations/web-fonts.html
-mv stations/station2.html stations/css-grid.html
-# etc.
+npm install
+npm run lh:ci
 ```
 
-If you rename, also update:
+Tests all 6 stations + hub page for:
 
-- Navigation links in each station file
-- URLs in `lighthouserc.json`
-- Links in `index.html`
+- Performance (target: 99+)
+- Accessibility (target: 100)
+- Best Practices (target: 100)
+- SEO (target: 100)
 
-## File organization
+### Manual testing
 
-### CSS architecture
+```bash
+# Start local server
+live-server --port=5500
 
-- **Single stylesheet** (`css/style.css`)
-- **CSS custom properties** for colors and sizing
-- **Utility classes** for spacing (`mt-1`, `mb-2`, etc.)
-- **Component classes** for reusable patterns
-- **Responsive design** with mobile-first breakpoints
+# In browser DevTools:
+# 1. Lighthouse tab → Run audit
+# 2. Console → Check for errors
+# 3. Network → Verify JSON loads (200 OK)
+```
 
-### JavaScript organization
-
-- **Minimal JavaScript** - Only for easter egg feature
-- **No dependencies** - Pure vanilla JS
-- **Event-driven** - Uses `DOMContentLoaded`
-- **Error handling** - Graceful fallbacks
-
-### Data organization
-
-- **Separated content** - JSONC files for easter egg data
-- **Documented structure** - Inline comments explain purpose
-- **Easy to maintain** - Non-developers can edit content
+See `docs/easter-egg-test-checklist.md` for comprehensive test procedures.
 
 ## Browser support
-
-Tested and working in:
 
 - ✅ Chrome 90+
 - ✅ Firefox 90+
 - ✅ Safari 15.4+
 - ✅ Edge 90+
 
-Note: Native `<dialog>` element requires modern browsers (95%+ coverage as of 2024).
+**Coverage**: 95%+ of users (as of 2024)
 
-## Security considerations
+**Required features**:
 
-### Content security policy
+- Native `<dialog>` element
+- CSS custom properties
+- Fetch API
+- ES6 JavaScript
 
-Basic CSP is included in HTML:
+## Security
 
-```html
-<meta http-equiv="Content-Security-Policy" content="...">
-```
+### Easter egg security (recently improved)
 
-Allows:
+- ✅ Native JSON parsing (no regex vulnerabilities)
+- ✅ Whitelist parameter validation
+- ✅ Pre-defined messages only (no user input in HTML)
+- ✅ Safe HTML tags only (`<code>`, `<strong>`, `<em>`)
+- ✅ No `<script>` tags or event handlers in content
 
-- Self-hosted scripts and styles
-- Cloudinary images
-- Inline styles (for utility classes)
+**Recent fix** (Oct 2025): Converted JSONC → JSON to eliminate regex-based comment stripping vulnerability. See `docs/javascript-security-audit.md` for full analysis.
 
-### XSS prevention
+### Content security
 
-Easter egg system uses:
-
-- Whitelist validation for parameters
-- Pre-defined messages only
-- No user input in HTML
-- Safe HTML tags only (`<code>`, `<strong>`, `<em>`)
-
-## Performance metrics
-
-Current Lighthouse scores:
-
-- **Performance:** 99
-- **Accessibility:** 100
-- **Best Practices:** 100
-- **SEO:** 100
-
-Optimization techniques:
-
-- Cloudinary CDN for global delivery
-- Lazy loading for below-fold images
-- Deferred script loading
-- Preconnect to CDN origin
-- Optimized critical rendering path
-
-## Contributing
-
-This project is part of Prof. Teeters' AI-Enhanced Teaching Methods.
-
-### Content contributions
-
-To add or modify educational content:
-
-1. Edit the relevant HTML file
-2. Follow existing patterns for consistency
-3. Test on multiple screen sizes
-4. Verify accessibility (screen reader, keyboard nav)
-5. Update this README if adding new stations
-
-### Easter egg contributions
-
-To add new HAP Insights:
-
-1. See `data/README.md` for detailed instructions
-2. Edit `data/hybit-insights.jsonc`
-3. Add parameter to whitelist
-4. Create message with title and content (use HAP's voice!)
-5. Test with `?hybit=newparam`
-
-### Code style
-
-- **HTML:** Semantic, accessible, well-indented
-- **CSS:** BEM-like naming, mobile-first, commented sections
-- **JavaScript:** Pure vanilla JS, clear function names, commented logic
-- **JSONC:** Inline comments explaining each section
+- No external scripts except Prism.js (syntax highlighting)
+- All images from trusted Cloudinary account
+- No user data collection
+- No cookies or localStorage
+- No form submissions
 
 ## Documentation
 
 ### For students
 
-- Each station page includes inline explanations from HAP
-- HAP Insights provide contextual learning tips
-- Code examples are copy-paste ready
-- Real metrics shown (file sizes, percentages)
-- Apprentice narrative makes complex topics approachable
+- **Each station page**: Inline explanations from HAP
+- **HAP Insights**: Contextual tips via `?hybit` parameters
+- **Code examples**: Copy-paste ready snippets
+- **Interactive demos**: Hands-on color tools
 
 ### For instructors
 
-- `data/README.md` - Easter egg system documentation
+- `CONTENT-PLAN.md` - Complete 6-station curriculum
+- `docs/style-guide.md` - HAP design system (v1.4)
+- `data/README.md` - Easter egg system
+- `docs/hap-design.md` - Color design decisions
 - Inline HTML comments explain structure
-- CSS comments document design decisions
-- HAP's apprentice voice demonstrates relatable learning
 
-## 📜 License
+### For developers
 
-This project uses a **multi-license approach** to balance open source collaboration with intellectual property protection:
+- `docs/claude-code-tutorial.md` - AI development workflow
+- `docs/javascript-security-audit.md` - Security analysis
+- `CLAUDE.md` - Project guidelines for AI assistants
+- CSS comments document design patterns
 
-### License structure
+## Development workflow
+
+This project uses Claude Code for AI-assisted development with checkpoint-based workflow:
+
+1. **Checkpoint branches** for safe experimentation
+2. **User review** before merging to main
+3. **Lighthouse testing** ensures quality
+4. **No AI attribution** in commit messages (per project policy)
+
+See `docs/claude-code-tutorial.md` for complete workflow.
+
+## Performance metrics
+
+Current Lighthouse scores (as of Oct 2025):
+
+- **Performance**: 99-100/100
+- **Accessibility**: 100/100
+- **Best Practices**: 100/100
+- **SEO**: 100/100
+
+Optimization techniques:
+
+- Cloudinary CDN with auto-optimization
+- Lazy loading for below-fold images
+- Preconnect to CDN origin
+- Deferred script loading
+- Minimal JavaScript (only easter egg)
+
+## License
+
+This project uses a **multi-license approach**:
 
 | Component | License | File |
 |-----------|---------|------|
@@ -366,7 +414,7 @@ This project uses a **multi-license approach** to balance open source collaborat
 | **HAP™ Character & Brand** | Proprietary | [TRADEMARK.md](./TRADEMARK.md) |
 | **Educational Content & Methodology** | Proprietary | [CONTENT-LICENSE.md](./CONTENT-LICENSE.md) |
 
-### Quick reference guide
+### Quick reference
 
 #### ✅ You CAN
 
@@ -384,30 +432,39 @@ This project uses a **multi-license approach** to balance open source collaborat
 - Claim the teaching methodology as your own
 - Remove attribution or copyright notices
 
-### Why multiple licenses?
-
-- **Code (MIT)**: Encourages community contribution and technical innovation
-- **Character (Proprietary)**: Maintains brand identity and prevents confusion
-- **Content (Proprietary)**: Protects educational innovation while allowing academic use
-
 ### Attribution
 
-When using or referencing this project:
+When referencing this project:
 
 ```
 HAP™ (HyBit A. ProtoBot™) by Cynthia Teeters
 Apprentice-Based AI Teaching Methodology
 ```
 
-### Questions?
+## Contributing
 
-- **For character licensing**: See [TRADEMARK.md](./TRADEMARK.md)
-- **For educational content**: See [CONTENT-LICENSE.md](./CONTENT-LICENSE.md)
-- **For other inquiries**: Open an issue or contact @cynthiateeters
+### Content improvements
 
----
+1. Edit relevant HTML/CSS/JS files
+2. Follow HAP's apprentice voice (first-person, humble)
+3. Test on multiple screen sizes
+4. Verify accessibility (4.5:1 contrast minimum)
+5. Run Lighthouse CI tests
 
-*HAP™ and HyBit A. ProtoBot™ are trademarks of Cynthia Teeters. The apprentice learning methodology and educational content are proprietary innovations protected by copyright.*
+### Easter egg additions
+
+1. See `data/README.md` for instructions
+2. Edit `data/hybit-insights.json`
+3. Add parameter to `allowedParams` array
+4. Create message with `title` and `content`
+5. Test with `?hybit=newparam`
+
+### Code style
+
+- **HTML**: Semantic, accessible, well-indented
+- **CSS**: BEM-inspired naming, mobile-first, commented
+- **JavaScript**: Pure vanilla JS, clear names, documented
+- **JSON**: Valid syntax, no comments (use README instead)
 
 ## Credits
 
@@ -420,19 +477,59 @@ Part of AI-Enhanced Teaching Methods curriculum
 
 - **Cloudinary** - Image optimization and CDN
 - **Google Fonts** - Nunito typeface
+- **Prism.js** - Syntax highlighting
 - **Claude Code** - AI assistant for development
 
-### Inspiration
+### HAP Character
 
-This project demonstrates how AI image generation, web performance, and responsive design intersect in modern web development.
+**HyBit A. ProtoBot™ (HAP™)** character concept, personality, and teaching methodology created by Prof. Cynthia Teeters. Visual elements created with AI assistance.
+
+## Roadmap
+
+### Completed
+
+- ✅ Station 1: Beyond Hex
+- ✅ Station 2: Building Color Systems
+- ✅ Station 3: Color Harmony & Meaning
+- ✅ Hub page with color theme
+- ✅ 6 interactive demos
+- ✅ Easter egg system (22 insights)
+- ✅ Security audit and fix (JSONC → JSON)
+
+### In Progress
+
+- 🔄 Station 4: Accessibility & Contrast
+- 🔄 Station 5: Modern CSS Features
+- 🔄 Station 6: AI-Assisted Color Design
+
+### Future Enhancements
+
+- [ ] Add DOMPurify for extra HTML sanitization
+- [ ] Add SRI hashes to all CDN scripts
+- [ ] Add Content Security Policy headers
+- [ ] Create video tutorials for each station
+- [ ] Add more interactive demos
 
 ## Contact
 
-For questions about this educational resource or to report issues:
+For questions or to report issues:
 
-- Review `data/README.md` for easter egg questions
-- Consult inline HTML/CSS/JS comments
+- **Easter egg questions**: See `data/README.md`
+- **Technical questions**: Check inline comments in code
+- **Security issues**: See `docs/javascript-security-audit.md`
+- **Curriculum questions**: See `CONTENT-PLAN.md`
+
+## Acknowledgments
+
+This project demonstrates how:
+
+- AI-assisted development (Claude Code) accelerates educational content creation
+- Modern web standards (CSS custom properties, native dialog) simplify implementation
+- Accessibility-first design creates better experiences for everyone
+- Apprentice-based learning makes complex topics approachable
 
 ---
 
 **Built with 🟠 for education and exploration**
+
+*HAP™ and HyBit A. ProtoBot™ are trademarks of Cynthia Teeters. The apprentice learning methodology and educational content are proprietary innovations protected by copyright.*

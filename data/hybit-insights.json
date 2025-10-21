@@ -1,0 +1,258 @@
+{
+  "allowedParams": [
+    "detail",
+    "stations",
+    "hex-shorthand",
+    "hsl-advantage",
+    "rgb-screens",
+    "semantic-naming",
+    "60-30-10",
+    "gray-scales",
+    "color-wheel",
+    "complementary",
+    "analogous",
+    "wcag-aa",
+    "contrast-ratio",
+    "cvd-testing",
+    "gradients",
+    "color-mix",
+    "dark-mode",
+    "vibe-coding",
+    "drift",
+    "terminology",
+    "verify",
+    "prompt-formula"
+  ],
+  "messages": {
+    "detail": {
+      "title": "🚀 Lighthouse Score: 100%!",
+      "content": "This site is optimized for instant loading with modern web performance techniques. Every page scores 100/100 on accessibility!"
+    },
+    "stations": {
+      "title": "🔬 Learning Stations",
+      "content": "Explore 6 interactive stations covering color formats, systems, harmony, accessibility, modern CSS, and AI assistance. HAP guides you through hands-on examples!"
+    },
+    "hex-shorthand": {
+      "title": "🎨 Hex Shorthand Mystery Solved!",
+      "content": "I was so confused when I saw <code>#369</code> and <code>#336699</code> in the same file! Prof. Teeters explained that <code>#RGB</code> is shorthand for <code>#RRGGBB</code>. Each digit doubles: <code>#369</code> = <code>#336699</code>, <code>#fff</code> = <code>#ffffff</code>. Mind blown! 🤯"
+    },
+    "hsl-advantage": {
+      "title": "🎯 Why HSL Changed Everything",
+      "content": "Prof. Teeters said <strong>\"HSL is like having a color remote control\"</strong> and she was SO right! Want a darker version? Keep H and S, just lower L! With hex codes, I was guessing. With HSL, it's math. <code>hsl(210, 50%, 50%)</code> → <code>hsl(210, 50%, 40%)</code> for darker. Easy!"
+    },
+    "rgb-screens": {
+      "title": "📺 How Screens Actually Work",
+      "content": "RGB made no sense until Prof. Teeters explained it's based on how screens work - mixing red, green, and blue <strong>light</strong>. Each value (0-255) is how bright that color channel is. <code>rgb(255, 0, 0)</code> = full red, no green, no blue = pure red! It's literally controlling tiny lights in your screen!"
+    },
+    "semantic-naming": {
+      "title": "🏷️ Semantic Naming Saves Lives",
+      "content": "I used to name colors <code>--blue</code>, <code>--green</code>, <code>--red</code>. Then the client changed from blue to orange. Prof. Teeters taught me semantic naming: <code>--primary</code>, <code>--success</code>, <code>--error</code>. Now when colors change, I only update ONE place. Game changer!"
+    },
+    "60-30-10": {
+      "title": "🎡 The 60-30-10 Rule",
+      "content": "Prof. Teeters taught me the professional designer secret: <strong>60% dominant color, 30% secondary, 10% accent</strong>. My old sites had equal amounts of every color - total chaos! Now I use 60% neutrals (background), 30% brand color, 10% accent. It just <em>looks right</em>!"
+    },
+    "gray-scales": {
+      "title": "🗂️ Creating Perfect Gray Scales",
+      "content": "Creating a gray scale with hex? Nightmare. With HSL? <strong>Keep hue and saturation at 0, just change lightness!</strong> <code>--gray-100: hsl(0, 0%, 95%)</code> down to <code>--gray-900: hsl(0, 0%, 10%)</code>. Ten seconds, done. Prof. Teeters was right: HSL is the systematic approach!"
+    },
+    "color-wheel": {
+      "title": "🎨 The Color Wheel as Degrees",
+      "content": "Prof. Teeters blew my mind: <strong>HSL hue IS the color wheel as numbers!</strong> 0° = red, 120° = green, 240° = blue, 360° = back to red. Want the opposite color? Add 180°! If primary is <code>hsl(210, 60%, 50%)</code>, complement is <code>hsl(30, 60%, 50%)</code>. Math beats guessing!"
+    },
+    "complementary": {
+      "title": "🎯 Complementary = Add 180°",
+      "content": "I used to pick \"opposite\" colors randomly. Prof. Teeters showed me: <strong>complementary colors are exactly 180° apart</strong> on the color wheel. Blue at 210°? Complement is 210 + 180 = 30° (orange). Works every time. No color picker needed!"
+    },
+    "analogous": {
+      "title": "🌈 Analogous = Neighbors",
+      "content": "Analogous colors sit next to each other on the color wheel - usually <strong>30° apart</strong>. Prof. Teeters taught me: if primary is 210° (blue), analogous colors are 180° (teal) and 240° (blue-purple). They always harmonize because they share the same color family. So easy with HSL!"
+    },
+    "wcag-aa": {
+      "title": "♿ WCAG 2.2 Level AA Explained",
+      "content": "Prof. Teeters taught me: <strong>WCAG 2.2 Level AA requires 4.5:1 contrast ratio</strong> for normal text (14-18px), and 3:1 for large text (18px+ or 14px+ bold). This isn't optional - it's the law in many places! Test EVERY color combination. WebAIM's contrast checker is my best friend now."
+    },
+    "contrast-ratio": {
+      "title": "🔬 Understanding Contrast Ratios",
+      "content": "I thought contrast was just \"dark vs light.\" Prof. Teeters explained it's <strong>relative luminance math</strong>. 4.5:1 means the lighter color is 4.5× more luminous. Pure white on pure black? 21:1 (maximum). Pale gray on white? Maybe 1.5:1 (fails). Green needs to be much darker than blue to pass - luminance matters!"
+    },
+    "cvd-testing": {
+      "title": "👁️ Color-Vision Deficiency Testing",
+      "content": "8% of men and 0.5% of women have color-vision deficiency (CVD). Prof. Teeters showed me Chrome DevTools can simulate CVD! DevTools → Rendering → Emulate vision deficiencies. <strong>Never use color alone</strong> - pair with icons, labels, or patterns. Red/green issues? Test it!"
+    },
+    "gradients": {
+      "title": "🎨 CSS Gradients vs Images",
+      "content": "I used to export gradient images from Photoshop - 20KB each! Prof. Teeters showed me: <code>background: linear-gradient(135deg, var(--primary), var(--secondary));</code> - that's it! <strong>Zero KB, infinite variations, scales perfectly.</strong> Plus I can adjust colors in CSS instead of re-exporting images. Why didn't anyone tell me sooner?!"
+    },
+    "color-mix": {
+      "title": "🔬 color-mix() is Magic",
+      "content": "I used to guess hover colors - <code>#3366cc</code> → <code>#4477dd</code>? Close enough? Prof. Teeters introduced me to <code>color-mix()</code>: <code>color-mix(in srgb, var(--primary) 80%, white)</code> = <strong>mathematically perfect 20% lighter</strong>. No guessing, no color picker, just math. Works in all modern browsers!"
+    },
+    "dark-mode": {
+      "title": "🌐 Automatic Dark Mode",
+      "content": "I thought dark mode needed duplicate CSS files. Prof. Teeters showed me <code>@media (prefers-color-scheme: dark)</code> - <strong>one media query, flip a few colors, done!</strong> OS detects user preference automatically. Just flip background, text, and borders. Accent colors often stay the same. Ship dark mode in 10 minutes!"
+    },
+    "vibe-coding": {
+      "title": "🤖 Why Vibe Coding Fails",
+      "content": "Prof. Teeters calls it \"vibe coding\" - throwing prompts at AI and hoping for the best. I used to say <em>\"make it pretty\"</em> *paste*. She taught me: <strong>YOU are the director</strong>. AI suggests, YOU decide. Use AI to accelerate what you understand, not skip understanding. Be the human in the loop!"
+    },
+    "drift": {
+      "title": "⚠️ AI Drift is Annoying But Normal",
+      "content": "Prof. Teeters warned me about <strong>\"drift\"</strong> - AI loses context and reverts to bad habits. I start with perfect <code>--primary: hsl(210, 50%, 50%)</code>, three prompts later AI is back to hex codes and calling them \"variables\"! When you spot drift, remind the AI: <em>\"Remember: HSL custom properties only.\"</em> Annoying but normal!"
+    },
+    "terminology": {
+      "title": "📚 CSS Custom Properties NOT Variables",
+      "content": "AI was trained on millions of tutorials that incorrectly say <strong>\"CSS variables.\"</strong> Prof. Teeters taught me to always correct it! The spec calls them <strong>\"CSS custom properties\"</strong>. When AI says \"Here are your CSS variables,\" I respond: <em>\"Use the term 'CSS custom properties' with --property-name syntax.\"</em> Precision in language = precision in code!"
+    },
+    "verify": {
+      "title": "🔍 Trust But Verify AI Claims",
+      "content": "AI told me my pale yellow on white was <em>\"perfectly accessible.\"</em> Prof. Teeters had me check - <strong>1.9:1 ratio, massive fail!</strong> She taught me: <strong>AI is great for suggestions but can misstate contrast math</strong>. Now I use AI to generate HSL palettes, then manually verify EVERY contrast ratio with WebAIM. Trust, but verify!"
+    },
+    "prompt-formula": {
+      "title": "🎯 The Magic Prompt Formula",
+      "content": "Prof. Teeters taught me: <strong>Context + Mood + Constraints</strong>. BAD: <em>\"nice colors\"</em> GOOD: <em>\"E-commerce site for outdoor gear, earthy and trustworthy, need success/error states, must meet WCAG 2.2 Level AA, output as HSL custom properties with semantic names.\"</em> Specific prompts get professional results!"
+    }
+  },
+  "pageHelp": {
+    "index.html": {
+      "title": "🔬 HAP's insights available!",
+      "intro": "Hey! I have some cool insights to share on this page. Try these:",
+      "suggestions": [
+        {
+          "param": "stations",
+          "label": "Overview of learning stations"
+        },
+        {
+          "param": "detail",
+          "label": "Performance metrics"
+        }
+      ]
+    },
+    "station1.html": {
+      "title": "🎨 HAP here!",
+      "intro": "I learned so much about color formats on this page! Try:",
+      "suggestions": [
+        {
+          "param": "hex-shorthand",
+          "label": "Why #369 and #336699 confused me"
+        },
+        {
+          "param": "hsl-advantage",
+          "label": "Why HSL changed everything"
+        },
+        {
+          "param": "rgb-screens",
+          "label": "How screens actually work"
+        }
+      ]
+    },
+    "station2.html": {
+      "title": "🗂️ HAP here!",
+      "intro": "Prof. Teeters taught me how to organize colors systematically! Check out:",
+      "suggestions": [
+        {
+          "param": "semantic-naming",
+          "label": "Why --primary beats --blue"
+        },
+        {
+          "param": "60-30-10",
+          "label": "The professional designer secret"
+        },
+        {
+          "param": "gray-scales",
+          "label": "Creating perfect gray scales"
+        }
+      ]
+    },
+    "station3.html": {
+      "title": "🎡 HAP here!",
+      "intro": "This station taught me the color wheel as math! Learn more:",
+      "suggestions": [
+        {
+          "param": "color-wheel",
+          "label": "The color wheel as degrees"
+        },
+        {
+          "param": "complementary",
+          "label": "How to find opposites (add 180°)"
+        },
+        {
+          "param": "analogous",
+          "label": "How neighbors harmonize"
+        }
+      ]
+    },
+    "station4.html": {
+      "title": "♿ HAP here!",
+      "intro": "Accessibility is critical! Explore:",
+      "suggestions": [
+        {
+          "param": "wcag-aa",
+          "label": "WCAG 2.2 Level AA explained"
+        },
+        {
+          "param": "contrast-ratio",
+          "label": "Understanding 4.5:1 ratios"
+        },
+        {
+          "param": "cvd-testing",
+          "label": "Color-vision deficiency testing"
+        }
+      ]
+    },
+    "station5.html": {
+      "title": "⚡ HAP here!",
+      "intro": "Modern CSS techniques can transform your sites! Try:",
+      "suggestions": [
+        {
+          "param": "gradients",
+          "label": "CSS gradients vs image files"
+        },
+        {
+          "param": "color-mix",
+          "label": "Perfect hover colors with math"
+        },
+        {
+          "param": "dark-mode",
+          "label": "Automatic dark mode in 10 minutes"
+        }
+      ]
+    },
+    "station6.html": {
+      "title": "🤖 HAP here!",
+      "intro": "AI is game-changing when used right! Check out:",
+      "suggestions": [
+        {
+          "param": "vibe-coding",
+          "label": "Why vibe coding fails"
+        },
+        {
+          "param": "drift",
+          "label": "AI drift is annoying but normal"
+        },
+        {
+          "param": "terminology",
+          "label": "Custom properties NOT variables"
+        },
+        {
+          "param": "verify",
+          "label": "Trust but verify AI claims"
+        },
+        {
+          "param": "prompt-formula",
+          "label": "The magic prompt formula"
+        }
+      ]
+    }
+  },
+  "defaults": {
+    "unknown": {
+      "title": "🎯 You discovered HAP's insights!",
+      "content": "Nice find! Try different parameters to learn more about the topics Prof. Teeters taught me."
+    },
+    "emptyFallback": {
+      "title": "🎯 You discovered HAP's insights!",
+      "content": "Hey there! Try adding a parameter like <code>?hybit=detail</code> to see what I've learned!"
+    }
+  }
+}

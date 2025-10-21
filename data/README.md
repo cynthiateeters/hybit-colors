@@ -8,17 +8,17 @@ This directory contains the data files for HAP's educational easter egg system. 
 
 ## Files in this directory
 
-### `hybit-insights.jsonc`
+### `hybit-insights.json`
 
 Main data file containing all insight messages, page-specific help, and configuration.
 
-**Format:** JSONC (JSON with Comments)
+**Format:** JSON
 **Encoding:** UTF-8
 **Used by:** `js/easter-egg.js`
 
 ## File structure
 
-The JSONC file has four main sections:
+The JSON file has four main sections:
 
 ### 1. `allowedParams` (array)
 
@@ -26,11 +26,11 @@ Whitelist of valid parameter values. Only these trigger specific messages.
 
 **Example:**
 
-```jsonc
+```json
 "allowedParams": [
-  "detail",    // Lighthouse performance score
-  "srcset",    // Responsive images syntax
-  "lazy"       // Lazy loading benefits
+  "detail",
+  "srcset",
+  "lazy"
 ]
 ```
 
@@ -42,7 +42,7 @@ Full insight messages displayed when a valid parameter is used.
 
 **Structure:**
 
-```jsonc
+```json
 "messages": {
   "paramName": {
     "title": "🚀 Title with emoji",
@@ -70,7 +70,7 @@ Page-specific suggestions shown when user visits with bare `?hybit` parameter.
 
 **Structure:**
 
-```jsonc
+```json
 "pageHelp": {
   "page-name.html": {
     "title": "🔬 HAP here!",
@@ -100,7 +100,7 @@ Fallback messages for unknown parameters or pages without specific help.
 
 **Structure:**
 
-```jsonc
+```json
 "defaults": {
   "unknown": {
     "title": "...",
@@ -119,11 +119,11 @@ Fallback messages for unknown parameters or pages without specific help.
 
 Add your parameter name to `allowedParams`:
 
-```jsonc
+```json
 "allowedParams": [
   "detail",
   "srcset",
-  "newparam"  // Your new parameter
+  "newparam"
 ]
 ```
 
@@ -131,7 +131,7 @@ Add your parameter name to `allowedParams`:
 
 Add your message to `messages`:
 
-```jsonc
+```json
 "messages": {
   "newparam": {
     "title": "🎯 Your Insight Title",
@@ -144,7 +144,7 @@ Add your message to `messages`:
 
 If this insight is most relevant to a specific page, add it to `pageHelp`:
 
-```jsonc
+```json
 "pageHelp": {
   "your-page.html": {
     "title": "🔬 HAP here!",
@@ -289,8 +289,8 @@ Before adding content, ask:
 
 To add support for multiple languages:
 
-1. Create `hybit-insights-es.jsonc` (Spanish)
-2. Create `hybit-insights-fr.jsonc` (French)
+1. Create `hybit-insights-es.json` (Spanish)
+2. Create `hybit-insights-fr.json` (French)
 3. Update `easter-egg.js` to detect language and load appropriate file
 4. Keep structure identical across all language files
 
