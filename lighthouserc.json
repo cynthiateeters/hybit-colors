@@ -2,13 +2,13 @@
   "ci": {
     "collect": {
       "url": [
-        "http://localhost:8000/index.html",
-        "http://localhost:8000/stations/station1.html",
-        "http://localhost:8000/stations/station2.html",
-        "http://localhost:8000/stations/station3.html",
-        "http://localhost:8000/stations/station4.html",
-        "http://localhost:8000/stations/station5.html",
-        "http://localhost:8000/stations/station6.html"
+        "http://localhost:5500/index.html",
+        "http://localhost:5500/stations/station1.html",
+        "http://localhost:5500/stations/station2.html",
+        "http://localhost:5500/stations/station3.html",
+        "http://localhost:5500/stations/station4.html",
+        "http://localhost:5500/stations/station5.html",
+        "http://localhost:5500/stations/station6.html"
       ],
       "numberOfRuns": 3
     },
